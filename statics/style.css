@@ -6,6 +6,10 @@ body {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+}
+
 .barra-inicio {
     width: 100%;
     height: 70px;
@@ -45,6 +49,7 @@ body {
     top: 90px;
     right: 0;
     border-radius: 20px;
+    margin-right: 50px;
 }
 
 .barranav ul {
@@ -91,9 +96,10 @@ body {
 
 .redes {
     width: 25%;
-    background-color: black;
     height: 800px;
     padding-top: 50px;
+    float: left;
+    clear: both;
 }
 
 .cuadro-red {
@@ -109,7 +115,8 @@ body {
 .logo-red {
     width: 50px;
     height: 50px;
-    margin: 7px 10px;
+    margin-top: 10px;
+    margin-left: 15px;
     float: left;
 }
 
@@ -133,4 +140,107 @@ body {
 
 #whatsapp {
     background-color: #25d366;
+}
+
+.prepa6 {
+    width: 80%;
+    margin: 50px 10%;
+    text-decoration: none;
+}
+
+.coyotep6 {
+    width: 120%;
+    margin: 10px -10%;
+}
+
+.logo-coyote {
+    background-color: white;
+    border-radius: 50%;
+    width: 60%;
+    margin-top: 10px;
+    margin-left: 20%;
+}
+
+.texto-prepa6 {
+    background-color: #6CA5B1;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: -10px;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 0;
+}
+
+.a-c {
+    background-color: #595959;
+    width: 70%;
+    margin: 0 15%;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+article {
+    background-color: white;
+    width: 75%;
+    height: 900px;
+    margin-top: -30px;
+    display: inline-block;
+    float: left;
+}
+
+.espacio-nav {
+    width: 100%;
+    height: 40px;
+}
+
+footer {
+    width: 100%;
+    background-color: red;
+    clear: both;
+    margin-bottom: 50px;
+}
+
+.barra-final {
+    width: 75%;
+    padding: 10px 0;
+    margin-left: 17%;
+    margin-top: -20px;
+    text-align: center;
+    background-color: #C05C33;
+    border-radius: 20px;
+    color: white;
+    float: left;
+}
+
+.logo-final {
+    float: left;
+    display: inline-block;
+    margin-top: -85px;
+    margin-left: -20px;
+}
+
+.texto-final {
+    background-color: #6CA5B1;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    padding: 7px;
+    margin-top: -10px;
+}
+
+.fondo-logo-final {
+    background-color: #595959;
+    border-radius: 50%;
+}
+
+.espacio-final {
+    width: 100%;
+    height: 50px;
+    clear: both;
 }
