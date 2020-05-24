@@ -50,6 +50,7 @@ a {
     right: 0;
     border-radius: 20px;
     margin-right: 50px;
+    color: white;
 }
 
 .barranav ul {
@@ -61,7 +62,8 @@ a {
     height: 33px;
     text-align: center;
     padding-top: 17px;
-    padding-right: 50px:
+    color: white;
+    text-decoration: none;
 }
 
 .linav:hover {
@@ -80,10 +82,7 @@ a {
     }
 }
 
-.linav a {
-    color: white;
-    text-decoration: none;
-}
+.linav {}
 
 .barranav li {
     display: inline-block;
@@ -186,12 +185,13 @@ a {
 }
 
 article {
-    background-color: white;
+    background-color: #6CA5B1;
     width: 75%;
-    height: 900px;
+    height: 950px;
     margin-top: -30px;
     display: inline-block;
     float: left;
+    border-radius: 20px;
 }
 
 .espacio-nav {
@@ -243,4 +243,72 @@ footer {
     width: 100%;
     height: 50px;
     clear: both;
+}
+
+.img-index {
+    width: 100%;
+    height: 80%;
+    margin: 0 0%;
+    background-image: url(img/FotosPrepa/3.jpg);
+    background-size: cover;
+    background-position: right;
+}
+
+.botones-index {
+    height: 12%;
+    width: 100%;
+}
+
+.b-index {
+    background-color: #F29D29;
+    padding: 3% 8%;
+    margin: 3% 5%;
+    display: inline-block;
+    float: left;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+/* Registro.html */
+.img-registro {
+    height: 30%;
+    width: 100%;
+}
+
+.img-registro img {
+    width: 100%;
+    height: 100%;
+}
+
+.cuadro-registro {
+    width: 80%;
+    height: 60%;
+    margin: 3% 9%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+}
+
+/* info.html */
+.img-info {
+    height: 30%;
+    width: 100%;
+}
+
+.img-info img {
+    width: 100%;
+    height: 100%;
+}
+
+.choro-info {
+    color: white;
+    text-align: justify;
+}
+
+.choro-info p {
+    margin: 2% 5%;
+    font-size: 17px;
+    line-height: 25px;
 }
