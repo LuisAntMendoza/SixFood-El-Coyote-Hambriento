@@ -440,15 +440,20 @@ footer {
     background-color: #F29D29;
     border: 5px solid #C05C33;
     border-radius: 20px;
+    padding-bottom: 30px;
 }
 
 .form-pedido h3 {
     text-align: center;
 }
 
-.pedido-entregar input {
+.form-pedido h4 {
+    margin-left: 20px;
+}
+
+.pedido-entregar {
     width: 40%;
-    margin: 5px 4%;
+    margin: 5px 4% !important;
     font-family: 'Syncopate', sans-serif;
     padding: 8px;
     font-size: 20px;
@@ -457,4 +462,11 @@ footer {
 
 .form-pedido p, .form-pedido input, .form-pedido select {
     margin-left: 20px;
+}
+
+.form-pedido select, .form-pedido input {
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 10px;
 }

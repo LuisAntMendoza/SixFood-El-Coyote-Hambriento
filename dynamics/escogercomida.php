@@ -3,28 +3,10 @@ session_start();
 if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
 }
-$zona = date_default_timezone_set('America/Mexico_City');//Define la zona horaria a la de México
-$fecha = date("d-m-Y"); //Da la fecha
-$hora = date("H:i:s"); //Da la hora formato de 24hrs
-$form = "";
-if($_POST['id_recoPedido']) {
-    $_SESSION['noPedido'] = $fecha.'_'.$hora;
-    if($_POST['id_recoPedido'] == "Entregar") {
-        $form = '
-                <p>Lugar de entrega:</p>
-                <select name="Lugar">
-                    <option value="Patio de cuartos">Patio de cuartos</option>
-                    <option value="Canchas">Canchas</option>
-                    <option value="Patio de quintos">Patio de quintos</option>
-                    <option value="Pulpo">Pulpo</option>
-                    <option value="Patio de sextos">Patio de sextos</option>
-                    <option value="Pimpos">Pimponeras</option>
-                    <option value="Area administrativa">Area administrativa</option>
-                    <option value="Sala de maestros">Sala de maestros</option>
-                </select>
-        ';
-    }
-}
+$_SESSION['Pedido'] = [];
+$_SESSION['Pedido'][] = $_SESSION['noPedido'];
+$_SESSION['Pedido'][] = $_POST['Urgencia'];
+$_SESSION['Pedido'][] = $_POST['Lugar'];
 
 echo '
 <!DOCTYPE html>
@@ -110,13 +92,14 @@ echo '
         </aside>
         <article class="body-pedidos">
             <div class="form-pedido">
-                <h3>Realiza tu pedido</h3>
+                <h3>Escoge tus alimentos</h3>
                 <h4>Seleccione una opción</h4>
                 <form action="r-pedido.php" method="post">
-                    <input type="submit" name="id_recoPedido" value="Recoger" class="pedido-entregar">
-                    <input type="submit" name="id_recoPedido" value="Entregar" class="pedido-entregar">
+                    <input type="submit" name="claseAlimento" value="Bebida" class="pedido-entregar">
+                    <input type="submit" name="claseAlimento" value="Comida preparada" class="pedido-entregar">
+                    <input type="submit" name="claseAlimento" value="Antojitos" class="pedido-entregar">
                 </form>';
-if($_POST['id_recoPedido']) {
+if($_POST['claseAlimento']) {
     echo '      <form action="escogercomida.php" method="post">
                     '.$form.'
                     <p>Urgencia (Costo extra):'.$_SESSION['noPedido'].'</p>
