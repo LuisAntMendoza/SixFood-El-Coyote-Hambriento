@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>REGISTRATE </title>
+  </head>
+  <body>
+    <h1>REGISTRATE</h1>
+    <?php
+        $eleccion = $_POST['categorias'];
+        if ($eleccion == "Alumno")
+        {
+          echo "<form action='escuela2.php' method='POST'>
+                <fieldset>
+                ALUMNO
+                <br>"."<br>
+                Nombre(s): "."<br>
+                <input type=text name=Nombre placeholder=Escriba required>
+                <br>"."<br>
+                ApellidoPaterno: "."<br>
+                <input type=text name=ApePa placeholder=Escriba required>
+                <br>"."<br>
+                ApellidoMaterno: "."<br>
+                <input type=text name=ApeMa placeholder=Escriba required>
+                <br>"."<br>
+                Grupo: "."<br>
+                <input type=text name=Grupo placeholder=Escriba maxlength=3 required>
+                <br>"."<br>
+                Número de cuenta: "."<br>
+                <input type=text name=Numcuenta placeholder=Escriba required>
+                <br>"."<br>
+                <input type=submit value=Enviar>"."<br>
+                </fieldset>";
+        }
+        if($eleccion == "Profesor")
+        {
+          echo "<fieldset>
+                PROFESOR
+                <br>"."<br>
+                Nombre(s): "."<br>
+                <input type=text name=Nombre placeholder=Escriba su Nombre required>
+                <br>"."<br>
+                ApellidoPaterno: "."<br>
+                <input type=text name=ApePa placeholder=Escriba su grupo required>
+                <br>"."<br>
+                ApellidoMaterno: "."<br>
+                <input type=text name=ApeMa placeholder=Escriba su grupo required>
+                <br>"."<br>
+                Colegio: "."<br>
+                <input type=text name=Colegio placeholder=Escriba maxlength=3 required>
+                <br>"."<br>
+                RFC: "."<br>
+                <input type=text name=RFC placeholder=Escriba required>
+                <br>"."<br>
+                <input type=submit value=Enviar>"."<br>
+                </fieldset>";
+        }
+        if ($eleccion == "Trabajador")
+        {
+          echo "<fieldset>
+                TRABAJADOR
+                <br>"."<br>
+                Nombre(s): "."<br>
+                <input type=text name=Nombre placeholder=Escriba su Nombre required>
+                <br>"."<br>
+                ApellidoPaterno: "."<br>
+                <input type=text name=ApePa placeholder=Escriba su grupo required>
+                <br>"."<br>
+                ApellidoMaterno: "."<br>
+                <input type=text name=ApeMa placeholder=Escriba su grupo required>
+                <br>"."<br>
+                Número de trabajador: "."<br>
+                <input type=text name=Numtrabajador placeholder=Escriba required>
+                <br>"."<br>
+                <input type=submit value=Enviar>"."<br>
+                </fieldset>";
+        }
+      echo "<br>";
+    ?>
+  </body>
+  </html>
