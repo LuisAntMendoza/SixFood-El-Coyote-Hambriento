@@ -1,3 +1,23 @@
+<?php
+session_start();
+if(isset($_SESSION['usuario'])) {
+    $cS = '
+    <li>
+        <div class="cerrar-sesion" id="ultimo-nav">
+            <p>Sesión iniciada como:</p>
+            <p>'.$_SESSION['usuario'].'</p>
+            <a href="cerrarsesion.php">
+                <p id="b-cerrarsesion">Cerrar sesión</p>
+            </a>
+        </div>
+    </li>';
+}
+else {
+    $cS = "";
+}
+
+
+echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
@@ -11,33 +31,36 @@
 <body>
 
     <header>
-        <div class="barra-inicio"><a href="index.html">
+        <div class="barra-inicio"><a href="index.php">
                 <div class="logo"><img src="../statics/img/logo_pizza.png" alt="Logo SixFood" id="logo-inicio"></div>
             </a>
 
             <h1>SixFood: El Coyote Hambriento</h1>
             <nav class="barranav">
                 <ul>
+                    '.$cS.'
                     <li>
-                        <a href="../dynamics/info.php">
+                        <a href="info.php">
                             <div class="linav" id="ultimo-nav">Más info</div>
                         </a>
 
                     </li>
                     <li>
-                        <a href="../dynamics/pedidos.php">
+                        <a href="pedidos.php">
                             <div class="linav">Pedidos</div>
                         </a>
 
                     </li>
-                    <li><a href="../dynamics/index.php">
+                    <li><a href="index.php">
                             <div class="linav">Inicio</div>
                         </a>
 
                     </li>
+
                 </ul>
             </nav>
         </div>
+
     </header>
     <section>
         <aside class="redes">
@@ -70,14 +93,23 @@
             </a>
         </aside>
         <article>
-
-            <div class="img-index"></div>
-            <div class="botones-index">
-
-                <div class="b-error">Ups! Hemos encontrado un error.</div>
-                <a href="../dynamics/index.php">
-                    <div class="b-error">Volver a la página principal</div>
-                </a>
+            <div class="img-info"><img src="../statics/img/FotosPrepa/2.jpg" alt="Patio de Cuartos"></div>
+            <div class="choro-info">
+                <p>© Six Food: El Coyote Hambriento S.A. de C.V. busca brindarte la mejor experiencia para adquirir comida de calidad y al mejor precio.
+                </p>
+                <p>Somos una empresa dedicada al servicio al cliente, nuestros usuarios son nuestra prioridad y constantemente
+                    estamos mejorando para darte el mejor servicio dentro de la industria alimentaria. Nuestra misión es ofrecerte
+                    una plataforma completa en la que puedas realizar pedidos de manera rápida y segura, donde tu información personal esté protegida. </p>
+                <p>Contamos con un (extenso) catálogo de productos que puedes consultar en cualquier momento para satisfacer todos tus antojos. Y, si
+                    alguna vez quieres un producto en particular y este no se encuentra en nuestro menú, no dudes en escribir tu propuesta de adiciones
+                    en el apartado de “Sugerencias”.
+                </p>
+                <p>Todo nuestro repertorio de Comida por Pedido está elaborado con los mejores productos del mercado, con carne de calidad y las verduras
+                    más frescas. Todo preparado al momento. Si tienes curiosidad por nuestros proveedores, puedes consultar la sección “¿De dónde viene la
+                    comida?”, donde encontrarás los lugares que proveen de materia prima a tu cafetería.
+                </p>
+                <p>Si te interesa saber más acerca de la página o de sus creadores y accionistas, puedes revisar nuestras redes sociales en la sección de “¡Conócenos!”.
+                </p>
             </div>
         </article>
     </section>
@@ -92,4 +124,5 @@
 
 </body>
 
-</html>
+</html>';
+ ?>

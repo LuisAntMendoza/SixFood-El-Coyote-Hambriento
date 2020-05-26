@@ -21,18 +21,18 @@ echo '<!DOCTYPE html>
             <nav class="barranav">
                 <ul>
                     <li>
-                        <a href="../templates/info.html">
+                        <a href="info.php">
                             <div class="linav" id="ultimo-nav">Más info</div>
                         </a>
 
                     </li>
                     <li>
-                        <a href="">
+                        <a href="pedidos.php">
                             <div class="linav">Pedidos</div>
                         </a>
 
                     </li>
-                    <li><a href="../templates/index.html">
+                    <li><a href="index.php">
                             <div class="linav">Inicio</div>
                         </a>
 
@@ -82,6 +82,11 @@ if(!$conexion) {
     header("location:../templates/error.html");
 }
 
+//si la sesion ya esta iniciada lo sacamos
+if(isset($_SESSION['usuario'])) {
+    header("location: index.php");
+}
+
 //reiniciamos varibales
 $noNoCuenta = "";
 $contraIncorrecta = "";
@@ -109,19 +114,21 @@ if($_POST['RFC']) {
 
 if($_SESSION['tipo'] == "Alumno") {
     if($_POST['noCuenta']) {
-        $consultar = 'SELECT * FROM Usuario WHERE noCuenta = "'.$_POST['noCuenta'].'"';
+        $escapar = mysqli_real_escape_string($conexion,$_POST['noCuenta']);
+        $consultar = 'SELECT * FROM Usuario WHERE noCuenta = "'.$escapar.'"';
         $consulta = mysqli_query($conexion, $consultar);
         $resultado = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
         if($resultado['noCuenta'] == $_POST['noCuenta']) {
             if($resultado['Contraseña'] == $_POST['clave']) {
-                header("location:../templates/index.html");
+                $_SESSION['usuario'] = $_POST['noCuenta'];
+                header("location:pedidos.php");
             }
             else {
                 $contraIncorrecta = "<br><p>Contraseña incorrecta</p>";
             }
         }
         else {
-            $noNoCuenta = "<br><br><p>No se encontró ese RFC.</p>";
+            $noNoCuenta = "<br><br><p>No se encontró ese número de cuenta.</p>";
         }
     }
     echo
@@ -147,12 +154,14 @@ if($_SESSION['tipo'] == "Alumno") {
 }
 elseif ($_SESSION['tipo'] == "Funcionario/profesor") {
     if($_POST['RFC']) {
-        $consultar = 'SELECT * FROM Usuario2 WHERE RFC = "'.$_POST['RFC'].'"';
+        $escapar = mysqli_real_escape_string($conexion,$_POST['RFC']);
+        $consultar = 'SELECT * FROM Usuario2 WHERE RFC = "'.$escapar.'"';
         $consulta = mysqli_query($conexion, $consultar);
         $resultado = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
         if($resultado['RFC'] == $_POST['RFC']) {
             if($resultado['Contraseña'] == $_POST['clave']) {
-                header("location:../templates/index.html");
+                $_SESSION['usuario'] = $_POST['RFC'];
+                header("location:pedidos.php");
             }
             else {
                 $contraIncorrecta = "<br><p>Contraseña incorrecta</p>";
@@ -209,4 +218,5 @@ echo '  </article>
 </body>
 
 </html>';
+mysqli_close($conexion);
 ?>

@@ -1,3 +1,39 @@
+<?php
+session_start();
+if(isset($_SESSION['usuario'])) {
+    $cS = '<li>
+        <div class="cerrar-sesion" id="ultimo-nav">
+            <p>Sesión iniciada como:</p>
+            <p>'.$_SESSION['usuario'].'</p>
+            <a href="cerrarsesion.php">
+                <p id="b-cerrarsesion">Cerrar sesión</p>
+            </a>
+        </div>
+    </li>';
+    $botones = '
+            <div class="botones-index">
+                <div class="b-index">¡Bienvenido!</div>
+                <a href="r-pedido.php">
+                    <div class="b-index">Pedir comida</div>
+                </a>
+            </div>
+    ';
+}
+else {
+    $cS = "";
+    $botones = '
+            <div class="botones-index">
+                <a href="registro.html">
+                    <div class="b-index">Registrate</div>
+                </a><a href="login.php">
+                    <div class="b-index">Inicia Sesion</div>
+                </a>
+            </div>
+    ';
+}
+
+
+echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
@@ -11,30 +47,32 @@
 <body>
 
     <header>
-        <div class="barra-inicio"><a href="index.html">
+        <div class="barra-inicio"><a href="index.php">
                 <div class="logo"><img src="../statics/img/logo_pizza.png" alt="Logo SixFood" id="logo-inicio"></div>
             </a>
 
             <h1>SixFood: El Coyote Hambriento</h1>
             <nav class="barranav">
                 <ul>
+                    '.$cS.'
                     <li>
-                        <a href="info.html">
+                        <a href="info.php">
                             <div class="linav" id="ultimo-nav">Más info</div>
                         </a>
 
                     </li>
                     <li>
-                        <a href="">
+                        <a href="pedidos.php">
                             <div class="linav">Pedidos</div>
                         </a>
 
                     </li>
-                    <li><a href="index.html">
+                    <li><a href="index.php">
                             <div class="linav">Inicio</div>
                         </a>
 
                     </li>
+
                 </ul>
             </nav>
         </div>
@@ -73,13 +111,7 @@
         <article>
 
             <div class="img-index"></div>
-            <div class="botones-index">
-                <a href="registro.html">
-                    <div class="b-index">Registrate</div>
-                </a><a href="../dynamics/login.php">
-                    <div class="b-index">Inicia Sesion</div>
-                </a>
-            </div>
+            '.$botones.'
         </article>
     </section>
     <div class="espacio-final"></div>
@@ -93,4 +125,5 @@
 
 </body>
 
-</html>
+</html>';
+ ?>

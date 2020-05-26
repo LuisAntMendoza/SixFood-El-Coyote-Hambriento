@@ -1,3 +1,28 @@
+<?php
+session_start();
+if(! isset($_SESSION['usuario'])) {
+    header("location: login.php");
+}
+$form = "";
+if($_POST['id_recoPedido']) {
+    if($_POST['id_recoPedido'] == "Entregar") {
+        $form = '
+                <p>Lugar de entrega:</p>
+                <select name="Lugar">
+                    <option value="Patio de cuartos">Patio de cuartos</option>
+                    <option value="Canchas">Canchas</option>
+                    <option value="Patio de quintos">Patio de quintos</option>
+                    <option value="Pulpo">Pulpo</option>
+                    <option value="Patio de sextos">Patio de sextos</option>
+                    <option value="Pimpos">Pimponeras</option>
+                    <option value="Area administrativa">Area administrativa</option>
+                    <option value="Sala de maestros">Sala de maestros</option>
+                </select>
+        ';
+    }
+}
+
+echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
@@ -19,18 +44,27 @@
             <nav class="barranav">
                 <ul>
                     <li>
-                        <a href="../dynamics/info.php">
+                        <div class="cerrar-sesion" id="ultimo-nav">
+                            <p>Sesión iniciada como:</p>
+                            <p>'.$_SESSION['usuario'].'</p>
+                            <a href="cerrarsesion.php">
+                                <p id="b-cerrarsesion">Cerrar sesión</p>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="info.php">
                             <div class="linav" id="ultimo-nav">Más info</div>
                         </a>
 
                     </li>
                     <li>
-                        <a href="../dynamics/pedidos.php">
+                        <a href="pedidos.php">
                             <div class="linav">Pedidos</div>
                         </a>
 
                     </li>
-                    <li><a href="../dynamics/index.php">
+                    <li><a href="index.php">
                             <div class="linav">Inicio</div>
                         </a>
 
@@ -38,6 +72,7 @@
                 </ul>
             </nav>
         </div>
+
     </header>
     <section>
         <aside class="redes">
@@ -69,13 +104,33 @@
                 </div>
             </a>
         </aside>
-        <article>
+        <article class="body-pedidos">
+            <div class="form-pedido">
+                <h3>Realiza tu pedido</h3>
+                <h4>Seleccione una opción</h4>
+                <form action="r-pedido.php" method="post" class="pedido-entregar">
+                    <input type="submit" name="id_recoPedido" value="Recoger">
+                    <input type="submit" name="id_recoPedido" value="Entregar">
+                </form>';
+if($_POST['id_recoPedido']) {
+    echo '      <form action="" method="post">
+                    '.$form.'
+                    <p>Urgencia:</p>
+                    <select name="Urgencia">
+                        <option value="Normal">Normal</option>
+                        <option value="Express">Express</option>
+                        <option value="Urgente">Urgente</option>
+                    </select>
 
-            <div class="img-index"></div>
+
+
+                </form>
+    ';
+}
+echo'       </div>
             <div class="botones-index">
-
-                <div class="b-error">Ups! Hemos encontrado un error.</div>
-                <a href="../dynamics/index.php">
+                <div class="b-error">Realizar un pedido</div>
+                <a href="index.php">
                     <div class="b-error">Volver a la página principal</div>
                 </a>
             </div>
@@ -92,4 +147,5 @@
 
 </body>
 
-</html>
+</html>';
+?>

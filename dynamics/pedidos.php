@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(! isset($_SESSION['usuario'])) {
+    header("location: login.php");
+}
+
+echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
 
@@ -19,18 +26,27 @@
             <nav class="barranav">
                 <ul>
                     <li>
-                        <a href="info.html">
+                        <div class="cerrar-sesion" id="ultimo-nav">
+                            <p>Sesión iniciada como:</p>
+                            <p>'.$_SESSION['usuario'].'</p>
+                            <a href="cerrarsesion.php">
+                                <p id="b-cerrarsesion">Cerrar sesión</p>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="info.php">
                             <div class="linav" id="ultimo-nav">Más info</div>
                         </a>
 
                     </li>
                     <li>
-                        <a href="">
+                        <a href="pedidos.php">
                             <div class="linav">Pedidos</div>
                         </a>
 
                     </li>
-                    <li><a href="index.html">
+                    <li><a href="index.php">
                             <div class="linav">Inicio</div>
                         </a>
 
@@ -70,24 +86,32 @@
                 </div>
             </a>
         </aside>
-        <article>
-            <div class="img-info"><img src="../statics/img/FotosPrepa/2.jpg" alt="Patio de Cuartos"></div>
-            <div class="choro-info">
-                <p>© Six Food: El Coyote Hambriento S.A. de C.V. busca brindarte la mejor experiencia para adquirir comida de calidad y al mejor precio.
-                </p>
-                <p>Somos una empresa dedicada al servicio al cliente, nuestros usuarios son nuestra prioridad y constantemente
-                    estamos mejorando para darte el mejor servicio dentro de la industria alimentaria. Nuestra misión es ofrecerte
-                    una plataforma completa en la que puedas realizar pedidos de manera rápida y segura, donde tu información personal esté protegida. </p>
-                <p>Contamos con un (extenso) catálogo de productos que puedes consultar en cualquier momento para satisfacer todos tus antojos. Y, si
-                    alguna vez quieres un producto en particular y este no se encuentra en nuestro menú, no dudes en escribir tu propuesta de adiciones
-                    en el apartado de “Sugerencias”.
-                </p>
-                <p>Todo nuestro repertorio de Comida por Pedido está elaborado con los mejores productos del mercado, con carne de calidad y las verduras
-                    más frescas. Todo preparado al momento. Si tienes curiosidad por nuestros proveedores, puedes consultar la sección “¿De dónde viene la
-                    comida?”, donde encontrarás los lugares que proveen de materia prima a tu cafetería.
-                </p>
-                <p>Si te interesa saber más acerca de la página o de sus creadores y accionistas, puedes revisar nuestras redes sociales en la sección de “¡Conócenos!”.
-                </p>
+        <article class="body-pedidos">
+            <div class="tabla-pedidos">
+                <table>
+                    <tr>
+                        <th>No.</th>
+                        <th>Usuario</th>
+                        <th>Pedido</th>
+                        <th>Hora de entrega</th>
+                        <th>Lugar de entrega</th>
+                    </tr>
+                    <tr>
+                        <td>No.</td>
+                        <td>Usuario</td>
+                        <td>Pedido</td>
+                        <td>Hora de entrega</td>
+                        <td>Lugar de entrega</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="botones-index">
+                <a href="r-pedido.php">
+                    <div class="b-error">Realizar un pedido</div>
+                </a>
+                <a href="index.php">
+                    <div class="b-error">Volver a la página principal</div>
+                </a>
             </div>
         </article>
     </section>
@@ -102,4 +126,5 @@
 
 </body>
 
-</html>
+</html>';
+?>

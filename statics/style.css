@@ -82,8 +82,6 @@ a {
     }
 }
 
-.linav {}
-
 .barranav li {
     display: inline-block;
     float: right;
@@ -91,6 +89,34 @@ a {
 
 #ultimo-nav {
     margin-right: 70px;
+}
+
+.cerrar-sesion {
+    clear: both;
+    float: left;
+    padding-top: 0px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+.cerrar-sesion p {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 10px;
+    color: white;
+}
+
+.cerrar-sesion a {
+    color: white;
+}
+
+#b-cerrarsesion:hover {
+    background-color: #eb6f0b;
+    animation-name: lihover;
+    animation-duration: 1s;
 }
 
 .redes {
@@ -261,7 +287,7 @@ footer {
 
 .b-index {
     background-color: #F29D29;
-    padding: 3% 8%;
+    padding: 3% 7%;
     margin: 3% 5%;
     display: inline-block;
     float: left;
@@ -384,4 +410,51 @@ footer {
     font-size: 20px;
     text-align: center;
     color: white;
+}
+
+/* Pedidos.php */
+.body-pedidos {
+    height: auto;
+    margin-top: -50px;
+}
+
+.tabla-pedidos {
+    width: 100%;
+    height: auto;
+    margin-top: 85px;
+}
+
+.tabla-pedidos table, .tabla-pedidos tr, .tabla-pedidos th, .tabla-pedidos td {
+    border: 1px solid black;
+}
+
+.tabla-pedidos table {
+    width: 80%;
+    margin: 5px 10%;
+}
+
+/* r-pedido.php */
+.form-pedido {
+    margin: 85px 10% 0px 10%;
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+}
+
+.form-pedido h3 {
+    text-align: center;
+}
+
+.pedido-entregar input {
+    width: 40%;
+    margin: 5px 4%;
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.form-pedido p, .form-pedido input, .form-pedido select {
+    margin-left: 20px;
 }
