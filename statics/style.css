@@ -312,3 +312,76 @@ footer {
     font-size: 17px;
     line-height: 25px;
 }
+
+/* login.php */
+.tipo-login {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    height: 60px;
+    margin: 20px 10%;
+}
+
+.escoger-login {
+    float: left;
+    width: 48%;
+    margin: 10px 1%;
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.login-alumno {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    text-align: center;
+    margin: 50px 10%;
+}
+
+.login-alumno p {
+    font-size: 12px;
+    color: #b30000;
+}
+
+.login-alumno h3 {
+    margin-top: 30px;
+}
+
+.login-alumno h5 {
+    margin-top: 80px;
+}
+
+.login-alumno input {
+    font-size: 20px;
+}
+
+.noCuenta {
+    width: 100px;
+}
+
+.RFC {
+    width: 165px;
+}
+
+.login-enviar {
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+/* error.html */
+.b-error {
+    background-color: #F29D29;
+    width: 50%;
+    padding: 2% 3%;
+    margin: 1% 25%;
+    display: inline-block;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
