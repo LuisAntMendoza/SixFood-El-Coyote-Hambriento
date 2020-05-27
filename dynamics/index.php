@@ -23,7 +23,7 @@ else {
     $cS = "";
     $botones = '
             <div class="botones-index">
-                <a href="registro.html">
+                <a href="registro.php">
                     <div class="b-index">Registrate</div>
                 </a><a href="login.php">
                     <div class="b-index">Inicia Sesion</div>

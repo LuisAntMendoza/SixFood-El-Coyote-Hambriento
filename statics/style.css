@@ -297,26 +297,6 @@ footer {
     color: white;
 }
 
-/* Registro.html */
-.img-registro {
-    height: 30%;
-    width: 100%;
-}
-
-.img-registro img {
-    width: 100%;
-    height: 100%;
-}
-
-.cuadro-registro {
-    width: 80%;
-    height: 60%;
-    margin: 3% 9%;
-    background-color: #F29D29;
-    border: 5px solid #C05C33;
-    border-radius: 20px;
-}
-
 /* info.html */
 .img-info {
     height: 30%;
@@ -468,5 +448,55 @@ footer {
     font-family: 'Syncopate', sans-serif;
     padding: 8px;
     font-size: 13px;
+    border-radius: 10px;
+}
+
+.body-registro {
+    height: auto;
+}
+
+.body-registro img {
+    height: 300px;
+}
+
+.registro-alumno {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    text-align: center;
+    margin: 50px 10%;
+}
+
+.registro-alumno p {
+    font-size: 12px;
+    color: #b30000;
+}
+
+.registro-alumno h3 {
+    margin-top: 30px;
+}
+
+.registro-alumno h4 {
+    margin-top: 80px;
+}
+
+.registro-alumno input {
+    font-size: 20px;
+}
+
+.registro-alumno select {
+    padding: 8px;
+    font-size: 12px;
+    font-family: 'Syncopate', sans-serif;
+}
+
+.escoger-registro {
+    float: left;
+    width: 29%;
+    margin: 10px 2%;
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 20px;
     border-radius: 10px;
 }
