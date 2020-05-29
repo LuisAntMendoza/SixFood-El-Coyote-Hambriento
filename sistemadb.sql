@@ -104,37 +104,6 @@ INSERT INTO `entrega` VALUES (1,4,'Patio de cuartos\r'),(2,4,'Canchas\r'),(3,5,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `estudiante`
---
-
-DROP TABLE IF EXISTS `estudiante`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `estudiante` (
-  `id_ncuenta` varchar(128) NOT NULL,
-  `nombre` varchar(128) NOT NULL,
-  `apellidoPat` varchar(128) NOT NULL,
-  `apellidoMat` varchar(128) DEFAULT NULL,
-  `grupo` int(3) NOT NULL,
-  `contraseña` varchar(256) NOT NULL,
-  `id_tipousuario` int(1) NOT NULL,
-  PRIMARY KEY (`id_ncuenta`),
-  UNIQUE KEY `id_ncuenta` (`id_ncuenta`),
-  KEY `id_tipousuario` (`id_tipousuario`),
-  CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `estudiante`
---
-
-LOCK TABLES `estudiante` WRITE;
-/*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `porcionb`
 --
 
@@ -207,37 +176,6 @@ LOCK TABLES `presentacion` WRITE;
 /*!40000 ALTER TABLE `presentacion` DISABLE KEYS */;
 INSERT INTO `presentacion` VALUES (1,'sencillos'),(2,'especial'),(3,'chicos'),(4,'grandes'),(5,'orden'),(6,'queso, crema, cebolla'),(7,'con papas a la francesa');
 /*!40000 ALTER TABLE `presentacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `profesor`
---
-
-DROP TABLE IF EXISTS `profesor`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `profesor` (
-  `id_rfc` varchar(128) NOT NULL,
-  `nombre` varchar(128) NOT NULL,
-  `apellidoPat` varchar(128) NOT NULL,
-  `apellidoMat` varchar(128) DEFAULT NULL,
-  `colegio` char(25) NOT NULL,
-  `contraseña` varchar(256) NOT NULL,
-  `id_tipousuario` int(1) NOT NULL,
-  PRIMARY KEY (`id_rfc`),
-  UNIQUE KEY `id_rfc` (`id_rfc`),
-  KEY `id_tipousuario` (`id_tipousuario`),
-  CONSTRAINT `profesor_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `profesor`
---
-
-LOCK TABLES `profesor` WRITE;
-/*!40000 ALTER TABLE `profesor` DISABLE KEYS */;
-/*!40000 ALTER TABLE `profesor` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -367,36 +305,6 @@ LOCK TABLES `tipousuario` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `trabajador`
---
-
-DROP TABLE IF EXISTS `trabajador`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `trabajador` (
-  `id_ntrabajador` varchar(128) NOT NULL,
-  `nombre` varchar(128) NOT NULL,
-  `apellidoPat` varchar(128) NOT NULL,
-  `apellidoMat` varchar(128) DEFAULT NULL,
-  `contraseña` varchar(256) NOT NULL,
-  `id_tipousuario` int(1) NOT NULL,
-  PRIMARY KEY (`id_ntrabajador`),
-  UNIQUE KEY `id_ntrabajador` (`id_ntrabajador`),
-  KEY `id_tipousuario` (`id_tipousuario`),
-  CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `trabajador`
---
-
-LOCK TABLES `trabajador` WRITE;
-/*!40000 ALTER TABLE `trabajador` DISABLE KEYS */;
-/*!40000 ALTER TABLE `trabajador` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `usuario`
 --
 
@@ -436,6 +344,7 @@ DROP TABLE IF EXISTS `venta`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `venta` (
+  `id_venta` varchar(128) NOT NULL,
   `id_usuario` varchar(128) NOT NULL,
   `id_comida` int(3) DEFAULT NULL,
   `id_bebida` int(3) DEFAULT NULL,
@@ -479,4 +388,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 11:57:39
+-- Dump completed on 2020-05-29 13:48:41
