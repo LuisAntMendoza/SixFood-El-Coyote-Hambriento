@@ -124,7 +124,7 @@ if($_SESSION['tipo'] == "Alumno") {
                     <h4>Número de cuenta</h4>
                     <input type="text" name="noCuenta" pattern="(^\d{9}$)" required maxlength="9" class="noCuenta" title="Ingrese su número de cuenta sin guiones">
                     <h4>Grupo</h4>
-                    <input type="text" name="Grupo" required pattern="^(\d{3})$" maxlength="3" title="Ingrese un grupo válido">
+                    <input type="text" name="Grupo" required pattern="^(\d{3})$" maxlength="3" title="Ingrese un grupo válido" class="Grupo">
                     <h4>Contraseña</h4>
                     <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
                     title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
@@ -233,7 +233,7 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
                 <h4>Apellido Materno</h4>
                 <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                 <h4>Número de Trabajador</h4>
-                <input type="text" name="noTrabajador" pattern="^(\d{6})$" required maxlength="6" title="Ingrese un número de trabajador válido">
+                <input type="text" name="noTrabajador" pattern="^(\d{6})$" required maxlength="6" title="Ingrese un número de trabajador válido" class="noTrabajador">
                 <h4>Contraseña</h4>
                 <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
                 title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">

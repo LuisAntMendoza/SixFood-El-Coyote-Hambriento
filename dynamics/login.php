@@ -1,4 +1,25 @@
 <?php
+define("PASSWORD", "Shrek Amo Del Multiverso");
+define("HASH", "sha256");
+define("METHOD", "aes-128-cbc-hmac-sha1");
+
+function Decifrar ($textoCifrado){
+  $key = openssl_digest(PASSWORD, HASH);
+  $iv_len = openssl_cipher_iv_length (METHOD);
+
+  $cifrado = base64_decode($textoCifrado);
+  $iv = substr($cifrado, 0, $iv_len);
+  $rawCiff = substr($cifrado, $iv_len);
+
+  $originalText = openssl_decrypt(
+  $rawCiff,
+  METHOD,
+  $key,
+  OPENSSL_RAW_DATA,
+  $iv
+  );
+  return $originalText;
+}
 //inicio estructura HTML
 echo '<!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -80,60 +101,128 @@ session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
+    exit();
 }
 
 //si la sesion ya esta iniciada lo sacamos
 if(isset($_SESSION['usuario'])) {
     header("location: index.php");
+    exit();
 }
-
-//reiniciamos varibales
-$noNoCuenta = "";
-$contraIncorrecta = "";
-$noRFC = "";
 
 //sirven para almacenar en que menu estamos.
 if($_POST['tipo'] == "Alumno") {
     $_SESSION['tipo'] = "Alumno";
 }
-elseif($_POST['tipo'] == "Funcionario/profesor") {
-    $_SESSION['tipo'] = "Funcionario/profesor";
+elseif($_POST['tipo'] == "Académico") {
+    $_SESSION['tipo'] = "Académico";
+}
+elseif($_POST['tipo'] == "Trabajador") {
+    $_SESSION['tipo'] = "Trabajador";
+}
+if($_POST['clave']) {
+    if(! preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$/", $_POST['clave'])) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    else {
+        $clave = mysqli_real_escape_string($conexion, $_POST['clave']);
+    }
 }
 
 //valida con regex que se mande lo que se solicita
 if($_POST['noCuenta']) {
     if(! preg_match("/^[0-9]{9}$/",$_POST['noCuenta'])) {
         header("location:../templates/error.html");
+        exit();
+    }
+    else {
+        $noCuenta = mysqli_real_escape_string($conexion, $_POST['noCuenta']);
+        $consulta = 'SELECT * FROM estudiante';
+        $consultar = mysqli_query($conexion, $consulta);
+        while($resultado = mysqli_fetch_array($consultar)) {
+            $noCuentaBase = Decifrar($resultado[0]);
+            if($noCuentaBase == $noCuenta) {
+                if(password_verify($clave, $resultado[5])) {
+                    $_SESSION['usuario'] = Decifrar($resultado[1]);
+                    header("location: pedidos.php");
+                    exit();
+                }
+                else {
+                    $_SESSION['Error'] = "<p>Contraseña incorrecta</p>";
+                    header("location:login.php");
+                    exit();
+                }
+            }
+        }
+        $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
+        header("location:login.php");
+        exit();
     }
 }
 if($_POST['RFC']) {
     if(! preg_match("/^[A-Z]{4}[0-9]{6}[0-9A-Z]{3}$/",$_POST['RFC'])) {
         header("location:../templates/error.html");
+        exit();
+    }
+    else {
+        $RFC = mysqli_real_escape_string($conexion, $_POST['RFC']);
+        $consulta = 'SELECT * FROM profesor';
+        $consultar = mysqli_query($conexion, $consulta);
+        while($resultado = mysqli_fetch_array($consultar)) {
+            $RFCBase = Decifrar($resultado[0]);
+            if($RFCBase == $RFC) {
+                if(password_verify($clave, $resultado[5])) {
+                    $_SESSION['usuario'] = Decifrar($resultado[1]);
+                    header("location: pedidos.php");
+                    exit();
+                }
+                else {
+                    $_SESSION['Error'] = "<p>Contraseña incorrecta</p>";
+                    header("location:login.php");
+                    exit();
+                }
+            }
+        }
+        $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
+        header("location:login.php");
+        exit();
+    }
+}
+if($_POST['noTrabajador']) {
+    if(! preg_match("/^\d{6}$/", $_POST['noTrabajador'])) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    else {
+        $noTrabajador = mysqli_real_escape_string($conexion, $_POST['noTrabajador']);
+        $consulta = 'SELECT * FROM trabajador';
+        $consultar = mysqli_query($conexion, $consulta);
+        while($resultado = mysqli_fetch_array($consultar)) {
+            $noTrabajadorBase = Decifrar($resultado[0]);
+            if($noTrabajadorBase == $noTrabajador) {
+                if(password_verify($clave, $resultado[4])) {
+                    $_SESSION['usuario'] = Decifrar($resultado[1]);
+                    header("location: pedidos.php");
+                    exit();
+                }
+                else {
+                    $_SESSION['Error'] = "<p>Contraseña incorrecta".$clave."</p>";
+                    header("location:login.php");
+                    exit();
+                }
+            }
+        }
+        $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
+        header("location:login.php");
+        exit();
     }
 }
 
 if($_SESSION['tipo'] == "Alumno") {
-    if($_POST['noCuenta']) {
-        $escapar = mysqli_real_escape_string($conexion,$_POST['noCuenta']);
-        $consultar = 'SELECT * FROM Usuario WHERE noCuenta = "'.$escapar.'"';
-        $consulta = mysqli_query($conexion, $consultar);
-        $resultado = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-        if($resultado['noCuenta'] == $_POST['noCuenta']) {
-            if($resultado['Contraseña'] == $_POST['clave']) {
-                $_SESSION['usuario'] = $_POST['noCuenta'];
-                header("location:pedidos.php");
-            }
-            else {
-                $contraIncorrecta = "<br><p>Contraseña incorrecta</p>";
-            }
-        }
-        else {
-            $noNoCuenta = "<br><br><p>No se encontró ese número de cuenta.</p>";
-        }
-    }
     echo
     '       <div class="tipo-login">
-                <form action="registro.php" method="post">
+                <form action="login.php" method="post">
                     <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
                     <input type="submit" class="escoger-registro" name="tipo" value="Académico">
                     <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
@@ -142,39 +231,23 @@ if($_SESSION['tipo'] == "Alumno") {
             <div class="login-alumno">
                 <form action="login.php" method="POST">
                     <h3>Inicie sesión</h3>
+                    '.$_SESSION['Error'].'
                     <h5>Ingrese su número de cuenta</h5>
                     <input type="text" name="noCuenta" pattern="[0-9]{9}" title="Ingrese un número de cuenta válido"
-                    maxlength="9" required class="noCuenta">'.$noNoCuenta.'
+                    maxlength="9" required class="noCuenta">
                     <h5>Ingrese su contraseña</h5>
-                    <input type="password" name="clave" required>'.$contraIncorrecta.'
+                    <input type="password" name="clave" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                    title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
                     <br>
                     <input type="submit" value="Ingresar" class="login-enviar">
                 </form>
             </div>';
 
 }
-elseif ($_SESSION['tipo'] == "Funcionario/profesor") {
-    if($_POST['RFC']) {
-        $escapar = mysqli_real_escape_string($conexion,$_POST['RFC']);
-        $consultar = 'SELECT * FROM Usuario2 WHERE RFC = "'.$escapar.'"';
-        $consulta = mysqli_query($conexion, $consultar);
-        $resultado = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-        if($resultado['RFC'] == $_POST['RFC']) {
-            if($resultado['Contraseña'] == $_POST['clave']) {
-                $_SESSION['usuario'] = $_POST['RFC'];
-                header("location:pedidos.php");
-            }
-            else {
-                $contraIncorrecta = "<br><p>Contraseña incorrecta</p>";
-            }
-        }
-        else {
-            $noRFC = "<br><br><p>No se encontró ese RFC.</p>";
-        }
-    }
+elseif ($_SESSION['tipo'] == "Académico") {
 
     echo '  <div class="tipo-login">
-                <form action="registro.php" method="post">
+                <form action="login.php" method="post">
                     <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
                     <input type="submit" class="escoger-registro" name="tipo" value="Académico">
                     <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
@@ -183,19 +256,21 @@ elseif ($_SESSION['tipo'] == "Funcionario/profesor") {
             <div class="login-alumno">
                 <form action="login.php" method="POST">
                     <h3>Inicie sesión</h3>
+                    '.$_SESSION['Error'].'
                     <h5>Ingrese su RFC</h5>
                     <input type="text" name="RFC" title="Ingrese un RFC válido" pattern="[A-Z]{4}[0-9]{6}[0-9A-Z]{3}"
-                    maxlength="13" required class="RFC">'.$noRFC.'
+                    maxlength="13" required class="RFC">
                     <h5>Ingrese su contraseña</h5>
-                    <input type="password" name="clave" required>'.$contraIncorrecta.'
+                    <input type="password" name="clave" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                    title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
                     <br>
                     <input type="submit" value="Ingresar" class="login-enviar">
                 </form>
             </div>';
 }
-elseif ($_SESSION['tipo'] == "trabajador") {
+elseif ($_SESSION['tipo'] == "Trabajador") {
     echo '  <div class="tipo-login">
-                <form action="registro.php" method="post">
+                <form action="login.php" method="post">
                     <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
                     <input type="submit" class="escoger-registro" name="tipo" value="Académico">
                     <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
@@ -204,11 +279,13 @@ elseif ($_SESSION['tipo'] == "trabajador") {
             <div class="login-alumno">
                 <form action="login.php" method="POST">
                     <h3>Inicie sesión</h3>
+                    '.$_SESSION['Error'].'
                     <h5>Ingrese su Número de Trabajador</h5>
-                    <input type="text" name="RFC" title="Ingrese un RFC válido" pattern="[A-Z]{4}[0-9]{6}[0-9A-Z]{3}"
-                    maxlength="13" required class="RFC">'.$noRFC.'
+                    <input type="text" name="noTrabajador" title="Ingrese un Número de Trabajador válido" pattern="^\d{6}$"
+                    maxlength="6" required class="noTrabajador">
                     <h5>Ingrese su contraseña</h5>
-                    <input type="password" name="clave" required>'.$contraIncorrecta.'
+                    <input type="password" name="clave" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                    title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
                     <br>
                     <input type="submit" value="Ingresar" class="login-enviar">
                 </form>
@@ -220,8 +297,9 @@ else {
             </div>
             <div class="tipo-login">
                 <form action="login.php" method="post">
-                    <input type="submit" class="escoger-login" name="tipo" value="Alumno">
-                    <input type="submit" class="escoger-login" name="tipo" value="Funcionario/profesor">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Académico">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
                 </form>
             </div>
             ';
@@ -241,5 +319,6 @@ echo '  </article>
 </body>
 
 </html>';
+$_SESSION['Error'] = "";
 mysqli_close($conexion);
 ?>

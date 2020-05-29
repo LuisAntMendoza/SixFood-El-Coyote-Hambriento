@@ -373,6 +373,14 @@ footer {
     width: 165px;
 }
 
+.noTrabajador {
+    width: 70px;
+}
+
+.Grupo {
+    width: 35px;
+}
+
 .login-enviar {
     margin-bottom: 50px;
     margin-top: 30px;

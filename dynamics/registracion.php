@@ -47,6 +47,7 @@ if(preg_match("/(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)|(^[A-Z][a-zñÑáéíó�
 }
 else {
     header("location:../templates/error.html");
+    exit();
 }
 
 //validamos Apellido Paterno
@@ -55,6 +56,7 @@ if(preg_match("/(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)/", $_POST['apPat'])) {
 }
 else {
     header("location:../templates/error.html");
+    exit();
 }
 
 //validamos Apellido Materno
@@ -63,6 +65,7 @@ if(preg_match("/(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)/", $_POST['apMat'])) {
 }
 else {
     header("location:../templates/error.html");
+    exit();
 }
 
 //si es alumno...
@@ -72,20 +75,20 @@ if($_SESSION['tipo'] == "Alumno") {
         $noCuenta = mysqli_real_escape_string($conexion, $_POST['noCuenta']);
         $consulta = 'SELECT * FROM estudiante';
         $consultar = mysqli_query($conexion, $consulta);
-        $k = 0;
         while($resultado = mysqli_fetch_array($consultar)) {
-            $usuariodec = Decifrar($resultado[$k]);
+            $usuariodec = Decifrar($resultado[0]);
             if($usuariodec == $noCuenta) {
                 $_SESSION['Error'] = "<p>Usuario ya registrado</p>";
             }
-            $k = $k + 7;
         }
         if($_SESSION['Error'] == "<p>Usuario ya registrado</p>") {
             header("location: registro.php");
+            exit();
         }
     }
     else {
         header("location:../templates/error.html");
+        exit();
     }
     //validamos Grupo
     if(preg_match("/^(\d{3})$/", $_POST['Grupo'])) {
@@ -93,6 +96,7 @@ if($_SESSION['tipo'] == "Alumno") {
     }
     else {
         header("location:../templates/error.html");
+        exit();
     }
 }
 //si es academico...
@@ -102,20 +106,20 @@ elseif ($_SESSION['tipo'] == "Académico") {
         $RFC = mysqli_real_escape_string($conexion, $_POST['RFC']);
         $consulta = 'SELECT * FROM profesor';
         $consultar = mysqli_query($conexion, $consulta);
-        $k = 0;
         while($resultado = mysqli_fetch_array($consultar)) {
-            $usuariodec = Decifrar($resultado[$k]);
+            $usuariodec = Decifrar($resultado[0]);
             if($usuariodec == $RFC) {
                 $_SESSION['Error'] = "<p>Usuario ya registrado</p>";
             }
-            $k = $k + 7;
         }
         if($_SESSION['Error'] == "<p>Usuario ya registrado</p>") {
             header("location: registro.php");
+            exit();
         }
     }
     else {
         header("location:../templates/error.html");
+        exit();
     }
     //validamos Colegio
     $Colegio = htmlentities($_POST['Colegio']);
@@ -128,20 +132,20 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
         $noTrabajador = mysqli_real_escape_string($conexion, $_POST['noTrabajador']);
         $consulta = 'SELECT * FROM trabajador';
         $consultar = mysqli_query($conexion, $consulta);
-        $k = 0;
         while($resultado = mysqli_fetch_array($consultar)) {
-            $usuariodec = Decifrar($resultado[$k]);
+            $usuariodec = Decifrar($resultado[0]);
             if($usuariodec == $noTrabajador) {
                 $_SESSION['Error'] = "<p>Usuario ya registrado</p>";
             }
-            $k = $k + 7;
         }
         if($_SESSION['Error'] == "<p>Usuario ya registrado</p>") {
             header("location: registro.php");
+            exit();
         }
     }
     else {
         header("location:../templates/error.html");
+        exit();
     }
 }
 
@@ -151,6 +155,7 @@ if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){1
 }
 else {
     header("location:../templates/error.html");
+    exit();
 }
 
 //validamos la confirmacion de la contraseña
@@ -159,12 +164,14 @@ if(preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){1
 }
 else {
     header("location:../templates/error.html");
+    exit();
 }
 
 //checamos que sean la misma contraseña
 if($Contraseña != $rContraseña) {
     $_SESSION['Error'] = "<p>Las contraseñas no coinciden</p>";
     header("location:registro.php");
+    exit();
 }
 
 //ciframos datos sensibles

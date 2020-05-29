@@ -4,7 +4,7 @@ if(isset($_SESSION['usuario'])) {
     $cS = '
     <li>
         <div class="cerrar-sesion" id="ultimo-nav">
-            <p>Sesión iniciada como:</p>
+            <p>Bienvenid@</p>
             <p>'.$_SESSION['usuario'].'</p>
             <a href="cerrarsesion.php">
                 <p id="b-cerrarsesion">Cerrar sesión</p>
