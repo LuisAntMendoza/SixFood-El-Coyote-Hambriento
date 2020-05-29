@@ -290,7 +290,7 @@ DROP TABLE IF EXISTS `tipousuario`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipousuario` (
   `id_tipousuario` int(1) NOT NULL,
-  `tipo` char(10) DEFAULT NULL,
+  `tipo` char(15) NOT NULL,
   PRIMARY KEY (`id_tipousuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -301,6 +301,7 @@ CREATE TABLE `tipousuario` (
 
 LOCK TABLES `tipousuario` WRITE;
 /*!40000 ALTER TABLE `tipousuario` DISABLE KEYS */;
+INSERT INTO `tipousuario` VALUES (1,'administrador'),(2,'supervisor'),(3,'cliente');
 /*!40000 ALTER TABLE `tipousuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -317,7 +318,7 @@ CREATE TABLE `usuario` (
   `apellidoPat` varchar(128) NOT NULL,
   `apellidoMat` varchar(128) DEFAULT NULL,
   `grupo` int(3) DEFAULT NULL,
-  `colegio` char(25) DEFAULT NULL,
+  `colegio` varchar(40) DEFAULT NULL,
   `contraseña` varchar(128) NOT NULL,
   `id_tipousuario` int(1) NOT NULL,
   PRIMARY KEY (`id_usuario`),
@@ -388,4 +389,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 13:48:41
+-- Dump completed on 2020-05-29 14:08:03
