@@ -1,0 +1,510 @@
+body {
+    background-color: #2B4256;
+    width: 100%;
+    padding-top: 30px;
+    font-family: 'Syncopate', sans-serif;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+.barra-inicio {
+    width: 100%;
+    height: 70px;
+    background-color: #6CA5B1;
+    color: white;
+    clear: both;
+}
+
+.barra-inicio h1 {
+    float: left;
+    margin-left: 20px;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background-color: white;
+    float: left;
+    position: relative;
+    top: -15px;
+    margin-left: 20px;
+}
+
+#logo-inicio {
+    width: 120px;
+    height: 100px;
+    position: relative;
+    left: -5px;
+}
+
+.barranav {
+    width: 80%;
+    height: 50px;
+    background-color: #C05C33;
+    position: absolute;
+    top: 90px;
+    right: 0;
+    border-radius: 20px;
+    margin-right: 50px;
+    color: white;
+}
+
+.barranav ul {
+    margin: 0;
+}
+
+.linav {
+    width: 150px;
+    height: 33px;
+    text-align: center;
+    padding-top: 17px;
+    color: white;
+    text-decoration: none;
+}
+
+.linav:hover {
+    animation-name: lihover;
+    animation-duration: 1s;
+    background-color: #eb6f0b;
+}
+
+@keyframes lihover {
+    from {
+        background-color: #C05C33;
+    }
+
+    to {
+        background-color: #eb6f0b;
+    }
+}
+
+.barranav li {
+    display: inline-block;
+    float: right;
+}
+
+#ultimo-nav {
+    margin-right: 70px;
+}
+
+.cerrar-sesion {
+    clear: both;
+    float: left;
+    padding-top: 0px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+
+.cerrar-sesion p {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 10px;
+    color: white;
+}
+
+.cerrar-sesion a {
+    color: white;
+}
+
+#b-cerrarsesion:hover {
+    background-color: #eb6f0b;
+    animation-name: lihover;
+    animation-duration: 1s;
+}
+
+.redes {
+    width: 25%;
+    height: 800px;
+    padding-top: 50px;
+    float: left;
+    clear: both;
+}
+
+.cuadro-red {
+    width: 80%;
+    height: 70px;
+    background-color: yellow;
+    border-radius: 30px;
+    margin-top: 50px;
+    margin: 50px 10%;
+    color: white;
+}
+
+.logo-red {
+    width: 50px;
+    height: 50px;
+    margin-top: 10px;
+    margin-left: 15px;
+    float: left;
+}
+
+.h3-red {
+    float: left;
+    margin-top: 28px;
+    margin-left: 15px;
+}
+
+#facebook {
+    background-color: #3b5998;
+}
+
+#twitter {
+    background-color: #00acee;
+}
+
+#instagram {
+    background-color: #E1306C;
+}
+
+#whatsapp {
+    background-color: #25d366;
+}
+
+.prepa6 {
+    width: 80%;
+    margin: 50px 10%;
+    text-decoration: none;
+}
+
+.coyotep6 {
+    width: 120%;
+    margin: 10px -10%;
+}
+
+.logo-coyote {
+    background-color: white;
+    border-radius: 50%;
+    width: 60%;
+    margin-top: 10px;
+    margin-left: 20%;
+}
+
+.texto-prepa6 {
+    background-color: #6CA5B1;
+    width: 80%;
+    margin-left: 10%;
+    margin-top: -10px;
+    text-align: center;
+    font-size: 30px;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    padding: 5px 0;
+}
+
+.a-c {
+    background-color: #595959;
+    width: 70%;
+    margin: 0 15%;
+    text-align: center;
+    color: white;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 20px;
+}
+
+article {
+    background-color: #6CA5B1;
+    width: 75%;
+    height: 950px;
+    margin-top: -30px;
+    display: inline-block;
+    float: left;
+    border-radius: 20px;
+}
+
+.espacio-nav {
+    width: 100%;
+    height: 40px;
+}
+
+footer {
+    width: 100%;
+    background-color: red;
+    clear: both;
+    margin-bottom: 50px;
+}
+
+.barra-final {
+    width: 75%;
+    padding: 10px 0;
+    margin-left: 17%;
+    margin-top: -20px;
+    text-align: center;
+    background-color: #C05C33;
+    border-radius: 20px;
+    color: white;
+    float: left;
+}
+
+.logo-final {
+    float: left;
+    display: inline-block;
+    margin-top: -85px;
+    margin-left: -20px;
+}
+
+.texto-final {
+    background-color: #6CA5B1;
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    padding: 7px;
+    margin-top: -10px;
+}
+
+.fondo-logo-final {
+    background-color: #595959;
+    border-radius: 50%;
+}
+
+.espacio-final {
+    width: 100%;
+    height: 50px;
+    clear: both;
+}
+
+.img-index {
+    width: 100%;
+    height: 80%;
+    margin: 0 0%;
+    background-image: url(img/FotosPrepa/3.jpg);
+    background-size: cover;
+    background-position: right;
+}
+
+.botones-index {
+    height: 12%;
+    width: 100%;
+}
+
+.b-index {
+    background-color: #F29D29;
+    padding: 3% 7%;
+    margin: 3% 5%;
+    display: inline-block;
+    float: left;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    font-size: 30px;
+    color: white;
+}
+
+/* info.html */
+.img-info {
+    height: 30%;
+    width: 100%;
+}
+
+.img-info img {
+    width: 100%;
+    height: 100%;
+}
+
+.choro-info {
+    color: white;
+    text-align: justify;
+}
+
+.choro-info p {
+    margin: 2% 5%;
+    font-size: 17px;
+    line-height: 25px;
+}
+
+/* login.php */
+.tipo-login {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    height: 60px;
+    margin: 20px 10%;
+}
+
+.escoger-login {
+    float: left;
+    width: 48%;
+    margin: 10px 1%;
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.login-alumno {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    text-align: center;
+    margin: 50px 10%;
+}
+
+.login-alumno p {
+    font-size: 12px;
+    color: #b30000;
+}
+
+.login-alumno h3 {
+    margin-top: 30px;
+}
+
+.login-alumno h5 {
+    margin-top: 80px;
+}
+
+.login-alumno input {
+    font-size: 20px;
+}
+
+.noCuenta {
+    width: 100px;
+}
+
+.RFC {
+    width: 165px;
+}
+
+.noTrabajador {
+    width: 70px;
+}
+
+.Grupo {
+    width: 35px;
+}
+
+.login-enviar {
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+
+/* error.html */
+.b-error {
+    background-color: #F29D29;
+    width: 50%;
+    padding: 2% 3%;
+    margin: 1% 25%;
+    display: inline-block;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Pedidos.php */
+.body-pedidos {
+    height: auto;
+    margin-top: -50px;
+}
+
+.tabla-pedidos {
+    width: 100%;
+    height: auto;
+    margin-top: 85px;
+}
+
+.tabla-pedidos table, .tabla-pedidos tr, .tabla-pedidos th, .tabla-pedidos td {
+    border: 1px solid black;
+}
+
+.tabla-pedidos table {
+    width: 80%;
+    margin: 5px 10%;
+}
+
+/* r-pedido.php */
+.form-pedido {
+    margin: 85px 10% 0px 10%;
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    padding-bottom: 30px;
+}
+
+.form-pedido h3 {
+    text-align: center;
+}
+
+.form-pedido h4 {
+    margin-left: 20px;
+}
+
+.pedido-entregar {
+    width: 40%;
+    margin: 5px 4% !important;
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+.form-pedido p, .form-pedido input, .form-pedido select {
+    margin-left: 20px;
+}
+
+.form-pedido select, .form-pedido input {
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 13px;
+    border-radius: 10px;
+}
+
+.body-registro {
+    height: auto;
+}
+
+.body-registro img {
+    height: 300px;
+}
+
+.registro-alumno {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    text-align: center;
+    margin: 50px 10%;
+}
+
+.registro-alumno p {
+    font-size: 12px;
+    color: #b30000;
+}
+
+.registro-alumno h3 {
+    margin-top: 30px;
+}
+
+.registro-alumno h4 {
+    margin-top: 80px;
+}
+
+.registro-alumno input {
+    font-size: 20px;
+}
+
+.registro-alumno select {
+    padding: 8px;
+    font-size: 12px;
+    font-family: 'Syncopate', sans-serif;
+}
+
+.escoger-registro {
+    float: left;
+    width: 29%;
+    margin: 10px 2%;
+    font-family: 'Syncopate', sans-serif;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}
