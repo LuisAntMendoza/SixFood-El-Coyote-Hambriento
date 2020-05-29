@@ -88,11 +88,6 @@ if(isset($_SESSION['usuario'])) {
     header("location: index.php");
 }
 
-//reiniciamos varibales
-$noNoCuenta = "";
-$contraIncorrecta = "";
-$noRFC = "";
-
 //sirven para almacenar en que menu estamos.
 if($_POST['tipo'] == "Alumno") {
     $_SESSION['tipo'] = "Alumno";
@@ -104,37 +99,8 @@ elseif($_POST['tipo'] == "Trabajador") {
     $_SESSION['tipo'] = "Trabajador";
 }
 
-//valida con regex que se mande lo que se solicita
-if($_POST['noCuenta']) {
-    if(! preg_match("/^[0-9]{9}$/",$_POST['noCuenta'])) {
-        header("location:../templates/error.html");
-    }
-}
-if($_POST['RFC']) {
-    if(! preg_match("/^[A-Z]{4}[0-9]{6}[0-9A-Z]{3}$/",$_POST['RFC'])) {
-        header("location:../templates/error.html");
-    }
-}
-
+//si escogemos alumno muestra su menu de registro
 if($_SESSION['tipo'] == "Alumno") {
-    if($_POST['noCuenta']) {
-        $escapar = mysqli_real_escape_string($conexion,$_POST['noCuenta']);
-        $consultar = 'SELECT * FROM Usuario WHERE noCuenta = "'.$escapar.'"';
-        $consulta = mysqli_query($conexion, $consultar);
-        $resultado = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-        if($resultado['noCuenta'] == $_POST['noCuenta']) {
-            if($resultado['Contraseña'] == $_POST['clave']) {
-                $_SESSION['usuario'] = $_POST['noCuenta'];
-                header("location:pedidos.php");
-            }
-            else {
-                $contraIncorrecta = "<br><p>Contraseña incorrecta</p>";
-            }
-        }
-        else {
-            $noNoCuenta = "<br><br><p>No se encontró ese número de cuenta.</p>";
-        }
-    }
     echo
     '
             <div class="tipo-login">
@@ -147,47 +113,33 @@ if($_SESSION['tipo'] == "Alumno") {
             <div class="registro-alumno">
                 <form action="registracion.php" method="POST">
                     <h3>Ingrese los campos que se le solicitan.</h3>
+                    '.$_SESSION['Error'].'
                     <h4>Nombre(s)</h4>
                     <input type="text" name="Nombre" pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)|(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+[ ][A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un nombre válido"
-                    maxlength="20" required>'.$noNoCuenta.'
+                    maxlength="20" required>
                     <h4>Apellido Paterno</h4>
-                    <input type="text" name="apPat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)">'.$contraIncorrecta.'
+                    <input type="text" name="apPat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                     <h4>Apellido Materno</h4>
-                    <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)">
+                    <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                     <h4>Número de cuenta</h4>
-                    <input type="text" name="noCuenta" pattern="(^\d{9}$)" required maxlength="9" class="noCuenta">
+                    <input type="text" name="noCuenta" pattern="(^\d{9}$)" required maxlength="9" class="noCuenta" title="Ingrese su número de cuenta sin guiones">
                     <h4>Grupo</h4>
-                    <input type="text" name="Grupo" required pattern="^(\d{3})$" maxlength="3">
+                    <input type="text" name="Grupo" required pattern="^(\d{3})$" maxlength="3" title="Ingrese un grupo válido">
                     <h4>Contraseña</h4>
-                    <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required>
+                    <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                    title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
                     <h4>Repita su contraseña</h4>
-                    <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required>
+                    <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                    title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
+                    <input type="hidden" name="Poder" value="3">
                     <br>
                     <input type="submit" value="Ingresar" class="login-enviar">
                 </form>
             </div>';
 
 }
+//si escogemos académico muestra su menu de registro
 elseif ($_SESSION['tipo'] == "Académico") {
-    if($_POST['RFC']) {
-        $escapar = mysqli_real_escape_string($conexion,$_POST['RFC']);
-        $consultar = 'SELECT * FROM Usuario2 WHERE RFC = "'.$escapar.'"';
-        $consulta = mysqli_query($conexion, $consultar);
-        $resultado = mysqli_fetch_array($consulta, MYSQLI_ASSOC);
-        if($resultado['RFC'] == $_POST['RFC']) {
-            if($resultado['Contraseña'] == $_POST['clave']) {
-                $_SESSION['usuario'] = $_POST['RFC'];
-                header("location:pedidos.php");
-            }
-            else {
-                $contraIncorrecta = "<br><p>Contraseña incorrecta</p>";
-            }
-        }
-        else {
-            $noRFC = "<br><br><p>No se encontró ese RFC.</p>";
-        }
-    }
-
     echo '
             <div class="tipo-login">
                 <form action="registro.php" method="post">
@@ -199,15 +151,16 @@ elseif ($_SESSION['tipo'] == "Académico") {
             <div class="registro-alumno">
             <form action="registracion.php" method="POST">
                 <h3>Ingrese los campos que se le solicitan.</h3>
+                '.$_SESSION['Error'].'
                 <h4>Nombre(s)</h4>
                 <input type="text" name="Nombre" pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)|(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+[ ][A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un nombre válido"
-                maxlength="20" required>'.$noNoCuenta.'
+                maxlength="20" required>
                 <h4>Apellido Paterno</h4>
-                <input type="text" name="apPat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)">'.$contraIncorrecta.'
+                <input type="text" name="apPat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                 <h4>Apellido Materno</h4>
-                <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)">
+                <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                 <h4>RFC</h4>
-                <input type="text" name="RFC" pattern="^[A-Z]{4}[0-9]{6}[0-9A-Z]{3}$" required maxlength="13" class="RFC">
+                <input type="text" name="RFC" pattern="^[A-Z]{4}[0-9]{6}[0-9A-Z]{3}$" required maxlength="13" class="RFC" title="Ingrese un RFC válido">
                 <h4>Colegio</h4>
                 <select name="Colegio">
                     <optgroup label="Área I">
@@ -247,14 +200,18 @@ elseif ($_SESSION['tipo'] == "Académico") {
                     </optgroup>
                 </select>
                 <h4>Contraseña</h4>
-                <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required>
+                <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
                 <h4>Repita su contraseña</h4>
-                <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required>
+                <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
+                <input type="hidden" name="Poder" value="3">
                 <br>
                 <input type="submit" value="Ingresar" class="login-enviar">
             </form>
             </div>';
 }
+//si escogemos trabajador muestra su menu de registro
 elseif ($_SESSION['tipo'] == "Trabajador") {
     echo '
             <div class="tipo-login">
@@ -267,24 +224,29 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
             <div class="registro-alumno">
             <form action="registracion.php" method="POST">
                 <h3>Ingrese los campos que se le solicitan.</h3>
+                '.$_SESSION['Error'].'
                 <h4>Nombre(s)</h4>
                 <input type="text" name="Nombre" pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)|(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+[ ][A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un nombre válido"
-                maxlength="20" required>'.$noNoCuenta.'
+                maxlength="20" required>
                 <h4>Apellido Paterno</h4>
-                <input type="text" name="apPat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)">'.$contraIncorrecta.'
+                <input type="text" name="apPat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                 <h4>Apellido Materno</h4>
-                <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)">
+                <input type="text" name="apMat" required pattern="(^[A-Z][a-zñÑáéíóúÁÉÍÓÚ]+$)" title="Ingrese un Apellido válido">
                 <h4>Número de Trabajador</h4>
-                <input type="text" name="noTrabajador" pattern="^(\d{6})$" required maxlength="6">
+                <input type="text" name="noTrabajador" pattern="^(\d{6})$" required maxlength="6" title="Ingrese un número de trabajador válido">
                 <h4>Contraseña</h4>
-                <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required>
+                <input type="password" name="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
                 <h4>Repita su contraseña</h4>
-                <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required>
+                <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
+                title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
+                <input type="hidden" name="Poder" value="3">
                 <br>
                 <input type="submit" value="Ingresar" class="login-enviar">
             </form>
             </div>';
 }
+//si no hemos escogido alguno muestra el menu para escoger
 else {
     echo '  <div class="login-alumno">
                 <h2>Favor de seleccionar una opción</h2>
@@ -313,5 +275,6 @@ echo '  </article>
 </body>
 
 </html>';
+$_SESSION['Error'] = "";
 mysqli_close($conexion);
 ?>

@@ -133,9 +133,10 @@ if($_SESSION['tipo'] == "Alumno") {
     }
     echo
     '       <div class="tipo-login">
-                <form action="login.php" method="post">
-                    <input type="submit" class="escoger-login" name="tipo" value="Alumno">
-                    <input type="submit" class="escoger-login" name="tipo" value="Funcionario/profesor">
+                <form action="registro.php" method="post">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Académico">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
                 </form>
             </div>
             <div class="login-alumno">
@@ -173,15 +174,37 @@ elseif ($_SESSION['tipo'] == "Funcionario/profesor") {
     }
 
     echo '  <div class="tipo-login">
-                <form action="login.php" method="post">
-                    <input type="submit" class="escoger-login" name="tipo" value="Alumno">
-                    <input type="submit" class="escoger-login" name="tipo" value="Funcionario/profesor">
+                <form action="registro.php" method="post">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Académico">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
                 </form>
             </div>
             <div class="login-alumno">
                 <form action="login.php" method="POST">
                     <h3>Inicie sesión</h3>
                     <h5>Ingrese su RFC</h5>
+                    <input type="text" name="RFC" title="Ingrese un RFC válido" pattern="[A-Z]{4}[0-9]{6}[0-9A-Z]{3}"
+                    maxlength="13" required class="RFC">'.$noRFC.'
+                    <h5>Ingrese su contraseña</h5>
+                    <input type="password" name="clave" required>'.$contraIncorrecta.'
+                    <br>
+                    <input type="submit" value="Ingresar" class="login-enviar">
+                </form>
+            </div>';
+}
+elseif ($_SESSION['tipo'] == "trabajador") {
+    echo '  <div class="tipo-login">
+                <form action="registro.php" method="post">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Alumno">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Académico">
+                    <input type="submit" class="escoger-registro" name="tipo" value="Trabajador">
+                </form>
+            </div>
+            <div class="login-alumno">
+                <form action="login.php" method="POST">
+                    <h3>Inicie sesión</h3>
+                    <h5>Ingrese su Número de Trabajador</h5>
                     <input type="text" name="RFC" title="Ingrese un RFC válido" pattern="[A-Z]{4}[0-9]{6}[0-9A-Z]{3}"
                     maxlength="13" required class="RFC">'.$noRFC.'
                     <h5>Ingrese su contraseña</h5>
