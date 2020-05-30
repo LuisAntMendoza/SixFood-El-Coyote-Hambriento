@@ -9,20 +9,41 @@ if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
     exit();
 }
+$zona = date_default_timezone_set('America/Mexico_City');
 
 $consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
-    $mensaje = '<h5>¡Ya has realizado un pedido!</h5>
+    $mensaje = '<h3>¡Ya has realizado un pedido!</h3>
                 <p>Espera a que sea completado para hacer otro pedido.</p>';
     $mensaje2 = "";
 }
 else {
-    $mensaje = '<h5>¡Aún no has realizado un pedido!</h5>
+    $mensaje = '<h3>¡Aún no has realizado un pedido!</h3>
                 <p>Haz clic en la opción de abajo para realizar un pedido.</p>';
-    $mensaje2 = '<a href="r-pedido.php">
-                    <div class="b-error">Realizar un pedido</div>
-                </a>';
+    $mensaje2 = '
+                <div class="img-pedido">
+                    <img src="../statics/img/FotosPrepa/2.jpg" alt="Patio de Cuartos">
+                    <div class="degradado">
+                        <a href="r-pedido.php">
+                            <span>Realiza tu pedido</span>
+                        </a>
+                    </div>
+                </div>';
+}
+$consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+$consultar = mysqli_query($conexion, $consulta);
+$resultado = mysqli_fetch_array($consultar);
+if($resultado[8] != "") {
+    if($resultado[8] < date("d-m-Y_H:i:s")) {
+        $mensaje = '<h3 class="error">Usted ha sido castigado</h3>
+                    <p>No podrá realizar pedidos hasta '.$resultado[8].'</p>';
+        $mensaje2 = "";
+    }
+    else {
+        $consulta = 'UPDATE usuario SET castigo = NULL WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+        $consultar = mysqli_query($conexion, $consulta);
+    }
 }
 
 echo '
@@ -79,6 +100,7 @@ echo '
     </header>
     <section>
         <aside class="redes">
+            <h3 class="redes-titulo">¡Síguenos!</h3>
             <a href="http://www.facebook.com" target="_blank">
                 <div class="cuadro-red" id="facebook"><img src="../statics/img/logos-red/logo-facebook.png" alt="Logo Facebook" class="logo-red">
                     <h3 class="h3-red">Facebook</h3>
@@ -108,14 +130,14 @@ echo '
             </a>
         </aside>
         <article class="body-pedidos">
-            <h3>Pedidos</h3>
+            <h3></h3>
             <div class="menu-pedidos">
                 '.$mensaje.'
+                '.$mensaje2.'
             </div>
             <div class="botones-index">
-                '.$mensaje2.'
                 <a href="index.php">
-                    <div class="b-error">Volver a la página principal</div>
+                    <div class="b-pedido">Volver a la página principal</div>
                 </a>
             </div>
         </article>

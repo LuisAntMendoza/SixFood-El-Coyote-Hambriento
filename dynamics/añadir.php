@@ -67,6 +67,7 @@ echo '
     </header>
     <section>
         <aside class="redes">
+            <h3 class="redes-titulo">¡Síguenos!</h3>
             <a href="http://www.facebook.com" target="_blank">
                 <div class="cuadro-red" id="facebook"><img src="../statics/img/logos-red/logo-facebook.png" alt="Logo Facebook" class="logo-red">
                     <h3 class="h3-red">Facebook</h3>
@@ -160,7 +161,7 @@ if($_POST['Tipo-tabla'] == "Usuario") {
             </form>
             <div class="botones-index">
                 <a href="admin.php">
-                    <div class="b-error">Volver</div>
+                    <div class="b-pedido">Volver</div>
                 </a>
             </div>
     ';
@@ -193,7 +194,7 @@ if($_POST['Tipo-tabla'] == "Bebida") {
             </form>
             <div class="botones-index">
                 <a href="admin.php">
-                    <div class="b-error">Volver</div>
+                    <div class="b-pedido">Volver</div>
                 </a>
             </div>
     ';
@@ -211,7 +212,7 @@ if($_POST['Tipo-tabla'] == "Preparado") {
             </form>
             <div class="botones-index">
                 <a href="admin.php">
-                    <div class="b-error">Volver</div>
+                    <div class="b-pedido">Volver</div>
                 </a>
             </div>
     ';
@@ -241,7 +242,7 @@ if($_POST['Tipo-tabla'] == "Antojito") {
             </form>
             <div class="botones-index">
                 <a href="admin.php">
-                    <div class="b-error">Volver</div>
+                    <div class="b-pedido">Volver</div>
                 </a>
             </div>
     ';
@@ -363,7 +364,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     echo '  </table>
             <div class="botones-index">
                 <a href="supervisor.php">
-                    <div class="b-error">Volver</div>
+                    <div class="b-pedido">Volver</div>
                 </a>
             </div>';
 }

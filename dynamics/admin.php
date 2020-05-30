@@ -90,6 +90,7 @@ echo '
     </header>
     <section>
         <aside class="redes">
+            <h3 class="redes-titulo">¡Síguenos!</h3>
             <a href="http://www.facebook.com" target="_blank">
                 <div class="cuadro-red" id="facebook"><img src="../statics/img/logos-red/logo-facebook.png" alt="Logo Facebook" class="logo-red">
                     <h3 class="h3-red">Facebook</h3>
@@ -321,7 +322,7 @@ echo '          </table>
             </div>
             <div class="botones-index">
                 <a href="index.php">
-                    <div class="b-error">Volver a la página principal</div>
+                    <div class="b-pedido">Volver a la página principal</div>
                 </a>
             </div>
         </article>

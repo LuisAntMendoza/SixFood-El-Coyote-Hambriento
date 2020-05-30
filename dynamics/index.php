@@ -1,6 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['usuario'])) {
+if(!isset($_SESSION['usuario'])) {
+    $_SESSION['usuario'] = "";
+}
+if($_SESSION['usuario'] != "") {
     $cS = '<li>
         <div class="cerrar-sesion" id="ultimo-nav">
             <p>Bienvenid@</p>
@@ -30,7 +33,6 @@ else {
                 </a>
             </div>
     ';
-    $_SESSION['usuario'] = "";
 }
 if(!isset($_SESSION['Poder'])) {
     $_SESSION['Poder'] = "";
@@ -112,6 +114,7 @@ echo '
     </header>
     <section>
         <aside class="redes">
+            <h3 class="redes-titulo">¡Síguenos!</h3>
             <a href="http://www.facebook.com" target="_blank">
                 <div class="cuadro-red" id="facebook"><img src="../statics/img/logos-red/logo-facebook.png" alt="Logo Facebook" class="logo-red">
                     <h3 class="h3-red">Facebook</h3>

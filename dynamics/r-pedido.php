@@ -80,6 +80,7 @@ echo '
     </header>
     <section>
         <aside class="redes">
+            <h3 class="redes-titulo">¡Síguenos!</h3>
             <a href="http://www.facebook.com" target="_blank">
                 <div class="cuadro-red" id="facebook"><img src="../statics/img/logos-red/logo-facebook.png" alt="Logo Facebook" class="logo-red">
                     <h3 class="h3-red">Facebook</h3>
@@ -116,22 +117,121 @@ echo '
                     <input type="submit" name="id_recoPedido" value="Recoger" class="pedido-entregar">
                     <input type="submit" name="id_recoPedido" value="Entregar" class="pedido-entregar">
                 </form>';
-if($_POST['id_recoPedido']) {
-    echo '      <form action="escogercomida.php" method="post">
-                    '.$form.'
-                    <p>Urgencia (Costo extra):'.$_SESSION['noPedido'].'</p>
-                    <select name="Urgencia">
-                        <option value="Normal">Normal</option>
-                        <option value="Express">Express</option>
-                        <option value="Urgente">Urgente</option>
+if($_POST['id_recoPedido'] == "Recoger") {
+    echo '
+            <h3>Añadir Pedido</h3>
+            <form action="añadicion.php" method="POST">
+                <p class="agregar">Id <input type="text" required name="id-pedido" value="'.$fecha.'_'.$hora.'" readonly></p>
+                <p class="agregar">Usuario <input type="text" required name="usuario-pedido"></p>
+                <p class="agregar">Comida <input type="number" name="comida-pedido"></p>
+                <p class="agregar">Bebida <input type="number" name="bebida-pedido"></p>
+                <p class="agregar">Antojito <input type="number" name="antojito-pedido"></p>
+                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido"></p>
+                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido"></p>
+                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido"></p>
+                <p class="agregar">Lugar:
+                    <select name="lugar-pedido">
+                        <option value="1">Patio de cuartos</option>
+                        <option value="2">Canchas</option>
+                        <option value="3">Patio de quintos</option>
+                        <option value="4">Pulpo</option>
+                        <option value="5">Patio de sextos</option>
+                        <option value="6">Pimponeras</option>
+                        <option value="7">Area administrativa</option>
+                        <option value="8">Sala de maestros</option>
+                        <option value="NULL">Recoger en la cafetería</option>
                     </select>
-                    <br>
-                    <br>
-                    <input type="submit" value="Continuar">
-
-
-                </form>
-    ';
+                </p>
+                <p class="agregar">Espera <input type="number" required name="espera-pedido"></p>
+                <input type="submit" value="Añadir" class="agregar-usuario">
+            </form>
+            <h3>Disponibilidad Antojitos</h3>
+            <table border="1" class="tabla-pedido">';
+    $consulta = 'SELECT * FROM antojito';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+        echo '  <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[5].'</td>
+                    <td>'.$resultado[6].'</td>
+                </tr>';
+    }
+    echo '  </table>
+            <h3>Disponibilidad Bebidas</h3>
+            <table border="1" class="tabla-pedido">';
+    $consulta = 'SELECT * FROM bebida';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+    echo '      <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[4].'</td>
+                    <td>'.$resultado[5].'</td>
+                </tr>
+                ';
+    }
+    echo '  </table>
+            <h3>Disponibilidad Preparado</h3>
+            <table border="1" class="tabla-pedido">
+';
+    $consulta = 'SELECT * FROM preparado';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+    echo '      <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[3].'</td>
+                    <td>'.$resultado[4].'</td>
+                </tr>';
+    }
+    echo '  </table>
+            <h3>Tipos de entrega</h3>
+            <table border="1" class="tabla-pedido">
+';
+    $consulta = 'SELECT * FROM tiempoespera NATURAL JOIN tipoentrega';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Calidad</th>
+                    <th>Tipo de entrega</th>
+                    <th>Precio Extra</th>
+                    <th>Tiempo de entrega</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+    echo '      <tr>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[4].'</td>';
+    if($resultado[2] == 1) {
+        $entrega = "Cafeteria";
+    }
+    else {
+        $entrega = "Entrega personal";
+    }
+    echo '          <td>'.$entrega.'</td>
+                    <td>'.$resultado[5].'</td>
+                    <td>'.$resultado[3].'</td>
+                </tr>';
+    }
+    echo '  </table>';
 }
 echo'       </div>
             <div class="botones-index">

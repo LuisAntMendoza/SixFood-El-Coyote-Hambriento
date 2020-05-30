@@ -172,6 +172,12 @@ a {
     clear: both;
 }
 
+.redes-titulo {
+    color: white;
+    text-align: center;
+    margin-top: 0px;
+}
+
 .cuadro-red {
     width: 80%;
     height: 70px;
@@ -503,6 +509,102 @@ footer {
     margin: 5px 10%;
     text-align: center;
     font-size: 10px;
+}
+
+.menu-pedidos {
+    width: 80%;
+    background-color: #F29D29;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 10%;
+}
+
+.menu-pedidos p {
+    font-size: 16px;
+}
+
+.menu-pedidos h3 {
+    margin-top: 30px;
+    font-size: 30px;
+}
+
+.b-pedido {
+    background-color: #F29D29;
+    width: 50%;
+    padding: 2% 3%;
+    margin: 1% 22%;
+    display: inline-block;
+    border: 5px solid #C05C33;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+    color: white;
+}
+
+.img-pedido {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    background-image: url(./img/FotosPrepa/1.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 20px;
+}
+
+.img-pedido img {
+    height: 650px;
+    width: 80%;
+    border-radius: 20px;
+    opacity: 0;
+    display: none;
+}
+
+.degradado {
+    background: radial-gradient(circle, rgba(255, 255, 255, 0) 55%, rgba(242, 157, 41, 1) 70%);
+    height: 400px;
+    width: 85%;
+    padding-top: 40%;
+    margin: auto 7%;
+    animation-name: degradado-out;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    opacity: 0;
+}
+
+.degradado span {
+    padding: 20px;
+    background-color: #f29d29;
+    border: 2px solid #C05C33;
+    border-radius: 30px;
+    font-size: 35px;
+    color: white;
+}
+
+.degradado:hover {
+    animation-name: degradado-in;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    opacity: 1;
+}
+
+@keyframes degradado-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.9;
+    }
+}
+
+@keyframes degradado-out {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
 }
 
 /* r-pedido.php */
