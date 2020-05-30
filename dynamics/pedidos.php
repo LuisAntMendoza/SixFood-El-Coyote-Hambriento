@@ -11,11 +11,14 @@ if(! isset($_SESSION['usuario'])) {
 }
 $zona = date_default_timezone_set('America/Mexico_City');
 
-$consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+$consulta = 'SELECT * FROM venta NATURAL JOIN tiempoespera WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
     $mensaje = '<h3>¡Ya has realizado un pedido!</h3>
-                <p>Espera a que sea completado para hacer otro pedido.</p>';
+                <p>ID de su pedido: '.$resultado[1].'</p>
+                <p>Costo total de su pedido: $'.$resultado[9].'</p>
+                <p>Tiempo de espera: '.$resultado[13].' min</p>
+                <p>Favor de completar un pedido antes de hacer otro</p>';
     $mensaje2 = "";
 }
 else {

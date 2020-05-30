@@ -127,7 +127,7 @@ echo '
             <h3>Pedidos</h3>
             '.$_SESSION['Error'].'
             <div class="tabla-pedidos">
-                <table>
+                <table id="supervisor">
                     <tr>
                         <th>Id</th>
                         <th>Usuario</th>
@@ -139,6 +139,7 @@ echo '
                         <th>Cant A</th>
                         <th>Total</th>
                         <th>Lugar</th>
+                        <th>Urgencia</th>
                         <th>Espera</th>
                         <th>Editar</th>
                         <th>Completar</th>
@@ -158,8 +159,34 @@ while($resultado = mysqli_fetch_array($consultar)) {
                         <td>'.$resultado[6].'</td>
                         <td>'.$resultado[7].'</td>
                         <td>'.$resultado[8].'</td>
-                        <td>'.$resultado[9].'</td>
-                        <td>'.$resultado[10].'</td>
+                        <td>'.$resultado[9].'</td>';
+    $idespera = $resultado[10];
+    if($idespera == 10) {
+        $urgencia = "Normal";
+        $espera = 20;
+    }
+    elseif($idespera == 11) {
+        $urgencia = "Express";
+        $espera = 15;
+    }
+    elseif($idespera == 12) {
+        $urgencia = "Urgente";
+        $espera = 10;
+    }
+    elseif($idespera == 13) {
+        $urgencia = "Normal";
+        $espera = 30;
+    }
+    elseif($idespera == 14) {
+        $urgencia = "Express";
+        $espera = 25;
+    }
+    elseif($idespera == 15) {
+        $urgencia = "Urgente";
+        $espera = 20;
+    }
+    echo '              <td>'.$urgencia.'</td>
+                        <td>'.$espera.'</td>
                         <td>
                             <form action="editarU.php" method="POST">
                                 <input type="hidden" value="'.$id.'" name="Editar">

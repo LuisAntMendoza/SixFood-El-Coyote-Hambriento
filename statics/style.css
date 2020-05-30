@@ -609,7 +609,7 @@ footer {
 
 /* r-pedido.php */
 .form-pedido {
-    margin: 85px 10% 0px 10%;
+    margin: 85px 10% 30px 10%;
     width: 80%;
     background-color: #F29D29;
     border: 5px solid #C05C33;
@@ -711,4 +711,9 @@ footer {
     margin: 10px 10%;
     width: 80%;
     text-align: center;
+}
+
+#supervisor {
+    width: 90%;
+    margin: auto 5%;
 }
