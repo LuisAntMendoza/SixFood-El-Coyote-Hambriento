@@ -43,10 +43,14 @@ function Decifrar ($textoCifrado){
   );
   return $originalText;
 }
+if(!isset($_POST['id_recoPedido'])) {
+    $_POST['id_recoPedido'] = "";
+}
+
 $zona = date_default_timezone_set('America/Mexico_City');
 $fecha = date("d-m-Y_H:i:s");
 $form = "";
-if($_POST['id_recoPedido']) {
+if($_POST['id_recoPedido'] != "") {
     $_SESSION['noPedido'] = $fecha;
     if($_POST['id_recoPedido'] == "Entregar") {
         $form = '
