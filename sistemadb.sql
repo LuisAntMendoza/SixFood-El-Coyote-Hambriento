@@ -16,33 +16,34 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `antojitos`
+-- Table structure for table `antojito`
 --
 
-DROP TABLE IF EXISTS `antojitos`;
+DROP TABLE IF EXISTS `antojito`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `antojitos` (
+CREATE TABLE `antojito` (
   `id_antojito` int(3) NOT NULL AUTO_INCREMENT,
   `nombre` char(35) NOT NULL,
-  `id_presentacion` int(2) DEFAULT NULL,
-  `cantidad` int(2) DEFAULT 1,
+  `id_presentacion` int(2) NOT NULL,
+  `porcion` int(2) NOT NULL,
+  `cantidadA` int(1) DEFAULT 1,
   `precio` int(2) NOT NULL,
   `existencias` int(3) DEFAULT NULL,
   PRIMARY KEY (`id_antojito`),
   KEY `id_presentacion` (`id_presentacion`),
-  CONSTRAINT `antojitos_ibfk_1` FOREIGN KEY (`id_presentacion`) REFERENCES `presentacion` (`id_presentacion`)
-) ENGINE=InnoDB AUTO_INCREMENT=352 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `antojito_ibfk_1` FOREIGN KEY (`id_presentacion`) REFERENCES `presentacion` (`id_presentacion`)
+) ENGINE=InnoDB AUTO_INCREMENT=331 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `antojitos`
+-- Dumping data for table `antojito`
 --
 
-LOCK TABLES `antojitos` WRITE;
-/*!40000 ALTER TABLE `antojitos` DISABLE KEYS */;
-INSERT INTO `antojitos` VALUES (321,'Molletes',1,2,12,0),(322,'Sopes sencillo',1,1,12,0),(323,'Sopes con queso',2,1,15,0),(324,'Sopes con queso y carne',2,1,20,0),(325,'Tacos de pollo',5,3,20,0),(326,'Tocos de bistec',4,1,17,0),(327,'Chilaquiles chicos pollo o huevo',6,1,25,0),(328,'Chilaqueles grandes pollo o huevo',6,1,35,0),(329,'Chilaquiles chicos bistec',6,1,30,0),(330,'Chilaqules grandes bistec',6,1,40,0),(331,'Pambazos',1,1,18,0),(332,'Pambazos',2,1,25,0),(333,'Papas a la francesa',3,1,15,0),(334,'Papas a la francesa',4,1,25,0),(335,'Hamburguesa sencilla',7,1,25,0),(336,'Hamburguesa con queso',7,1,30,0),(337,'Hamburguesa doble',7,1,40,NULL);
-/*!40000 ALTER TABLE `antojitos` ENABLE KEYS */;
+LOCK TABLES `antojito` WRITE;
+/*!40000 ALTER TABLE `antojito` DISABLE KEYS */;
+INSERT INTO `antojito` VALUES (300,'Molletes',1,2,1,12,30),(301,'Sopes sencillo',1,1,1,12,30),(302,'Sopes con queso',2,1,1,15,30),(303,'Sopes con queso y carne',2,1,1,20,30),(304,'Tacos de pollo',5,3,1,20,30),(305,'Tacos de bistec',4,1,1,17,30),(306,'Chilaquiles chicos pollo o huevo',6,1,1,25,30),(307,'Chilaqueles grandes pollo o huevo',6,1,1,35,30),(308,'Chilaquiles chicos bistec',6,1,1,30,30),(309,'Chilaqules grandes bistec',6,1,1,40,30),(310,'Pambazos',1,1,1,18,30),(311,'Pambazos',2,1,1,25,30),(312,'Papas a la francesa',3,1,1,15,30),(313,'Papas a la francesa',4,1,1,25,30),(314,'Hamburguesa sencilla',7,1,1,25,30),(315,'Hamburguesa con queso',7,1,1,30,30),(316,'Hamburguesa doble',7,1,1,40,30);
+/*!40000 ALTER TABLE `antojito` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -54,16 +55,16 @@ DROP TABLE IF EXISTS `bebida`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bebida` (
   `id_bebida` int(3) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(20) DEFAULT NULL,
-  `id_tipoB` int(3) DEFAULT NULL,
-  `id_cantidad` int(2) DEFAULT NULL,
-  `precio` int(2) DEFAULT NULL,
+  `nombre` varchar(20) NOT NULL,
+  `id_tipoB` int(3) NOT NULL,
+  `id_porcionB` int(2) NOT NULL,
+  `precio` int(2) NOT NULL,
   `existencias` int(3) DEFAULT NULL,
   PRIMARY KEY (`id_bebida`),
   KEY `id_tipoB` (`id_tipoB`),
-  KEY `id_cantidad` (`id_cantidad`),
+  KEY `id_cantidad` (`id_porcionB`),
   CONSTRAINT `bebida_ibfk_1` FOREIGN KEY (`id_tipoB`) REFERENCES `tipob` (`id_tipoB`),
-  CONSTRAINT `bebida_ibfk_2` FOREIGN KEY (`id_cantidad`) REFERENCES `cantidadb` (`id_cantidad`)
+  CONSTRAINT `bebida_ibfk_2` FOREIGN KEY (`id_porcionB`) REFERENCES `porcionb` (`id_porcionB`)
 ) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -73,32 +74,8 @@ CREATE TABLE `bebida` (
 
 LOCK TABLES `bebida` WRITE;
 /*!40000 ALTER TABLE `bebida` DISABLE KEYS */;
-INSERT INTO `bebida` VALUES (101,'Agua jamaica',1,10,7,0),(102,'Agua horchata',1,10,7,0),(103,'Agua limón',1,10,7,0),(104,'Agua limon chia',1,10,7,0),(105,'Jugo naranja',3,10,12,0),(106,'Jugo zanahoria',3,10,12,0),(107,'Jugo mandarina',3,10,12,0),(108,'Jugo betabel',3,10,12,0),(109,'Jugo vampiro',4,10,20,0),(110,'Jugo cítrico',4,10,20,0),(111,'Jugo verde',4,10,20,0),(112,'Boing mango',1,11,12,0),(113,'Boing manzana',1,11,12,0),(114,'Boing guayaba',1,11,12,0),(115,'Boing uva',1,11,12,0),(116,'Boing fresa',1,11,12,0),(117,'Botella de agua ',2,11,10,0),(118,'Coca-cola',5,12,13,0),(119,'Power Punch',5,12,12,0),(120,'Refresco limon',5,12,12,0),(121,'Fanta',5,12,12,0),(122,'Pepsi',5,12,12,0),(123,'Arizona mango',1,11,12,0),(124,'Arizona sandia',1,11,12,NULL);
+INSERT INTO `bebida` VALUES (101,'Agua jamaica',1,10,7,30),(102,'Agua horchata',1,10,7,30),(103,'Agua limón',1,10,7,30),(104,'Agua limon chia',1,10,7,30),(105,'Jugo naranja',3,10,12,30),(106,'Jugo zanahoria',3,10,12,30),(107,'Jugo mandarina',3,10,12,30),(108,'Jugo betabel',3,10,12,30),(109,'Jugo vampiro',4,10,20,30),(110,'Jugo cítrico',4,10,20,30),(111,'Jugo verde',4,10,20,30),(112,'Boing mango',1,11,12,30),(113,'Boing manzana',1,11,12,30),(114,'Boing guayaba',1,11,12,30),(115,'Boing uva',1,11,12,30),(116,'Boing fresa',1,11,12,30),(117,'Botella de agua ',2,11,10,30),(118,'Coca-cola',5,12,13,30),(119,'Power Punch',5,12,12,30),(120,'Refresco limon',5,12,12,30),(121,'Fanta',5,12,12,30),(122,'Pepsi',5,12,12,30),(123,'Arizona mango',1,11,12,30),(124,'Arizona sandia',1,11,12,30);
 /*!40000 ALTER TABLE `bebida` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `cantidadb`
---
-
-DROP TABLE IF EXISTS `cantidadb`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cantidadb` (
-  `id_cantidad` int(2) NOT NULL,
-  `cantidad` char(15) DEFAULT NULL,
-  PRIMARY KEY (`id_cantidad`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `cantidadb`
---
-
-LOCK TABLES `cantidadb` WRITE;
-/*!40000 ALTER TABLE `cantidadb` DISABLE KEYS */;
-INSERT INTO `cantidadb` VALUES (10,'Vaso 500 mL'),(11,'1L'),(12,'600 ml');
-/*!40000 ALTER TABLE `cantidadb` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -127,34 +104,27 @@ INSERT INTO `entrega` VALUES (1,4,'Patio de cuartos\r'),(2,4,'Canchas\r'),(3,5,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `estudiante`
+-- Table structure for table `porcionb`
 --
 
-DROP TABLE IF EXISTS `estudiante`;
+DROP TABLE IF EXISTS `porcionb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `estudiante` (
-  `id_ncuenta` int(9) NOT NULL,
-  `nombre` varchar(15) NOT NULL,
-  `apellidoPat` varchar(15) NOT NULL,
-  `apellidoMat` varchar(15) DEFAULT NULL,
-  `grupo` int(3) NOT NULL,
-  `contraseña` varchar(256) NOT NULL,
-  `id_tipousuario` int(1) NOT NULL,
-  PRIMARY KEY (`id_ncuenta`),
-  UNIQUE KEY `id_ncuenta` (`id_ncuenta`),
-  KEY `id_tipousuario` (`id_tipousuario`),
-  CONSTRAINT `estudiante_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
+CREATE TABLE `porcionb` (
+  `id_porcionB` int(2) NOT NULL,
+  `cantidad` char(15) NOT NULL,
+  PRIMARY KEY (`id_porcionB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `estudiante`
+-- Dumping data for table `porcionb`
 --
 
-LOCK TABLES `estudiante` WRITE;
-/*!40000 ALTER TABLE `estudiante` DISABLE KEYS */;
-/*!40000 ALTER TABLE `estudiante` ENABLE KEYS */;
+LOCK TABLES `porcionb` WRITE;
+/*!40000 ALTER TABLE `porcionb` DISABLE KEYS */;
+INSERT INTO `porcionb` VALUES (10,'Vaso 500 mL'),(11,'1L'),(12,'600 ml');
+/*!40000 ALTER TABLE `porcionb` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -167,11 +137,11 @@ DROP TABLE IF EXISTS `preparado`;
 CREATE TABLE `preparado` (
   `id_comida` int(3) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(20) NOT NULL,
-  `cantidad` int(2) DEFAULT 1,
+  `cantidadP` int(2) NOT NULL,
   `precio` int(2) NOT NULL,
   `existencias` int(3) DEFAULT NULL,
   PRIMARY KEY (`id_comida`)
-) ENGINE=InnoDB AUTO_INCREMENT=218 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=215 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +150,7 @@ CREATE TABLE `preparado` (
 
 LOCK TABLES `preparado` WRITE;
 /*!40000 ALTER TABLE `preparado` DISABLE KEYS */;
-INSERT INTO `preparado` VALUES (200,',Maruchan res,1,10,\r',0,0,0),(201,',Sandwich vegetarian',0,0,0),(202,',Torta cubana,1,25,\r',0,0,NULL),(203,'Maruchan res',1,10,0),(204,'Maruchan camaron',1,10,0),(205,'Maruchan pollo',1,10,0),(206,'Sandwich pollo',1,15,0),(207,'Sandwich jamon',1,15,0),(208,'Sandwich vegetariano',1,15,0),(209,'Torta jamon',1,15,0),(210,'Torta salchicha',1,15,0),(211,'Torta rusa',1,25,0),(212,'Torta pierna',1,25,0),(213,'Torta cubana',1,25,0),(214,'Torta hawaina',1,25,NULL);
+INSERT INTO `preparado` VALUES (200,'Maruchan res',1,10,30),(201,'Maruchan camaron',1,10,30),(202,'Maruchan pollo',1,10,30),(203,'Sandwich pollo',1,15,30),(204,'Sandwich jamon',1,15,30),(205,'Sandwich vegetariano',1,15,30),(206,'Torta jamon',1,15,30),(207,'Torta salchicha',1,15,30),(208,'Torta rusa',1,25,30),(209,'Torta pierna',1,25,30),(210,'Torta cubana',1,25,30),(211,'Torta hawaina',1,25,30);
 /*!40000 ALTER TABLE `preparado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,7 +163,7 @@ DROP TABLE IF EXISTS `presentacion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `presentacion` (
   `id_presentacion` int(2) NOT NULL,
-  `presentacion` char(25) DEFAULT NULL,
+  `presentacion` char(25) NOT NULL,
   PRIMARY KEY (`id_presentacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -206,37 +176,6 @@ LOCK TABLES `presentacion` WRITE;
 /*!40000 ALTER TABLE `presentacion` DISABLE KEYS */;
 INSERT INTO `presentacion` VALUES (1,'sencillos'),(2,'especial'),(3,'chicos'),(4,'grandes'),(5,'orden'),(6,'queso, crema, cebolla'),(7,'con papas a la francesa');
 /*!40000 ALTER TABLE `presentacion` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `profesores`
---
-
-DROP TABLE IF EXISTS `profesores`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `profesores` (
-  `id_rfc` varchar(13) NOT NULL,
-  `nombre` varchar(15) NOT NULL,
-  `apellidoPat` varchar(15) NOT NULL,
-  `apellidoMat` varchar(15) DEFAULT NULL,
-  `colegio` char(25) NOT NULL,
-  `contraseña` varchar(256) NOT NULL,
-  `id_tipousuario` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id_rfc`),
-  UNIQUE KEY `id_rfc` (`id_rfc`),
-  KEY `id_tipousuario` (`id_tipousuario`),
-  CONSTRAINT `profesores_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `profesores`
---
-
-LOCK TABLES `profesores` WRITE;
-/*!40000 ALTER TABLE `profesores` DISABLE KEYS */;
-/*!40000 ALTER TABLE `profesores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -272,9 +211,9 @@ DROP TABLE IF EXISTS `tiempoespera`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tiempoespera` (
   `id_espera` int(2) NOT NULL,
-  `id_recoger` int(1) DEFAULT NULL,
-  `id_tipoentrega` int(2) DEFAULT NULL,
-  `tiempo_min` int(2) DEFAULT NULL,
+  `id_recoger` int(1) NOT NULL,
+  `id_tipoentrega` int(2) NOT NULL,
+  `tiempo_min` int(2) NOT NULL,
   PRIMARY KEY (`id_espera`),
   KEY `id_recoger` (`id_recoger`),
   KEY `id_tipoentrega` (`id_tipoentrega`),
@@ -302,7 +241,7 @@ DROP TABLE IF EXISTS `tipob`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipob` (
   `id_tipoB` int(3) NOT NULL,
-  `tipo` char(10) DEFAULT NULL,
+  `tipo` char(10) NOT NULL,
   PRIMARY KEY (`id_tipoB`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -351,7 +290,7 @@ DROP TABLE IF EXISTS `tipousuario`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tipousuario` (
   `id_tipousuario` int(1) NOT NULL,
-  `tipo` char(10) DEFAULT NULL,
+  `tipo` char(15) NOT NULL,
   PRIMARY KEY (`id_tipousuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -362,37 +301,86 @@ CREATE TABLE `tipousuario` (
 
 LOCK TABLES `tipousuario` WRITE;
 /*!40000 ALTER TABLE `tipousuario` DISABLE KEYS */;
+INSERT INTO `tipousuario` VALUES (1,'administrador'),(2,'supervisor'),(3,'cliente');
 /*!40000 ALTER TABLE `tipousuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `trabajador`
+-- Table structure for table `usuario`
 --
 
-DROP TABLE IF EXISTS `trabajador`;
+DROP TABLE IF EXISTS `usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `trabajador` (
-  `id_ntrabajador` varchar(15) NOT NULL,
-  `nombre` varchar(15) NOT NULL,
-  `apellidoPat` varchar(15) NOT NULL,
-  `apellidoMat` varchar(15) DEFAULT NULL,
-  `contraseña` varchar(256) NOT NULL,
-  `id_tipousuario` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id_ntrabajador`),
-  UNIQUE KEY `id_ntrabajador` (`id_ntrabajador`),
+CREATE TABLE `usuario` (
+  `id_usuario` varchar(128) NOT NULL,
+  `nombre` varchar(128) NOT NULL,
+  `apellidoPat` varchar(128) NOT NULL,
+  `apellidoMat` varchar(128) DEFAULT NULL,
+  `grupo` int(3) DEFAULT NULL,
+  `colegio` varchar(40) DEFAULT NULL,
+  `contraseña` varchar(128) NOT NULL,
+  `id_tipousuario` int(1) NOT NULL,
+  `castigo` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id_usuario`),
+  UNIQUE KEY `id_usuario` (`id_usuario`),
+  UNIQUE KEY `id_usuario_2` (`id_usuario`),
   KEY `id_tipousuario` (`id_tipousuario`),
-  CONSTRAINT `trabajador_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `trabajador`
+-- Dumping data for table `usuario`
 --
 
-LOCK TABLES `trabajador` WRITE;
-/*!40000 ALTER TABLE `trabajador` DISABLE KEYS */;
-/*!40000 ALTER TABLE `trabajador` ENABLE KEYS */;
+LOCK TABLES `usuario` WRITE;
+/*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES ('SoHaHJJh3lWszgQpaB8Oiqun+ABAD8zK2D1TdxYIn+U=','hhtDiLWrnitCqFzrBowc17JcIMSqF1SfMeFjB2BBQR0=','UJFv43v2TUC+134iTkcrgM2pqMOrSDfuXU+7Ec9ql7Y=','9DpbyEYGpYkSOWoBJCF7NOqNRdpMZOHpU+jQOHiU/fg=',NULL,NULL,'$2y$10$exX4cI35fX9hIBNGgx/ccexq5Va/SqrfS2SdwuKYJEUIsahjSDopW',1,NULL);
+/*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `venta`
+--
+
+DROP TABLE IF EXISTS `venta`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `venta` (
+  `id_venta` varchar(128) NOT NULL,
+  `id_usuario` varchar(128) NOT NULL,
+  `id_comida` int(3) DEFAULT NULL,
+  `id_bebida` int(3) DEFAULT NULL,
+  `id_antojito` int(3) DEFAULT NULL,
+  `cantidadC` int(2) DEFAULT NULL,
+  `cantidadB` int(2) DEFAULT NULL,
+  `cantidadA` int(2) DEFAULT NULL,
+  `total` varchar(5) NOT NULL,
+  `id_lugar` int(2) NOT NULL,
+  `id_espera` int(1) NOT NULL,
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_comida` (`id_comida`),
+  KEY `id_bebida` (`id_bebida`),
+  KEY `id_antojito` (`id_antojito`),
+  KEY `id_lugar` (`id_lugar`),
+  KEY `id_espera` (`id_espera`),
+  CONSTRAINT `venta_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuario`),
+  CONSTRAINT `venta_ibfk_2` FOREIGN KEY (`id_comida`) REFERENCES `preparado` (`id_comida`),
+  CONSTRAINT `venta_ibfk_3` FOREIGN KEY (`id_bebida`) REFERENCES `bebida` (`id_bebida`),
+  CONSTRAINT `venta_ibfk_4` FOREIGN KEY (`id_antojito`) REFERENCES `antojito` (`id_antojito`),
+  CONSTRAINT `venta_ibfk_5` FOREIGN KEY (`id_lugar`) REFERENCES `entrega` (`id_lugar`),
+  CONSTRAINT `venta_ibfk_6` FOREIGN KEY (`id_espera`) REFERENCES `tiempoespera` (`id_espera`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `venta`
+--
+
+LOCK TABLES `venta` WRITE;
+/*!40000 ALTER TABLE `venta` DISABLE KEYS */;
+/*!40000 ALTER TABLE `venta` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -404,4 +392,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-26 21:27:40
+-- Dump completed on 2020-05-30 13:25:53
