@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
+$conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location: ../templates/error.html");
     exit();
@@ -166,12 +166,12 @@ if($_POST['id_recoPedido'] == "Recoger") {
             <form action="añadicion.php" method="POST">
                 <p class="agregar">Id <input type="text" required name="id-pedido" value="'.$fecha.'" readonly></p>
                 <input type="hidden" name="usuario-pedido" value="'.Decifrar($_SESSION['Usuario2']).'">
-                <p class="agregar">Comida <input type="number" name="comida-pedido" min="200" max="299"></p>
-                <p class="agregar">Bebida <input type="number" name="bebida-pedido" min="101" max="199"></p>
-                <p class="agregar">Antojito <input type="number" name="antojito-pedido" min="300" max="399"></p>
-                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido"></p>
-                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido"></p>
-                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido"></p>
+                <p class="agregar">Comida <input type="number" name="comida-pedido" min="200" max="299" pattern="^\d{3}$"></p>
+                <p class="agregar">Bebida <input type="number" name="bebida-pedido" min="101" max="199" pattern="^\d{3}$"></p>
+                <p class="agregar">Antojito <input type="number" name="antojito-pedido" min="300" max="399" pattern="^\d{3}$"></p>
+                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido" pattern="^\d{2}$"></p>
+                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido" pattern="^\d{2}$"></p>
+                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido" pattern="^\d{2}$"></p>
                 <input type="hidden" name="lugar-pedido" value="NULL">
                 <p class="agregar">Urgencia (tiene costo extra)
                     <select name="espera-pedido">
@@ -256,12 +256,12 @@ if($_POST['id_recoPedido'] == "Entregar") {
             <form action="añadicion.php" method="POST">
                 <p class="agregar">Id <input type="text" required name="id-pedido" value="'.$fecha.'" readonly></p>
                 <input type="hidden" name="usuario-pedido" value="'.Decifrar($_SESSION['Usuario2']).'">
-                <p class="agregar">Comida <input type="number" name="comida-pedido" min="200" max="299"></p>
-                <p class="agregar">Bebida <input type="number" name="bebida-pedido" min="101" max="199"></p>
-                <p class="agregar">Antojito <input type="number" name="antojito-pedido" min="300" max="399"></p>
-                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido"></p>
-                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido"></p>
-                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido"></p>
+                <p class="agregar">Comida <input type="number" name="comida-pedido" min="200" max="299" pattern="^\d{3}$"></p>
+                <p class="agregar">Bebida <input type="number" name="bebida-pedido" min="101" max="199" pattern="^\d{3}$"></p>
+                <p class="agregar">Antojito <input type="number" name="antojito-pedido" min="300" max="399" pattern="^\d{3}$"></p>
+                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido" pattern="^\d{2}$"></p>
+                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido" pattern="^\d{2}$"></p>
+                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido" pattern="^\d{2}$"></p>
                 <p class="agregar">Lugar de entrega:
                     <select name="lugar-pedido">
                         <option value="1">Patio de cuartos</option>

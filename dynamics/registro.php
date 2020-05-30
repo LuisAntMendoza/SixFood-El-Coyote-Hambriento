@@ -79,7 +79,7 @@ echo '<!DOCTYPE html>
 ';
 
 //establecemos conexion
-$conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
+$conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
 }

@@ -6,7 +6,7 @@ define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
 
 //concectamos a SQL
-$conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
+$conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 
 //funcion para cifrar
 function Cifrar($text){

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
+$conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
@@ -190,7 +190,7 @@ echo         '  </table>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
-$consulta = 'SELECT * FROM bebida NATURAL JOIN porcionb';
+$consulta = 'SELECT * FROM bebida NATURAL JOIN porcionb ORDER BY id_bebida ASC';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
     $id = $resultado[1];
@@ -238,7 +238,7 @@ echo '
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
-$consulta = 'SELECT * FROM preparado';
+$consulta = 'SELECT * FROM preparado ORDER BY id_comida ASC';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
 $id = $resultado[0];
@@ -285,7 +285,7 @@ echo '              </table>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
-$consulta = 'SELECT * FROM antojito NATURAL JOIN presentacion';
+$consulta = 'SELECT * FROM antojito NATURAL JOIN presentacion ORDER BY id_antojito ASC';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
 $id = $resultado[1];
