@@ -61,6 +61,22 @@ C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento> git clone https://github.com/
 
 8. _Ahora puede ir a su Explorador de Archivos, a la carpeta que creó para este proyecto, y encontrará todos los archivos necesarios para el correcto funcionamiento de la página._
 
+#### Importante
+
+9. _Vuelva a entrar en la terminal de su computadora, entré a la carpeta bin de xampp (o mamp) y haga una base de datos llamada **pruebaSixFood**._
+
+```
+C:\Users\astri>
+
+C:\Users\astri> cd/xampp/mysql/bin
+
+C:\Users\astri\xampp\mysql\bin>mysql -u root
+
+MariaDB [(none)]> CREATE DATABASE pruebaSixFood;
+```
+
+10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo pruebaSixFood.sql._
+
 ## Funcionamiento de la página
 _El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su optimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
 
