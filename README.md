@@ -43,6 +43,8 @@ C:\Users\astri>
 C:\Users\astri> cd\xampp\x\htdocs\SixFood-El-Coyote-Hambriento
 
 C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento>
+
+C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento> git clone https://github.com/
 ```
 
 7. _Una vez dentro de su carpeta, escriba **git clone** y pegué el enlace que copió previamnete usando ctrl + v.
