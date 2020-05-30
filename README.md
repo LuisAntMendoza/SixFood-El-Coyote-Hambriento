@@ -6,9 +6,13 @@ _El proyecto consiste en crear una página web con maquetado en HTML, PHP y base
 ### Pre-requisitos 📋
 
 *Antes de comenzar la instalación, por favor asegúrese de tener espacio disponible en su dispositivo y una buena conexión Wi-Fi para evitar problemas durante el proceso.*
+
 *Debe tener instalado Mamp si cuenta con un dispositio Mac. Si no cuenta con el programa, puede descargarlo en el siguiente enlace [Descargar Mamp](https://www.mamp.info/en/downloads/).*
+
 *Debe tener instalado Xampp para revisar y/o hacer cambios que ayudan a mejorar la base de datos y pueda abrir los archivos php en el navegador. Para descargarlo sólo siga el enlace [Descargar Xampp](https://www.apachefriends.org/es/index.html).*
+
 *También cerciórese de haber descargado GIT en su ordenador. Puede descargarlo gratuitamente en el siguiente enlace [Descargar Git](https://git-scm.com/downloads).*
+
 *Por último, para evitar molestias en el funcionamiento y desarrollo del proyecto, sugerimos que su editor de texto sea Atom.*
 #### Por favor, siga cuidadosamente las siguientes instrucciones:
 
