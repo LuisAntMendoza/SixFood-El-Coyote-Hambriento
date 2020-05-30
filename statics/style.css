@@ -1,6 +1,7 @@
 body {
     background-color: #2B4256;
     width: 100%;
+    overflow-x: hidden;
     padding-top: 30px;
     font-family: 'Syncopate', sans-serif;
     margin: 0;
@@ -117,6 +118,50 @@ a {
     background-color: #eb6f0b;
     animation-name: lihover;
     animation-duration: 1s;
+}
+
+.admin {
+    padding: 4px 0px;
+    background-color: #eb6f0b;
+    width: 230px;
+    text-align: center;
+    border-radius: 0px 20px 20px 0px;
+    font-size: 8px;
+    position: relative;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.admin a {
+    color: white;
+}
+
+.admin a:hover {
+    text-decoration: underline;
+}
+
+.contenedor-admin {
+    position: absolute;
+    bottom: -300px;
+}
+
+.supervisor {
+    padding: 4px 0px;
+    background-color: #eb6f0b;
+    width: 230px;
+    text-align: center;
+    border-radius: 0px 20px 20px 0px;
+    font-size: 8px;
+    position: relative;
+    color: white;
+}
+
+.supervisor a {
+    color: white;
+}
+
+.supervisor a:hover {
+    text-decoration: underline;
 }
 
 .redes {
@@ -406,10 +451,47 @@ footer {
     margin-top: -50px;
 }
 
+.body-pedidos h3 {
+    margin-top: 85px;
+    text-align: center;
+    color: white;
+}
+
+.agregar {
+    margin-left: 70px;
+    color: white;
+}
+
+.agregar input {
+    background-color: white;
+    margin-left: 10px;
+    border: 3px inset #F29D29;
+    border-radius: 20px;
+}
+
+.agregar select {
+    background-color: white;
+    margin-left: 10px;
+    border: 3px inset #F29D29;
+    border-radius: 20px;
+}
+
+.agregar-usuario {
+    background-color: white;
+    margin-left: 70px;
+    margin-bottom: 30px;
+    border: 3px inset #F29D29;
+    border-radius: 20px;
+}
+
+.error {
+    text-align: center;
+    color: red;
+}
+
 .tabla-pedidos {
     width: 100%;
     height: auto;
-    margin-top: 85px;
 }
 
 .tabla-pedidos table, .tabla-pedidos tr, .tabla-pedidos th, .tabla-pedidos td {
@@ -419,6 +501,8 @@ footer {
 .tabla-pedidos table {
     width: 80%;
     margin: 5px 10%;
+    text-align: center;
+    font-size: 10px;
 }
 
 /* r-pedido.php */
@@ -507,4 +591,9 @@ footer {
     padding: 8px;
     font-size: 20px;
     border-radius: 10px;
+}
+
+.basura {
+    width: 24px;
+    height: 24px;
 }

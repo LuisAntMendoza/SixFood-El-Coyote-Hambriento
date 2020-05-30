@@ -120,6 +120,8 @@ elseif($_POST['tipo'] == "Académico") {
 elseif($_POST['tipo'] == "Trabajador") {
     $_SESSION['tipo'] = "Trabajador";
 }
+$usuario = "";
+
 if($_POST['clave']) {
     if(! preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$/", $_POST['clave'])) {
         header("location:../templates/error.html");
@@ -137,27 +139,7 @@ if($_POST['noCuenta']) {
         exit();
     }
     else {
-        $noCuenta = mysqli_real_escape_string($conexion, $_POST['noCuenta']);
-        $consulta = 'SELECT * FROM estudiante';
-        $consultar = mysqli_query($conexion, $consulta);
-        while($resultado = mysqli_fetch_array($consultar)) {
-            $noCuentaBase = Decifrar($resultado[0]);
-            if($noCuentaBase == $noCuenta) {
-                if(password_verify($clave, $resultado[5])) {
-                    $_SESSION['usuario'] = Decifrar($resultado[1]);
-                    header("location: pedidos.php");
-                    exit();
-                }
-                else {
-                    $_SESSION['Error'] = "<p>Contraseña incorrecta</p>";
-                    header("location:login.php");
-                    exit();
-                }
-            }
-        }
-        $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
-        header("location:login.php");
-        exit();
+        $usuario = mysqli_real_escape_string($conexion, $_POST['noCuenta']);
     }
 }
 if($_POST['RFC']) {
@@ -166,27 +148,7 @@ if($_POST['RFC']) {
         exit();
     }
     else {
-        $RFC = mysqli_real_escape_string($conexion, $_POST['RFC']);
-        $consulta = 'SELECT * FROM profesor';
-        $consultar = mysqli_query($conexion, $consulta);
-        while($resultado = mysqli_fetch_array($consultar)) {
-            $RFCBase = Decifrar($resultado[0]);
-            if($RFCBase == $RFC) {
-                if(password_verify($clave, $resultado[5])) {
-                    $_SESSION['usuario'] = Decifrar($resultado[1]);
-                    header("location: pedidos.php");
-                    exit();
-                }
-                else {
-                    $_SESSION['Error'] = "<p>Contraseña incorrecta</p>";
-                    header("location:login.php");
-                    exit();
-                }
-            }
-        }
-        $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
-        header("location:login.php");
-        exit();
+        $usuario = mysqli_real_escape_string($conexion, $_POST['RFC']);
     }
 }
 if($_POST['noTrabajador']) {
@@ -195,29 +157,33 @@ if($_POST['noTrabajador']) {
         exit();
     }
     else {
-        $noTrabajador = mysqli_real_escape_string($conexion, $_POST['noTrabajador']);
-        $consulta = 'SELECT * FROM trabajador';
-        $consultar = mysqli_query($conexion, $consulta);
-        while($resultado = mysqli_fetch_array($consultar)) {
-            $noTrabajadorBase = Decifrar($resultado[0]);
-            if($noTrabajadorBase == $noTrabajador) {
-                if(password_verify($clave, $resultado[4])) {
-                    $_SESSION['usuario'] = Decifrar($resultado[1]);
-                    header("location: pedidos.php");
-                    exit();
-                }
-                else {
-                    $_SESSION['Error'] = "<p>Contraseña incorrecta".$clave."</p>";
-                    header("location:login.php");
-                    exit();
-                }
-            }
-        }
-        $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
-        header("location:login.php");
-        exit();
+        $usuario = mysqli_real_escape_string($conexion, $_POST['noTrabajador']);
     }
 }
+if($usuario != "") {
+    $consulta = 'SELECT * FROM usuario';
+    $consultar = mysqli_query($conexion, $consulta);
+    while($resultado = mysqli_fetch_array($consultar)) {
+        $usuarioBase = Decifrar($resultado[0]);
+        if($usuarioBase == $usuario) {
+            if(password_verify($clave, $resultado[6])) {
+                $_SESSION['usuario'] = Decifrar($resultado[1]);
+                $_SESSION['Poder'] = $resultado[7];
+                header("location: index.php");
+                exit();
+            }
+            else {
+                $_SESSION['Error'] = "<p>Contraseña incorrecta</p>";
+                header("location:login.php");
+                exit();
+            }
+        }
+    }
+    $_SESSION['Error'] = "<p>Usuario no encontrado</p>";
+    header("location:login.php");
+    exit();
+}
+
 
 if($_SESSION['tipo'] == "Alumno") {
     echo

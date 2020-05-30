@@ -131,7 +131,6 @@ if($_SESSION['tipo'] == "Alumno") {
                     <h4>Repita su contraseña</h4>
                     <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
                     title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
-                    <input type="hidden" name="Poder" value="3">
                     <br>
                     <input type="submit" value="Ingresar" class="login-enviar">
                 </form>
@@ -171,7 +170,7 @@ elseif ($_SESSION['tipo'] == "Académico") {
                     <optgroup label="Área II">
                         <option value="Biología">Biología</option>
                         <option value="Educación Física">Educación Física</option>
-                        <option value="Morfología, Fisioligía y Salud">Morfología, Fisioligía y Salud</option>
+                        <option value="Morfología, Fisiología y Salud">Morfología, Fisioligía y Salud</option>
                         <option value="Orientación Educativa">Orientación Educativa</option>
                         <option value="Psicología e Higiene Mental">Psicología e Higiene Mental</option>
                         <option value="Química">Química</option>
@@ -205,7 +204,6 @@ elseif ($_SESSION['tipo'] == "Académico") {
                 <h4>Repita su contraseña</h4>
                 <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
                 title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
-                <input type="hidden" name="Poder" value="3">
                 <br>
                 <input type="submit" value="Ingresar" class="login-enviar">
             </form>
@@ -240,7 +238,6 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
                 <h4>Repita su contraseña</h4>
                 <input type="password" name="rContraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$" required
                 title="Ingrese una contraseña válida. Requiere entre 10 y 20 caracteres, mínimo 1 minúscula, 1 mayúscula y 1 caractér especial.">
-                <input type="hidden" name="Poder" value="3">
                 <br>
                 <input type="submit" value="Ingresar" class="login-enviar">
             </form>

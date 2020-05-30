@@ -73,7 +73,7 @@ if($_SESSION['tipo'] == "Alumno") {
     if(preg_match("/(^\d{9}$)/", $_POST['noCuenta'])) {
         //validamos Numero de Cuenta y checamos que no este registrado
         $noCuenta = mysqli_real_escape_string($conexion, $_POST['noCuenta']);
-        $consulta = 'SELECT * FROM estudiante';
+        $consulta = 'SELECT * FROM usuario';
         $consultar = mysqli_query($conexion, $consulta);
         while($resultado = mysqli_fetch_array($consultar)) {
             $usuariodec = Decifrar($resultado[0]);
@@ -104,7 +104,7 @@ elseif ($_SESSION['tipo'] == "Académico") {
     if(preg_match("/^[A-Z]{4}[0-9]{6}[0-9A-Z]{3}$/", $_POST['RFC'])) {
         //validamos RFC y checamos que no este registrado
         $RFC = mysqli_real_escape_string($conexion, $_POST['RFC']);
-        $consulta = 'SELECT * FROM profesor';
+        $consulta = 'SELECT * FROM usuario';
         $consultar = mysqli_query($conexion, $consulta);
         while($resultado = mysqli_fetch_array($consultar)) {
             $usuariodec = Decifrar($resultado[0]);
@@ -130,7 +130,7 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
     if(preg_match("/^(\d{6})$/", $_POST['noTrabajador'])) {
         //validamos Numero de Trabajador y checamos que no este registrado
         $noTrabajador = mysqli_real_escape_string($conexion, $_POST['noTrabajador']);
-        $consulta = 'SELECT * FROM trabajador';
+        $consulta = 'SELECT * FROM usuario';
         $consultar = mysqli_query($conexion, $consulta);
         while($resultado = mysqli_fetch_array($consultar)) {
             $usuariodec = Decifrar($resultado[0]);
@@ -191,13 +191,13 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
 
 //los subimos al sistema
 if($_SESSION['tipo'] == "Alumno") {
-    $consulta = 'INSERT INTO estudiante VALUES ("'.$noCuenta.'","'.$nombre.'","'.$apPat.'","'.$apMat.'",'.$Grupo.',"'.$Contraseña.'",'.$_POST["Poder"].')';
+    $consulta = 'INSERT INTO usuario VALUES ("'.$noCuenta.'","'.$nombre.'","'.$apPat.'","'.$apMat.'",'.$Grupo.', "","'.$Contraseña.'", 3)';
 }
 elseif($_SESSION['tipo'] == "Académico") {
-    $consulta = 'INSERT INTO profesor VALUES ("'.$RFC.'","'.$nombre.'","'.$apPat.'","'.$apMat.'","'.$Colegio.'","'.$Contraseña.'",'.$_POST["Poder"].')';
+    $consulta = 'INSERT INTO usuario VALUES ("'.$RFC.'", "'.$nombre.'", "'.$apPat.'", "'.$apMat.'", NULL, "'.$Colegio.'", "'.$Contraseña.'", 3)';
 }
 elseif ($_SESSION['tipo'] == "Trabajador") {
-    $consulta = 'INSERT INTO trabajador VALUES ("'.$noTrabajador.'","'.$nombre.'","'.$apPat.'","'.$apMat.'","'.$Contraseña.'",'.$_POST["Poder"].')';
+    $consulta = 'INSERT INTO usuario VALUES ("'.$noTrabajador.'","'.$nombre.'","'.$apPat.'","'.$apMat.'", NULL, NULL,"'.$Contraseña.'", 3)';
 }
 $consultar = mysqli_query($conexion, $consulta);
 

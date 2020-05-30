@@ -31,6 +31,26 @@ else {
             </div>
     ';
 }
+if($_SESSION['Poder'] == 1){
+    $admin = '  <div class="contenedor-admin">
+                    <div class="admin">
+                        <p>Bienvenido Admin</p>
+                        <a href="admin.php"><p>Consultas</p></a>
+                    </div>
+                    <div class="supervisor">
+                        <p>Bienvenido Supervisor</p>
+                        <a href=""><p>Consultas</p></a>
+                    </div>
+                </div>';
+}
+elseif ($_SESSION['Poder'] == 2) {
+    $admin = '  <div class="contenedor-admin">
+                    <div class="supervisor">
+                        <p>Bienvenido Supervisor</p>
+                        <a href=""><p>Consultas</p></a>
+                    </div>
+                </div>';
+}
 
 
 echo '
@@ -121,6 +141,7 @@ echo '
             <div class="fondo-logo-final"><img src="../statics/img/logo-malteada.png" alt="Logo SixFood"></div>
             <div class="texto-final">SixFood</div>
         </div>
+        '.$admin.'
     </footer>
 
 </body>
