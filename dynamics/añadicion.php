@@ -46,8 +46,34 @@ function Decifrar ($textoCifrado){
   );
   return $originalText;
 }
+//validacion
+if(!isset($_POST['Usuario'])) {
+    $_POST['Usuario'] = "";
+}
+if(!isset($_POST['Nombre'])) {
+    $_POST['Nombre'] = "";
+}
+if(!isset($_POST['apPat'])) {
+    $_POST['apPat'] = "";
+}
+if(!isset($_POST['apMat'])) {
+    $_POST['apMat'] = "";
+}
+if(!isset($_POST['id-bebida'])) {
+    $_POST['id-bebida'] = "";
+}
+if(!isset($_POST['id-preparado'])) {
+    $_POST['id-preparado'] = "";
+}
+if(!isset($_POST['id-antojito'])) {
+    $_POST['id-antojito'] = "";
+}
+if(!isset($_POST['id-pedido'])) {
+    $_POST['id-pedido'] = "";
+}
 
-if($_POST['Usuario']) {
+
+if($_POST['Usuario'] != "") {
     $usuario = Cifrar($_POST['Usuario']);
     $nombre = Cifrar($_POST['Nombre']);
     $apPat = Cifrar($_POST['apPat']);
