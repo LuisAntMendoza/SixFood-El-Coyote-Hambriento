@@ -51,7 +51,7 @@ C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento>
 
 ```
 
-7. _Una vez dentro de su carpeta, escriba **git clone** y pegué el enlace que copió previamnete usando ctrl + v.
+7. _Una vez dentro de su carpeta, escriba **git clone** y pegué el enlace que copió previamnete usando ctrl + v._
 
 ```
 C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento>
@@ -59,7 +59,7 @@ C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento>
 C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento> git clone https://github.com/
 ```
 
-8. _Ahora puede ir a su Explorador de Archivos, a la carpeta que creó para este proyecto, y encontrará todos los archivos necesarios para el correcto funcionamiento de la página.
+8. _Ahora puede ir a su Explorador de Archivos, a la carpeta que creó para este proyecto, y encontrará todos los archivos necesarios para el correcto funcionamiento de la página._
 
 ## Funcionamiento de la página
 _El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su optimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
@@ -87,5 +87,3 @@ de contraseñas y datos sencibles mediante codificación y hasheo, además de ot
 * **Umaña Aguirre Cristian Alberto** - *Diseño y despliegue PHP* - [CristianUmAg](https://github.com/CristianUmAg)
 
 * **Veiga Cruz Astrid Xanat** - *Base de datos y documentación* - [astridveiga](https://github.com/astridveiga)
-
-También puedes mirar la lista de todos los [contribuyentes](https://github.com/LuisAntMendoza/SixFood-El-Coyote-Hambriento/contributors) quíenes han participado en este proyecto. 
