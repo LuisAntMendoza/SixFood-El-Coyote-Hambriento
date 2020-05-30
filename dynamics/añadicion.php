@@ -94,7 +94,7 @@ if($_POST['Usuario'] != "") {
     header("location: admin.php");
     exit();
 }
-elseif($_POST['id-bebida']) {
+elseif($_POST['id-bebida'] != "") {
     $id = $_POST['id-bebida'];
     $nombre = $_POST['nombre-bebida'];
     $tipo = $_POST['tipo-bebida'];
@@ -107,7 +107,7 @@ elseif($_POST['id-bebida']) {
     header("location: admin.php");
     exit();
 }
-elseif ($_POST['id-preparado']) {
+elseif ($_POST['id-preparado'] != "") {
     $id = $_POST['id-preparado'];
     $nombre = $_POST['nombre-preparado'];
     $cantidad = $_POST['cantidad-preparado'];
@@ -119,7 +119,7 @@ elseif ($_POST['id-preparado']) {
     header("location: admin.php");
     exit();
 }
-elseif ($_POST['id-antojito']) {
+elseif ($_POST['id-antojito'] != "") {
     $id = $_POST['id-antojito'];
     $nombre = $_POST['nombre-antojito'];
     $presentacion = $_POST['presentacion-antojito'];
@@ -133,7 +133,7 @@ elseif ($_POST['id-antojito']) {
     header("location: admin.php");
     exit();
 }
-elseif ($_POST['id-pedido']) {
+elseif ($_POST['id-pedido'] != "") {
     $id = $_POST['id-pedido'];
     $usuario = $_POST['usuario-pedido'];
     $usuario2 = "";
