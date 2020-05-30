@@ -171,22 +171,11 @@ elseif ($_POST['id-pedido']) {
     }
     $lugar = $_POST['lugar-pedido'];
     $espera = $_POST['espera-pedido'];
-    echo $id."<br>";
-    echo $usuario2."<br>";
-    echo $comida."<br>";
-    echo $bebida."<br>";
-    echo $antojito."<br>";
-    echo $cantidadC."<br>";
-    echo $cantidadB."<br>";
-    echo $cantidadA."<br>";
-    echo $total."<br>";
-    echo $lugar."<br>";
-    echo $espera."<br>";
-    $consulta = 'INSERT INTO pedido VALUES ("'.$id.'", "'.$usuario2.'", '.$comida.', '.$bebida.', '.$antojito.', '.$cantidadC.','.$cantidadB.', '.$cantidadA.', '.$total.', '.$lugar.', '.$espera.')';
+    $consulta = 'INSERT INTO venta VALUES ("'.$id.'", "'.$usuario2.'", '.$comida.', '.$bebida.', '.$antojito.', '.$cantidadC.','.$cantidadB.', '.$cantidadA.', '.$total.', '.$lugar.', '.$espera.')';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Pedido generado exitosamente</h5>";
-    //header("location: supervisor.php");
-    //exit();
+    header("location: supervisor.php");
+    exit();
 }
 else {
     header("location:../templates/error.html");

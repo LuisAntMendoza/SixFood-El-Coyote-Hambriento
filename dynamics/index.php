@@ -56,6 +56,9 @@ elseif ($_SESSION['Poder'] == 2) {
                     </div>
                 </div>';
 }
+else {
+    $admin = "";
+}
 
 
 echo '
