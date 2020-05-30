@@ -42,7 +42,7 @@ CREATE TABLE `antojito` (
 
 LOCK TABLES `antojito` WRITE;
 /*!40000 ALTER TABLE `antojito` DISABLE KEYS */;
-INSERT INTO `antojito` VALUES (300,'Molletes',1,2,1,12,0),(301,'Sopes sencillo',1,1,1,12,0),(302,'Sopes con queso',2,1,1,15,0),(303,'Sopes con queso y carne',2,1,1,20,0),(304,'Tacos de pollo',5,3,1,20,0),(305,'Tacos de bistec',4,1,1,17,0),(306,'Chilaquiles chicos pollo o huevo',6,1,1,25,0),(307,'Chilaqueles grandes pollo o huevo',6,1,1,35,0),(308,'Chilaquiles chicos bistec',6,1,1,30,0),(309,'Chilaqules grandes bistec',6,1,1,40,0),(310,'Pambazos',1,1,1,18,0),(311,'Pambazos',2,1,1,25,0),(312,'Papas a la francesa',3,1,1,15,0),(313,'Papas a la francesa',4,1,1,25,0),(314,'Hamburguesa sencilla',7,1,1,25,0),(315,'Hamburguesa con queso',7,1,1,30,0),(316,'Hamburguesa doble',7,1,1,40,NULL);
+INSERT INTO `antojito` VALUES (300,'Molletes',1,2,1,12,30),(301,'Sopes sencillo',1,1,1,12,30),(302,'Sopes con queso',2,1,1,15,30),(303,'Sopes con queso y carne',2,1,1,20,30),(304,'Tacos de pollo',5,3,1,20,30),(305,'Tacos de bistec',4,1,1,17,30),(306,'Chilaquiles chicos pollo o huevo',6,1,1,25,30),(307,'Chilaqueles grandes pollo o huevo',6,1,1,35,30),(308,'Chilaquiles chicos bistec',6,1,1,30,30),(309,'Chilaqules grandes bistec',6,1,1,40,30),(310,'Pambazos',1,1,1,18,30),(311,'Pambazos',2,1,1,25,30),(312,'Papas a la francesa',3,1,1,15,30),(313,'Papas a la francesa',4,1,1,25,30),(314,'Hamburguesa sencilla',7,1,1,25,30),(315,'Hamburguesa con queso',7,1,1,30,30),(316,'Hamburguesa doble',7,1,1,40,30);
 /*!40000 ALTER TABLE `antojito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,7 +74,7 @@ CREATE TABLE `bebida` (
 
 LOCK TABLES `bebida` WRITE;
 /*!40000 ALTER TABLE `bebida` DISABLE KEYS */;
-INSERT INTO `bebida` VALUES (101,'Agua jamaica',1,10,7,0),(102,'Agua horchata',1,10,7,0),(103,'Agua limón',1,10,7,0),(104,'Agua limon chia',1,10,7,0),(105,'Jugo naranja',3,10,12,0),(106,'Jugo zanahoria',3,10,12,0),(107,'Jugo mandarina',3,10,12,0),(108,'Jugo betabel',3,10,12,0),(109,'Jugo vampiro',4,10,20,0),(110,'Jugo cítrico',4,10,20,0),(111,'Jugo verde',4,10,20,0),(112,'Boing mango',1,11,12,0),(113,'Boing manzana',1,11,12,0),(114,'Boing guayaba',1,11,12,0),(115,'Boing uva',1,11,12,0),(116,'Boing fresa',1,11,12,0),(117,'Botella de agua ',2,11,10,0),(118,'Coca-cola',5,12,13,0),(119,'Power Punch',5,12,12,0),(120,'Refresco limon',5,12,12,0),(121,'Fanta',5,12,12,0),(122,'Pepsi',5,12,12,0),(123,'Arizona mango',1,11,12,0),(124,'Arizona sandia',1,11,12,NULL);
+INSERT INTO `bebida` VALUES (101,'Agua jamaica',1,10,7,30),(102,'Agua horchata',1,10,7,30),(103,'Agua limón',1,10,7,30),(104,'Agua limon chia',1,10,7,30),(105,'Jugo naranja',3,10,12,30),(106,'Jugo zanahoria',3,10,12,30),(107,'Jugo mandarina',3,10,12,30),(108,'Jugo betabel',3,10,12,30),(109,'Jugo vampiro',4,10,20,30),(110,'Jugo cítrico',4,10,20,30),(111,'Jugo verde',4,10,20,30),(112,'Boing mango',1,11,12,30),(113,'Boing manzana',1,11,12,30),(114,'Boing guayaba',1,11,12,30),(115,'Boing uva',1,11,12,30),(116,'Boing fresa',1,11,12,30),(117,'Botella de agua ',2,11,10,30),(118,'Coca-cola',5,12,13,30),(119,'Power Punch',5,12,12,30),(120,'Refresco limon',5,12,12,30),(121,'Fanta',5,12,12,30),(122,'Pepsi',5,12,12,30),(123,'Arizona mango',1,11,12,30),(124,'Arizona sandia',1,11,12,30);
 /*!40000 ALTER TABLE `bebida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +150,7 @@ CREATE TABLE `preparado` (
 
 LOCK TABLES `preparado` WRITE;
 /*!40000 ALTER TABLE `preparado` DISABLE KEYS */;
-INSERT INTO `preparado` VALUES (200,'Maruchan res',1,10,0),(201,'Maruchan camaron',1,10,0),(202,'Maruchan pollo',1,10,0),(203,'Sandwich pollo',1,15,0),(204,'Sandwich jamon',1,15,0),(205,'Sandwich vegetariano',1,15,0),(206,'Torta jamon',1,15,0),(207,'Torta salchicha',1,15,0),(208,'Torta rusa',1,25,0),(209,'Torta pierna',1,25,0),(210,'Torta cubana',1,25,0),(211,'Torta hawaina',1,25,NULL);
+INSERT INTO `preparado` VALUES (200,'Maruchan res',1,10,30),(201,'Maruchan camaron',1,10,30),(202,'Maruchan pollo',1,10,30),(203,'Sandwich pollo',1,15,30),(204,'Sandwich jamon',1,15,30),(205,'Sandwich vegetariano',1,15,30),(206,'Torta jamon',1,15,30),(207,'Torta salchicha',1,15,30),(208,'Torta rusa',1,25,30),(209,'Torta pierna',1,25,30),(210,'Torta cubana',1,25,30),(211,'Torta hawaina',1,25,30);
 /*!40000 ALTER TABLE `preparado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -392,4 +392,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 21:44:13
+-- Dump completed on 2020-05-30 13:25:53
