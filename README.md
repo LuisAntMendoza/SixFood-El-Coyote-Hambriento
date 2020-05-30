@@ -75,7 +75,7 @@ C:\Users\astri\xampp\mysql\bin>mysql -u root
 MariaDB [(none)]> CREATE DATABASE pruebaSixFood CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo prueba_ SixFood.sql _._
+10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo_ SixFood.sql _._
 
 ## Funcionamiento de la página
 _El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su optimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
