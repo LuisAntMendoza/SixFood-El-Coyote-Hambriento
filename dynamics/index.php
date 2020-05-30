@@ -16,7 +16,7 @@ if($_SESSION['usuario'] != "") {
     $botones = '
             <div class="botones-index">
                 <div class="b-index">¡Bienvenido!</div>
-                <a href="r-pedido.php">
+                <a href="pedidos.php">
                     <div class="b-index">Pedir comida</div>
                 </a>
             </div>

@@ -253,9 +253,9 @@ if($_POST['Tipo-tabla'] == "Pedido") {
             <form action="añadicion.php" method="POST">
                 <p class="agregar">Id <input type="text" required name="id-pedido" value="'.$fecha.'_'.$hora.'"></p>
                 <p class="agregar">Usuario <input type="text" required name="usuario-pedido"></p>
-                <p class="agregar">Comida <input type="number" name="comida-pedido"></p>
-                <p class="agregar">Bebida <input type="number" name="bebida-pedido"></p>
-                <p class="agregar">Antojito <input type="number" name="antojito-pedido"></p>
+                <p class="agregar">Comida <input type="number" name="comida-pedido" max="299" min="200"></p>
+                <p class="agregar">Bebida <input type="number" name="bebida-pedido" min="101" max="199"></p>
+                <p class="agregar">Antojito <input type="number" name="antojito-pedido" min="300" max="399"></p>
                 <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido"></p>
                 <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido"></p>
                 <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido"></p>
@@ -272,7 +272,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
                         <option value="NULL">Recoger en la cafetería</option>
                     </select>
                 </p>
-                <p class="agregar">Espera <input type="number" required name="espera-pedido"></p>
+                <p class="agregar">Espera <input type="number" required name="espera-pedido" max="15" min="10"></p>
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
