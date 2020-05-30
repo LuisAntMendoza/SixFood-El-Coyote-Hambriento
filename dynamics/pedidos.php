@@ -5,7 +5,7 @@ if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
-if(! isset($_SESSION['usuario'])) {
+if($_SESSION['usuario'] == "") {
     header("location: login.php");
     exit();
 }

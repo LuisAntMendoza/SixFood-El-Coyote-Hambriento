@@ -9,7 +9,12 @@ if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
     exit();
 }
-if($_SESSION['Poder'] != (1 || 2)) {
+if($_SESSION['Poder'] == 3) {
+    header("location:../templates/error.html");
+    exit();
+}
+
+if($_SESSION['Poder'] == "") {
     header("location:../templates/error.html");
     exit();
 }

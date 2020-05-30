@@ -246,10 +246,111 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>';
 }
+if($_POST['id_recoPedido'] == "Entregar") {
+    echo '
+            <h3>Añadir Pedido</h3>
+            <form action="añadicion.php" method="POST">
+                <p class="agregar">Id <input type="text" required name="id-pedido" value="'.$fecha.'" readonly></p>
+                <input type="hidden" name="usuario-pedido" value="'.Decifrar($_SESSION['Usuario2']).'">
+                <p class="agregar">Comida <input type="number" name="comida-pedido" min="200" max="299"></p>
+                <p class="agregar">Bebida <input type="number" name="bebida-pedido" min="101" max="199"></p>
+                <p class="agregar">Antojito <input type="number" name="antojito-pedido" min="300" max="399"></p>
+                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido"></p>
+                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido"></p>
+                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido"></p>
+                <p class="agregar">Lugar de entrega:
+                    <select name="lugar-pedido">
+                        <option value="1">Patio de cuartos</option>
+                        <option value="2">Canchas</option>
+                        <option value="3">Patio de quintos</option>
+                        <option value="4">Pulpo</option>
+                        <option value="5">Patio de sextos</option>
+                        <option value="6">Pimponeras</option>
+                        <option value="7">Area administrativa</option>
+                        <option value="8">Sala de maestros</option>
+                    </select>
+                </p>
+                <p class="agregar">Urgencia (tiene costo extra)
+                    <select name="espera-pedido">
+                        <option value="13">Normal</option>
+                        <option value="14">Express (+$5)</option>
+                        <option value="15">Urgente (+$10)</option>
+                    </select>
+                </p>
+                <input type="submit" value="Añadir" class="agregar-usuario">
+            </form>
+            <h3>Disponibilidad Antojitos</h3>
+            <table border="1" class="tabla-pedido">';
+    $consulta = 'SELECT * FROM antojito';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+        if($resultado[6] != 0) {
+            echo '  <tr>
+                        <td>'.$resultado[0].'</td>
+                        <td>'.$resultado[1].'</td>
+                        <td>'.$resultado[5].'</td>
+                        <td>'.$resultado[6].'</td>
+                    </tr>';
+        }
+    }
+    echo '  </table>
+            <h3>Disponibilidad Bebidas</h3>
+            <table border="1" class="tabla-pedido">';
+    $consulta = 'SELECT * FROM bebida';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+        if($resultado[5] != 0) {
+            echo '
+                <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[4].'</td>
+                    <td>'.$resultado[5].'</td>
+                </tr>
+                ';
+        }
+    }
+    echo '  </table>
+            <h3>Disponibilidad Preparado</h3>
+            <table border="1" class="tabla-pedido">
+';
+    $consulta = 'SELECT * FROM preparado';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+        if($resultado[4] != 0) {
+            echo '
+                <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[3].'</td>
+                    <td>'.$resultado[4].'</td>
+                </tr>';
+        }
+    }
+    echo '  </table>';
+}
 echo'
             <div class="botones-index">
                 <a href="pedidos.php">
-                    <div class="b-error">Regresar</div>
+                    <div class="b-pedido">Regresar</div>
                 </a>
             </div>
         </article>

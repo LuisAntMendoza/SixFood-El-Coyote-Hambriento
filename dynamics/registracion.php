@@ -191,13 +191,13 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
 
 //los subimos al sistema
 if($_SESSION['tipo'] == "Alumno") {
-    $consulta = 'INSERT INTO usuario VALUES ("'.$noCuenta.'","'.$nombre.'","'.$apPat.'","'.$apMat.'",'.$Grupo.', "","'.$Contraseña.'", 3)';
+    $consulta = 'INSERT INTO usuario VALUES ("'.$noCuenta.'","'.$nombre.'","'.$apPat.'","'.$apMat.'",'.$Grupo.', "","'.$Contraseña.'", 3, NULL)';
 }
 elseif($_SESSION['tipo'] == "Académico") {
-    $consulta = 'INSERT INTO usuario VALUES ("'.$RFC.'", "'.$nombre.'", "'.$apPat.'", "'.$apMat.'", NULL, "'.$Colegio.'", "'.$Contraseña.'", 3)';
+    $consulta = 'INSERT INTO usuario VALUES ("'.$RFC.'", "'.$nombre.'", "'.$apPat.'", "'.$apMat.'", NULL, "'.$Colegio.'", "'.$Contraseña.'", 3, NULL)';
 }
 elseif ($_SESSION['tipo'] == "Trabajador") {
-    $consulta = 'INSERT INTO usuario VALUES ("'.$noTrabajador.'","'.$nombre.'","'.$apPat.'","'.$apMat.'", NULL, NULL,"'.$Contraseña.'", 3)';
+    $consulta = 'INSERT INTO usuario VALUES ("'.$noTrabajador.'","'.$nombre.'","'.$apPat.'","'.$apMat.'", NULL, NULL,"'.$Contraseña.'", 3, NULL)';
 }
 $consultar = mysqli_query($conexion, $consulta);
 

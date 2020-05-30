@@ -1,6 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['usuario'])) {
+if(!isset($_SESSION['usuario'])){
+    $_SESSION['usuario'] = "";
+}
+if($_SESSION['usuario'] != "") {
     $cS = '
     <li>
         <div class="cerrar-sesion" id="ultimo-nav">

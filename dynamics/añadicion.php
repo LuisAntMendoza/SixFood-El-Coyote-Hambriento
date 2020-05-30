@@ -136,6 +136,39 @@ elseif ($_POST['id-pedido']) {
     $cantidadC = $_POST['cantidadC-pedido'];
     $cantidadB = $_POST['cantidadB-pedido'];
     $cantidadA = $_POST['cantidadA-pedido'];
+    $consulta = 'SELECT existencias FROM antojito WHERE id_antojito = '.$antojito.'';
+    $consultar = mysqli_query($conexion, $consulta);
+    $resultado = mysqli_fetch_array($consultar);
+    $cantAntojitos = $resultado[0];
+    if($cantAntojitos < $cantidadA) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    $cantAntojitos = $cantAntojitos - $cantidadA;
+    $consulta = 'UPDATE antojito SET existencias = '.$cantAntojitos.' WHERE id_antojito = '.$antojito.'';
+    $consultar = mysqli_query($conexion, $consulta);
+    $consulta = 'SELECT existencias FROM bebida WHERE id_bebida = '.$bebida.'';
+    $consultar = mysqli_query($conexion, $consulta);
+    $resultado = mysqli_fetch_array($consultar);
+    $cantBebida = $resultado[0];
+    if($cantBebida < $cantidadB) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    $cantBebida = $cantBebida - $cantidadB;
+    $consulta = 'UPDATE bebida SET existencias = '.$cantBebida.' WHERE id_bebida = '.$bebida.'';
+    $consultar = mysqli_query($conexion, $consulta);
+    $consulta = 'SELECT existencias FROM preparado WHERE id_comida = '.$comida.'';
+    $consultar = mysqli_query($conexion, $consulta);
+    $resultado = mysqli_fetch_array($consultar);
+    $cantComida = $resultado[0];
+    if($cantComida < $cantidadC) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    $cantComida = $cantComida - $cantidadB;
+    $consulta = 'UPDATE preparado SET existencias = '.$cantComida.' WHERE id_comida = '.$comida.'';
+    $consultar = mysqli_query($conexion, $consulta);
     if($comida != "") {
         $consulta = 'SELECT * FROM preparado WHERE id_comida = '.$comida.'';
         $consultar = mysqli_query($conexion, $consulta);
@@ -197,9 +230,10 @@ elseif ($_POST['id-pedido']) {
     echo $espera."<br>";
     $consulta = 'INSERT INTO venta VALUES ("'.$id.'", "'.$usuario2.'", '.$comida.', '.$bebida.', '.$antojito.', '.$cantidadC.','.$cantidadB.', '.$cantidadA.', '.$total.', '.$lugar.', '.$espera.')';
     $consultar = mysqli_query($conexion, $consulta);
+
     $_SESSION['Error'] = "<h5 class='error'>Pedido generado exitosamente</h5>";
-    //header("location: supervisor.php");
-    //exit();
+    header("location: supervisor.php");
+    exit();
 }
 else {
     header("location:../templates/error.html");
