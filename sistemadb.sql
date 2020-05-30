@@ -321,8 +321,10 @@ CREATE TABLE `usuario` (
   `colegio` varchar(40) DEFAULT NULL,
   `contraseña` varchar(128) NOT NULL,
   `id_tipousuario` int(1) NOT NULL,
+  `castigo` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id_usuario`),
   UNIQUE KEY `id_usuario` (`id_usuario`),
+  UNIQUE KEY `id_usuario_2` (`id_usuario`),
   KEY `id_tipousuario` (`id_tipousuario`),
   CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`id_tipousuario`) REFERENCES `tipousuario` (`id_tipousuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -389,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 14:08:03
+-- Dump completed on 2020-05-29 21:03:10
