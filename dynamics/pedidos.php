@@ -1,7 +1,19 @@
 <?php
 session_start();
+$conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
+if(!$conexion) {
+    header("location:../templates/error.html");
+    exit();
+}
 if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
+    exit();
+}
+
+$consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+$consultar = mysqli_query($conexion, $consulta);
+if($resultado = mysqli_fetch_array($consultar)) {
+    
 }
 
 echo '
@@ -87,23 +99,9 @@ echo '
             </a>
         </aside>
         <article class="body-pedidos">
-            <div class="tabla-pedidos">
-                <table>
-                    <tr>
-                        <th>No.</th>
-                        <th>Usuario</th>
-                        <th>Pedido</th>
-                        <th>Hora de entrega</th>
-                        <th>Lugar de entrega</th>
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Usuario</td>
-                        <td>Pedido</td>
-                        <td>Hora de entrega</td>
-                        <td>Lugar de entrega</td>
-                    </tr>
-                </table>
+            <h3>Pedidos</h3>
+            <div class="menu-pedidos">
+                '.$mensaje.'
             </div>
             <div class="botones-index">
                 <a href="r-pedido.php">

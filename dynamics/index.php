@@ -36,6 +36,10 @@ if(!isset($_SESSION['Poder'])) {
     $_SESSION['Poder'] = "";
 }
 
+if(!isset($_SESSION['Usuario2'])) {
+    $_SESSION['Ususario2'] = "";
+}
+
 if($_SESSION['Poder'] == 1){
     $admin = '  <div class="contenedor-admin">
                     <div class="admin">

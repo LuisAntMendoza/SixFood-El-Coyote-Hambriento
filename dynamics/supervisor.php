@@ -14,6 +14,10 @@ if($_SESSION['Poder'] != (1 || 2)) {
     exit();
 }
 
+$zona = date_default_timezone_set('America/Mexico_City');
+$fecha = date("d-m-Y");
+$hora = date("H:i:s");
+
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -170,8 +174,8 @@ while($resultado = mysqli_fetch_array($consultar)) {
                             </form>
                         </td>
                         <td>
-                            <form action="borrar.php" method="POST">
-                                <input type="hidden" value="'.$id.'" name="Castigar">
+                            <form action="castigar.php" method="POST">
+                                <input type="hidden" value="'.$resultado[1].'" name="Castigar">
                                 <input type="hidden" value="Pedido" name="Tipo-tabla">
                                 <input type="image" src="../statics/img/iconos/prohibido.png" class="basura">
                             </form>

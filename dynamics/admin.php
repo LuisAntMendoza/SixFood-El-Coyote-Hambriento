@@ -131,6 +131,7 @@ echo '
                         <th>Grupo</th>
                         <th>Colegio</th>
                         <th>Poder</th>
+                        <th>Castigo</th>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
@@ -146,6 +147,7 @@ while($resultado = mysqli_fetch_array($consultar)) {
                         <td>'.$resultado[4].'</td>
                         <td>'.$resultado[5].'</td>
                         <td>'.$resultado[7].'</td>
+                        <td>'.$resultado[8].'</td>
                         <td>
                             <form action="editarU.php" method="POST">
                                 <input type="hidden" value="'.$id.'" name="Editar">

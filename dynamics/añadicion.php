@@ -119,7 +119,14 @@ elseif ($_POST['id-pedido']) {
         }
     }
     if($usuario2 == "") {
-        $_SESSION['Error'] = '<h3 class="error">Usuario no encontrado</h3>';
+        $_SESSION['Error'] = '<h5 class="error">Usuario no encontrado</h5>';
+        header("location:supervisor.php");
+        exit();
+    }
+    $consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$usuario2.'"';
+    $consultar = mysqli_query($conexion, $consulta);
+    if($resultado = mysqli_fetch_array($consultar)) {
+        $_SESSION['Error'] = '<h5 class="error">El usuario ya tiene un pedido</h5>';
         header("location:supervisor.php");
         exit();
     }
@@ -171,6 +178,12 @@ elseif ($_POST['id-pedido']) {
     }
     $lugar = $_POST['lugar-pedido'];
     $espera = $_POST['espera-pedido'];
+    if($espera == (11 || 14)) {
+        $total = $total + 5;
+    }
+    elseif ($espera == (12 || 15)) {
+        $total = $total + 10;
+    }
     $consulta = 'INSERT INTO venta VALUES ("'.$id.'", "'.$usuario2.'", '.$comida.', '.$bebida.', '.$antojito.', '.$cantidadC.','.$cantidadB.', '.$cantidadA.', '.$total.', '.$lugar.', '.$espera.')';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Pedido generado exitosamente</h5>";

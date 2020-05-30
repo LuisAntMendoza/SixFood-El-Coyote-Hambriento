@@ -168,6 +168,7 @@ if($usuario != "") {
         if($usuarioBase == $usuario) {
             if(password_verify($clave, $resultado[6])) {
                 $_SESSION['usuario'] = Decifrar($resultado[1]);
+                $_SESSION['Usuario2'] = $resultado[0];
                 $_SESSION['Poder'] = $resultado[7];
                 header("location: index.php");
                 exit();

@@ -174,6 +174,20 @@ elseif ($_POST['Tipo-edit'] == "Antojito") {
     header("location:admin.php");
     exit();
 }
+elseif ($_POST['Tipo-edit'] == "Pedido") {
+    if($_POST['Columna'] == "id_usuario") {
+        $valor = Cifrar($_POST['Valor']);
+    }
+    else {
+        $valor = $_POST['Valor'];
+    }
+    $consulta = 'UPDATE venta SET '.$_POST['Columna'].' = "'.$valor.'" WHERE id_venta = "'.$_POST['Editar'].'"';
+    $consultar = mysqli_query($conexion, $consulta);
+    $_SESSION['Error'] = "<h5 class='error'>Pedido editado correctamente</h5>";
+    header("location:supervisor.php");
+    exit();
+}
+
 
 
 
@@ -191,6 +205,7 @@ if($_POST['Tipo-tabla'] == "Usuario") {
                         <option value="colegio">Colegio</option>
                         <option value="contraseña">Contraseña</option>
                         <option value="id_tipousuario">Poder</option>
+                        <option value="castigo">Castigo</option>
                     </select>
                 </p>
                 <p class="agregar">Nuevo valor: <input type="text" name="Valor" required></p>
@@ -198,6 +213,11 @@ if($_POST['Tipo-tabla'] == "Usuario") {
                 <input type="hidden" value="Usuario" name="Tipo-edit">
                 <input type="submit" value="Editar" class="agregar-usuario">
             </form>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 elseif($_POST['Tipo-tabla'] == "Bebida") {
@@ -264,6 +284,11 @@ elseif($_POST['Tipo-tabla'] == "Bebida") {
                     <td>600ml</td>
                 </tr>
             </table>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 elseif ($_POST['Tipo-tabla'] == "Preparado") {
@@ -284,6 +309,11 @@ elseif ($_POST['Tipo-tabla'] == "Preparado") {
                 <input type="hidden" value="Preparado" name="Tipo-edit">
                 <input type="submit" value="Editar" class="agregar-usuario">
             </form>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 elseif ($_POST['Tipo-tabla'] == "Antojito") {
@@ -340,6 +370,42 @@ elseif ($_POST['Tipo-tabla'] == "Antojito") {
                     <td>Con papas a la francesa</td>
                 </tr>
             </table>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
+    ';
+}
+elseif($_POST['Tipo-tabla'] == "Pedido") {
+    echo '
+            <h3>Editar Pedido</h3>
+            <form action="editarU.php" method="POST">
+                <p class="agregar">Dato a editar:
+                    <select name="Columna">
+                        <option value="id_venta">Id</option>
+                        <option value="id_usuario">Usuario</option>
+                        <option value="id_comida">Comida</option>
+                        <option value="id_bebida">Bebida</option>
+                        <option value="id_antojito">Antojito</option>
+                        <option value="cantidadC">Cantidad de Comida</option>
+                        <option value="cantidadB">Cantidad de Bebida</option>
+                        <option value="cantidadA">Cantidad de Antojito</option>
+                        <option value="total">Total</option>
+                        <option value="id_lugar">Lugar de entrega</option>
+                        <option value="id_espera">Lugar de espera</option>
+                    </select>
+                </p>
+                <p class="agregar">Nuevo valor: <input type="text" name="Valor" required></p>
+                <input type="hidden" value="'.$_POST['Editar'].'" name="Editar">
+                <input type="hidden" value="Pedido" name="Tipo-edit">
+                <input type="submit" value="Editar" class="agregar-usuario">
+            </form>
+            <div class="botones-index">
+                <a href="supervisor.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 
@@ -352,13 +418,8 @@ elseif ($_POST['Tipo-tabla'] == "Antojito") {
 
 
 
-
 echo '
-            <div class="botones-index">
-                <a href="admin.php">
-                    <div class="b-error">Volver</div>
-                </a>
-            </div>
+
         </article>
     </section>
     <div class="espacio-final"></div>

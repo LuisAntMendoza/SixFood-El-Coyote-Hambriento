@@ -41,5 +41,13 @@ elseif ($_POST['Tipo-tabla'] == "Antojito") {
     header("location:admin.php");
     exit();
 }
+elseif ($_POST['Tipo-tabla'] == "Pedido") {
+    $id = $_POST['Borrar'];
+    $consulta = 'DELETE FROM venta WHERE id_venta = "'.$id.'"';
+    $consultar = mysqli_query($conexion, $consulta);
+    $_SESSION['Error'] = "<h5 class='error'>Pedido completado correctamente</h5>";
+    header("location:supervisor.php");
+    exit();
+}
 
 ?>

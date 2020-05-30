@@ -333,6 +333,34 @@ if($_POST['Tipo-tabla'] == "Pedido") {
                 </tr>';
     }
     echo '  </table>
+            <h3>Tipos de entrega</h3>
+            <table border="1" class="tabla-pedido">
+';
+    $consulta = 'SELECT * FROM tiempoespera NATURAL JOIN tipoentrega';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Calidad</th>
+                    <th>Tipo de entrega</th>
+                    <th>Precio Extra</th>
+                    <th>Tiempo de entrega</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+    echo '      <tr>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[4].'</td>';
+    if($resultado[2] == 1) {
+        $entrega = "Cafeteria";
+    }
+    else {
+        $entrega = "Entrega personal";
+    }
+    echo '          <td>'.$entrega.'</td>
+                    <td>'.$resultado[5].'</td>
+                    <td>'.$resultado[3].'</td>
+                </tr>';
+    }
+    echo '  </table>
             <div class="botones-index">
                 <a href="supervisor.php">
                     <div class="b-error">Volver</div>
