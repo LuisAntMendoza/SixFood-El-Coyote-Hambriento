@@ -105,7 +105,7 @@ if(!$conexion) {
 }
 
 //si la sesion ya esta iniciada lo sacamos
-if(isset($_SESSION['usuario'])) {
+if($_SESSION['usuario'] != "") {
     header("location: index.php");
     exit();
 }
@@ -170,6 +170,7 @@ if($usuario != "") {
                 $_SESSION['usuario'] = Decifrar($resultado[1]);
                 $_SESSION['Usuario2'] = $resultado[0];
                 $_SESSION['Poder'] = $resultado[7];
+                echo $usuario;
                 header("location: index.php");
                 exit();
             }

@@ -13,7 +13,16 @@ if(! isset($_SESSION['usuario'])) {
 $consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
-    
+    $mensaje = '<h5>¡Ya has realizado un pedido!</h5>
+                <p>Espera a que sea completado para hacer otro pedido.</p>';
+    $mensaje2 = "";
+}
+else {
+    $mensaje = '<h5>¡Aún no has realizado un pedido!</h5>
+                <p>Haz clic en la opción de abajo para realizar un pedido.</p>';
+    $mensaje2 = '<a href="r-pedido.php">
+                    <div class="b-error">Realizar un pedido</div>
+                </a>';
 }
 
 echo '
@@ -104,9 +113,7 @@ echo '
                 '.$mensaje.'
             </div>
             <div class="botones-index">
-                <a href="r-pedido.php">
-                    <div class="b-error">Realizar un pedido</div>
-                </a>
+                '.$mensaje2.'
                 <a href="index.php">
                     <div class="b-error">Volver a la página principal</div>
                 </a>
