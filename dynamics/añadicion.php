@@ -153,7 +153,7 @@ elseif ($_POST['id-pedido'] != "") {
     $consultar = mysqli_query($conexion, $consulta);
     if($resultado = mysqli_fetch_array($consultar)) {
         $_SESSION['Error'] = '<h5 class="error">El usuario ya tiene un pedido</h5>';
-        header("location:supervisor.php");
+        header("location:index.php");
         exit();
     }
     $comida = $_POST['comida-pedido'];
@@ -300,7 +300,7 @@ elseif ($_POST['id-pedido'] != "") {
     $consultar = mysqli_query($conexion, $consulta);
 
     $_SESSION['Error'] = "<h5 class='error'>Pedido generado exitosamente</h5>";
-    header("location: supervisor.php");
+    header("location: index.php");
     exit();
 }
 else {
