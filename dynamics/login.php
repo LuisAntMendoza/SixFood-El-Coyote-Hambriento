@@ -111,6 +111,19 @@ if($_SESSION['usuario'] != "") {
     exit();
 }
 
+if(!isset($_POST['tipo'])) {
+    $_POST['tipo'] = "";
+}
+if(!isset($_POST['noCuenta'])) {
+    $_POST['noCuenta'] = "";
+}
+if(!isset($_POST['RFC'])) {
+    $_POST['RFC'] = "";
+}
+if(!isset($_POST['tipo'])) {
+    $_POST['noTrabajador'] = "";
+}
+
 //sirven para almacenar en que menu estamos.
 if($_POST['tipo'] == "Alumno") {
     $_SESSION['tipo'] = "Alumno";

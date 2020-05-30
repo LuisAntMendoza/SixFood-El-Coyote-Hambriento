@@ -92,6 +92,9 @@ if($_SESSION['usuario'] != "") {
 if(!isset($_SESSION['tipo'])) {
     $_SESSION['tipo'] = "";
 }
+if(!isset($_POST['tipo'])) {
+    $_POST['tipo'] = "";
+}
 
 //sirven para almacenar en que menu estamos.
 if($_POST['tipo'] == "Alumno") {

@@ -134,13 +134,37 @@ elseif ($_POST['id-pedido']) {
     if($comida == "") {
         $comida = "NULL";
     }
+    else {
+        $consulta = 'SELECT * FROM preparado WHERE id_comida = '.$comida.'';
+        $consultar = mysqli_query($conexion, $consulta);
+        if(!$resultado = mysqli_fetch_array($consultar)) {
+            header("location:../templates/error.html");
+            exit();
+        }
+    }
     $bebida = $_POST['bebida-pedido'];
     if($bebida == "") {
         $bebida = "NULL";
     }
+    else {
+        $consulta = 'SELECT * FROM bebida WHERE id_bebida = '.$bebida.'';
+        $consultar = mysqli_query($conexion, $consulta);
+        if(!$resultado = mysqli_fetch_array($consultar)) {
+            header("location:../templates/error.html");
+            exit();
+        }
+    }
     $antojito = $_POST['antojito-pedido'];
     if($antojito == "") {
         $antojito = "NULL";
+    }
+    else {
+        $consulta = 'SELECT * FROM antojito WHERE id_antojito = '.$antojito.'';
+        $consultar = mysqli_query($conexion, $consulta);
+        if(!$resultado = mysqli_fetch_array($consultar)) {
+            header("location:../templates/error.html");
+            exit();
+        }
     }
     $cantidadC = $_POST['cantidadC-pedido'];
     if($cantidadC == "") {
