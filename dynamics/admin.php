@@ -265,8 +265,8 @@ echo '              </table>
                 </div>
                 <div class="opciones-tablas">
                     <form action="añadir.php" method="POST">
-                        <input type="hidden" value="Bebida" name="Tipo-tabla">
-                        <p class="agregar">Añadir Bebida <input type="submit" value="+"></p>
+                        <input type="hidden" value="Preparado" name="Tipo-tabla">
+                        <p class="agregar">Añadir Preparado <input type="submit" value="+"></p>
                     </form>
                 </div>
                 <h3>Antojitos</h3>

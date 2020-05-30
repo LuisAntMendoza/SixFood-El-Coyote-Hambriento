@@ -14,7 +14,7 @@ echo '<!DOCTYPE html>
 <body>
 
     <header>
-        <div class="barra-inicio"><a href="../templates/index.html">
+        <div class="barra-inicio"><a href="index.php">
                 <div class="logo"><img src="../statics/img/logo_pizza.png" alt="Logo SixFood" id="logo-inicio"></div>
             </a>
 

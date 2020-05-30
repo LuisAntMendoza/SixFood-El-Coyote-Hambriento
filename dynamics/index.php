@@ -30,7 +30,12 @@ else {
                 </a>
             </div>
     ';
+    $_SESSION['usuario'] = "";
 }
+if(!isset($_SESSION['Poder'])) {
+    $_SESSION['Poder'] = "";
+}
+
 if($_SESSION['Poder'] == 1){
     $admin = '  <div class="contenedor-admin">
                     <div class="admin">
@@ -39,7 +44,7 @@ if($_SESSION['Poder'] == 1){
                     </div>
                     <div class="supervisor">
                         <p>Bienvenido Supervisor</p>
-                        <a href=""><p>Consultas</p></a>
+                        <a href="supervisor.php"><p>Consultas</p></a>
                     </div>
                 </div>';
 }
@@ -47,7 +52,7 @@ elseif ($_SESSION['Poder'] == 2) {
     $admin = '  <div class="contenedor-admin">
                     <div class="supervisor">
                         <p>Bienvenido Supervisor</p>
-                        <a href=""><p>Consultas</p></a>
+                        <a href="supervisor.php"><p>Consultas</p></a>
                     </div>
                 </div>';
 }

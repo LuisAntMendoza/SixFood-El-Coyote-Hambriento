@@ -9,6 +9,9 @@ if(!$_POST['Tipo-tabla']) {
     header("location:../templates/error.html");
     exit();
 }
+$zona = date_default_timezone_set('America/Mexico_City');
+$fecha = date("d-m-Y");
+$hora = date("H:i:s");
 
 echo '
 <!DOCTYPE html>
@@ -155,6 +158,11 @@ if($_POST['Tipo-tabla'] == "Usuario") {
                 </p>
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 if($_POST['Tipo-tabla'] == "Bebida") {
@@ -183,6 +191,11 @@ if($_POST['Tipo-tabla'] == "Bebida") {
                 <p class="agregar">Existencias <input type="number" required name="existencias-bebida"></p>
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 if($_POST['Tipo-tabla'] == "Preparado") {
@@ -196,6 +209,11 @@ if($_POST['Tipo-tabla'] == "Preparado") {
                 <p class="agregar">Existencias <input type="number" required name="existencias-preparado"></p>
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
+            <div class="botones-index">
+                <a href="admin.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>
     ';
 }
 if($_POST['Tipo-tabla'] == "Antojito") {
@@ -221,25 +239,107 @@ if($_POST['Tipo-tabla'] == "Antojito") {
                 <p class="agregar">Existencias <input type="number" required name="existencias-antojito"></p>
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
-    ';
-}
-
-
-
-
-
-
-
-
-
-
-
-echo '
             <div class="botones-index">
                 <a href="admin.php">
                     <div class="b-error">Volver</div>
                 </a>
             </div>
+    ';
+}
+if($_POST['Tipo-tabla'] == "Pedido") {
+    echo '
+            <h3>Añadir Pedido</h3>
+            <form action="añadicion.php" method="POST">
+                <p class="agregar">Id <input type="text" required name="id-pedido" value="'.$fecha.'_'.$hora.'"></p>
+                <p class="agregar">Usuario <input type="text" required name="usuario-pedido"></p>
+                <p class="agregar">Comida <input type="number" name="comida-pedido"></p>
+                <p class="agregar">Bebida <input type="number" name="bebida-pedido"></p>
+                <p class="agregar">Antojito <input type="number" name="antojito-pedido"></p>
+                <p class="agregar">Cantidad Comida <input type="number" name="cantidadC-pedido"></p>
+                <p class="agregar">Cantidad Bebida <input type="number" name="cantidadB-pedido"></p>
+                <p class="agregar">Cantidad Antojito <input type="number" name="cantidadA-pedido"></p>
+                <p class="agregar">Lugar:
+                    <select name="lugar-pedido">
+                        <option value="1">Patio de cuartos</option>
+                        <option value="2">Canchas</option>
+                        <option value="3">Patio de quintos</option>
+                        <option value="4">Pulpo</option>
+                        <option value="5">Patio de sextos</option>
+                        <option value="6">Pimponeras</option>
+                        <option value="7">Area administrativa</option>
+                        <option value="8">Sala de maestros</option>
+                        <option value="NULL">Recoger en la cafetería</option>
+                    </select>
+                </p>
+                <p class="agregar">Espera <input type="number" required name="espera-pedido"></p>
+                <input type="submit" value="Añadir" class="agregar-usuario">
+            </form>
+            <h3>Disponibilidad Antojitos</h3>
+            <table border="1" class="tabla-pedido">';
+    $consulta = 'SELECT * FROM antojito';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+        echo '  <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[5].'</td>
+                    <td>'.$resultado[6].'</td>
+                </tr>';
+    }
+    echo '  </table>
+            <h3>Disponibilidad Bebidas</h3>
+            <table border="1" class="tabla-pedido">';
+    $consulta = 'SELECT * FROM bebida';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+    echo '      <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[4].'</td>
+                    <td>'.$resultado[5].'</td>
+                </tr>
+                ';
+    }
+    echo '  </table>
+            <h3>Disponibilidad Preparado</h3>
+            <table border="1" class="tabla-pedido">
+';
+    $consulta = 'SELECT * FROM preparado';
+    $consultar = mysqli_query($conexion, $consulta);
+    echo '      <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Existencias</th>
+                </tr>';
+    while($resultado = mysqli_fetch_array($consultar)) {
+    echo '      <tr>
+                    <td>'.$resultado[0].'</td>
+                    <td>'.$resultado[1].'</td>
+                    <td>'.$resultado[3].'</td>
+                    <td>'.$resultado[4].'</td>
+                </tr>';
+    }
+    echo '  </table>
+            <div class="botones-index">
+                <a href="supervisor.php">
+                    <div class="b-error">Volver</div>
+                </a>
+            </div>';
+}
+echo '
         </article>
     </section>
     <div class="espacio-final"></div>

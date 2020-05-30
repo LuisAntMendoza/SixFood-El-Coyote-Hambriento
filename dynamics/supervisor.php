@@ -1,7 +1,39 @@
 <?php
 session_start();
+$conexion = mysqli_connect("localhost", "root", "root", "pruebaSixFood");
+if(!$conexion) {
+    header("location:../templates/error.html");
+    exit();
+}
 if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
+    exit();
+}
+if($_SESSION['Poder'] != (1 || 2)) {
+    header("location:../templates/error.html");
+    exit();
+}
+
+define("PASSWORD", "Shrek Amo Del Multiverso");
+define("HASH", "sha256");
+define("METHOD", "aes-128-cbc-hmac-sha1");
+
+function Decifrar ($textoCifrado){
+  $key = openssl_digest(PASSWORD, HASH);
+  $iv_len = openssl_cipher_iv_length (METHOD);
+
+  $cifrado = base64_decode($textoCifrado);
+  $iv = substr($cifrado, 0, $iv_len);
+  $rawCiff = substr($cifrado, $iv_len);
+
+  $originalText = openssl_decrypt(
+  $rawCiff,
+  METHOD,
+  $key,
+  OPENSSL_RAW_DATA,
+  $iv
+  );
+  return $originalText;
 }
 
 echo '
@@ -18,7 +50,7 @@ echo '
 <body>
 
     <header>
-        <div class="barra-inicio"><a href="index.php">
+        <div class="barra-inicio"><a href="index.html">
                 <div class="logo"><img src="../statics/img/logo_pizza.png" alt="Logo SixFood" id="logo-inicio"></div>
             </a>
 
@@ -87,28 +119,75 @@ echo '
             </a>
         </aside>
         <article class="body-pedidos">
+            <h3>Pedidos</h3>
+            '.$_SESSION['Error'].'
             <div class="tabla-pedidos">
                 <table>
                     <tr>
-                        <th>No.</th>
+                        <th>Id</th>
                         <th>Usuario</th>
-                        <th>Pedido</th>
-                        <th>Hora de entrega</th>
-                        <th>Lugar de entrega</th>
-                    </tr>
-                    <tr>
-                        <td>No.</td>
-                        <td>Usuario</td>
-                        <td>Pedido</td>
-                        <td>Hora de entrega</td>
-                        <td>Lugar de entrega</td>
-                    </tr>
+                        <th>Comida</th>
+                        <th>Bebida</th>
+                        <th>Antojo</th>
+                        <th>Cant C</th>
+                        <th>Cant B</th>
+                        <th>Cant A</th>
+                        <th>Total</th>
+                        <th>Lugar</th>
+                        <th>Espera</th>
+                        <th>Editar</th>
+                        <th>Completar</th>
+                        <th>Castigar</th>
+                    </tr>';
+$consulta = 'SELECT * FROM venta';
+$consultar = mysqli_query($conexion, $consulta);
+while($resultado = mysqli_fetch_array($consultar)) {
+    $id = $resultado[0];
+    echo '          <tr>
+                        <td>'.$resultado[0].'</td>
+                        <td>'.Decifrar($resultado[1]).'</td>
+                        <td>'.$resultado[2].'</td>
+                        <td>'.$resultado[3].'</td>
+                        <td>'.$resultado[4].'</td>
+                        <td>'.$resultado[5].'</td>
+                        <td>'.$resultado[6].'</td>
+                        <td>'.$resultado[7].'</td>
+                        <td>'.$resultado[8].'</td>
+                        <td>'.$resultado[9].'</td>
+                        <td>'.$resultado[10].'</td>
+                        <td>
+                            <form action="editarU.php" method="POST">
+                                <input type="hidden" value="'.$id.'" name="Editar">
+                                <input type="hidden" value="Pedido" name="Tipo-tabla">
+                                <input type="image" src="../statics/img/iconos/actualizar.png" class="basura">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="borrar.php" method="POST">
+                                <input type="hidden" value="'.$id.'" name="Borrar">
+                                <input type="hidden" value="Pedido" name="Tipo-tabla">
+                                <input type="image" src="../statics/img/iconos/derecho.png" class="basura">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="borrar.php" method="POST">
+                                <input type="hidden" value="'.$id.'" name="Castigar">
+                                <input type="hidden" value="Pedido" name="Tipo-tabla">
+                                <input type="image" src="../statics/img/iconos/prohibido.png" class="basura">
+                            </form>
+                        </td>
+                    </tr>';
+}
+echo '
                 </table>
             </div>
+            <div class="opciones-tablas">
+                <form action="añadir.php" method="POST">
+                    <input type="hidden" value="Pedido" name="Tipo-tabla">
+                    <p class="agregar">Añadir Pedido <input type="submit" value="+"></p>
+                </form>
+            </div>
             <div class="botones-index">
-                <a href="r-pedido.php">
-                    <div class="b-error">Realizar un pedido</div>
-                </a>
                 <a href="index.php">
                     <div class="b-error">Volver a la página principal</div>
                 </a>
@@ -127,4 +206,5 @@ echo '
 </body>
 
 </html>';
+$_SESSION['Error'] = "";
 ?>
