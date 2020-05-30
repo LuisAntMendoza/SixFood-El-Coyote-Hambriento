@@ -10,6 +10,10 @@ if(!$_POST['Editar']) {
     exit();
 }
 
+if(!isset($_POST['Tipo-edit'])) {
+    $_POST['Tipo-edit'] = "";
+}
+
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");

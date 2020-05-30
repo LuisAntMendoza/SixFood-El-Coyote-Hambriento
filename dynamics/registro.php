@@ -89,8 +89,8 @@ if($_SESSION['usuario'] != "") {
     header("location: index.php");
 }
 
-if(!isset($_POST['tipo'])) {
-    $_POST['tipo'] = "";
+if(!isset($_SESSION['tipo'])) {
+    $_SESSION['tipo'] = "";
 }
 
 //sirven para almacenar en que menu estamos.

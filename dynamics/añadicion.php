@@ -131,11 +131,29 @@ elseif ($_POST['id-pedido']) {
         exit();
     }
     $comida = $_POST['comida-pedido'];
+    if($comida == "") {
+        $comida = "NULL";
+    }
     $bebida = $_POST['bebida-pedido'];
+    if($bebida == "") {
+        $bebida = "NULL";
+    }
     $antojito = $_POST['antojito-pedido'];
+    if($antojito == "") {
+        $antojito = "NULL";
+    }
     $cantidadC = $_POST['cantidadC-pedido'];
+    if($cantidadC == "") {
+        $cantidadC = 0;
+    }
     $cantidadB = $_POST['cantidadB-pedido'];
+    if($cantidadB == "") {
+        $cantidadB = 0;
+    }
     $cantidadA = $_POST['cantidadA-pedido'];
+    if($cantidadA == "") {
+        $cantidadA = 0;
+    }
     $consulta = 'SELECT existencias FROM antojito WHERE id_antojito = '.$antojito.'';
     $consultar = mysqli_query($conexion, $consulta);
     $resultado = mysqli_fetch_array($consultar);
