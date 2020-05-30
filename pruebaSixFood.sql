@@ -1,6 +1,6 @@
 -- MariaDB dump 10.17  Distrib 10.4.11-MariaDB, for Win64 (AMD64)
 --
--- Host: localhost    Database: sistemadb
+-- Host: localhost    Database: pruebaSixFood
 -- ------------------------------------------------------
 -- Server version	10.4.11-MariaDB
 
@@ -357,7 +357,7 @@ CREATE TABLE `venta` (
   `cantidadB` int(2) DEFAULT NULL,
   `cantidadA` int(2) DEFAULT NULL,
   `total` varchar(5) NOT NULL,
-  `id_lugar` int(2) NOT NULL,
+  `id_lugar` int(2) DEFAULT NULL,
   `id_espera` int(1) NOT NULL,
   KEY `id_usuario` (`id_usuario`),
   KEY `id_comida` (`id_comida`),
@@ -392,4 +392,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-30 13:25:53
+-- Dump completed on 2020-05-30 15:05:32
