@@ -120,8 +120,11 @@ if(!isset($_POST['noCuenta'])) {
 if(!isset($_POST['RFC'])) {
     $_POST['RFC'] = "";
 }
-if(!isset($_POST['tipo'])) {
+if(!isset($_POST['noTrabajador'])) {
     $_POST['noTrabajador'] = "";
+}
+if(!isset($_POST['clave'])) {
+    $_POST['clave'] = "";
 }
 
 //sirven para almacenar en que menu estamos.

@@ -208,7 +208,7 @@ elseif ($_POST['id-pedido']) {
         header("location:../templates/error.html");
         exit();
     }
-    $cantComida = $cantComida - $cantidadB;
+    $cantComida = $cantComida - $cantidadC;
     $consulta = 'UPDATE preparado SET existencias = '.$cantComida.' WHERE id_comida = '.$comida.'';
     $consultar = mysqli_query($conexion, $consulta);
     if($comida != "") {
