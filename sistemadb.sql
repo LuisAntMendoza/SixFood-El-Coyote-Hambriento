@@ -42,7 +42,7 @@ CREATE TABLE `antojito` (
 
 LOCK TABLES `antojito` WRITE;
 /*!40000 ALTER TABLE `antojito` DISABLE KEYS */;
-INSERT INTO `antojito` VALUES (300,'Molletes',1,2,1,12,0),(301,'Sopes sencillo',1,1,1,12,0),(302,'Sopes con queso',2,1,1,15,0),(303,'Sopes con queso y carne',2,1,1,20,0),(304,'Tacos de pollo',5,3,1,20,0),(305,'Tocos de bistec',4,1,1,17,0),(306,'Chilaquiles chicos pollo o huevo',6,1,1,25,0),(307,'Chilaqueles grandes pollo o huevo',6,1,1,35,0),(308,'Chilaquiles chicos bistec',6,1,1,30,0),(309,'Chilaqules grandes bistec',6,1,1,40,0),(310,'Pambazos',1,1,1,18,0),(311,'Pambazos',2,1,1,25,0),(312,'Papas a la francesa',3,1,1,15,0),(313,'Papas a la francesa',4,1,1,25,0),(314,'Hamburguesa sencilla',7,1,1,25,0),(315,'Hamburguesa con queso',7,1,1,30,0),(316,'Hamburguesa doble',7,1,1,40,NULL);
+INSERT INTO `antojito` VALUES (300,'Molletes',1,2,1,12,0),(301,'Sopes sencillo',1,1,1,12,0),(302,'Sopes con queso',2,1,1,15,0),(303,'Sopes con queso y carne',2,1,1,20,0),(304,'Tacos de pollo',5,3,1,20,0),(305,'Tacos de bistec',4,1,1,17,0),(306,'Chilaquiles chicos pollo o huevo',6,1,1,25,0),(307,'Chilaqueles grandes pollo o huevo',6,1,1,35,0),(308,'Chilaquiles chicos bistec',6,1,1,30,0),(309,'Chilaqules grandes bistec',6,1,1,40,0),(310,'Pambazos',1,1,1,18,0),(311,'Pambazos',2,1,1,25,0),(312,'Papas a la francesa',3,1,1,15,0),(313,'Papas a la francesa',4,1,1,25,0),(314,'Hamburguesa sencilla',7,1,1,25,0),(315,'Hamburguesa con queso',7,1,1,30,0),(316,'Hamburguesa doble',7,1,1,40,NULL);
 /*!40000 ALTER TABLE `antojito` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +391,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-29 21:03:10
+-- Dump completed on 2020-05-29 21:22:24
