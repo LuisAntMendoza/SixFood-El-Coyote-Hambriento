@@ -3,9 +3,6 @@
 _El proyecto consiste en crear una página web con maquetado en HTML, PHP y base de datos SQL para la cafetería de una preparatoria en Coyoacán. Se incluye en el proyecto páginas de registro de usuarios, página principal, páginas para hacer pedidos y secciones que permiten orientar al cliente al momento de realizar sus pedidos. En la base de datos se almacena el registro de los pedidos de los usuarios, el menú disponible en el momento y las existencias que se tienen del producto, permitiendo de esa manera una mejor interacción con el cliente al mostrarle únicamente los productos con lo que cuenta la cafetería._
 
 ## Comenzando 🚀
-
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
-
 ### Pre-requisitos 📋
 
 *Antes de comenzar la instalación, por favor asegúrese de tener espacio disponible en su dispositivo y una buena conexión Wi-Fi para evitar problemas durante el proceso.*
@@ -72,12 +69,12 @@ _Ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña dem
 
 ## Autores ✒️
 #### Equipo Sombra:
-* **Mendoza Ramirez Luis Antonio** - *Maquetado y despliegue de PHP* - [LuisAntMendoza](https://github.com/villanuevand)
+* **Mendoza Ramirez Luis Antonio** - *Maquetado y despliegue de PHP* - [LuisAntMendoza](https://github.com/LuisAntMendoza)
 
-* **Ramos Maldonado David Alexander** - *Maquetado HTML y PHP* - [git](https://github.com/villanuevand)
+* **Ramos Maldonado David Alexander** - *Maquetado HTML y PHP* - [Alexander-Chef](https://github.com/Alexander-Chef)
 
-* **Umaña Aguirre Cristian Alberto** - *Diseño y despliegue PHP* - [git](https://github.com/villanuevand)
+* **Umaña Aguirre Cristian Alberto** - *Diseño y despliegue PHP* - [CristianUmAg](https://github.com/CristianUmAg)
 
-* **Veiga Cruz Astrid Xanat** - *Base de datos y documentación* - [git](https://github.com/villanuevand)
+* **Veiga Cruz Astrid Xanat** - *Base de datos y documentación* - [astridveiga](https://github.com/astridveiga)
 
 También puedes mirar la lista de todos los [contribuyentes](https://github.com/LuisAntMendoza/SixFood-El-Coyote-Hambriento/contributors) quíenes han participado en este proyecto. 
