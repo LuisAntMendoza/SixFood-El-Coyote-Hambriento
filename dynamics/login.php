@@ -126,7 +126,9 @@ if(!isset($_POST['noTrabajador'])) {
 if(!isset($_POST['clave'])) {
     $_POST['clave'] = "";
 }
-
+if(!isset($_SESSION['tipo'])) {
+    $_SESSION['tipo'] = "";
+}
 //sirven para almacenar en que menu estamos.
 if($_POST['tipo'] == "Alumno") {
     $_SESSION['tipo'] = "Alumno";
