@@ -136,7 +136,7 @@ elseif($_POST['tipo'] == "Trabajador") {
 }
 $usuario = "";
 
-if($_POST['clave']) {
+if($_POST['clave'] != "") {
     if(! preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$/", $_POST['clave'])) {
         header("location:../templates/error.html");
         exit();
@@ -147,7 +147,7 @@ if($_POST['clave']) {
 }
 
 //valida con regex que se mande lo que se solicita
-if($_POST['noCuenta']) {
+if($_POST['noCuenta'] != "") {
     if(! preg_match("/^[0-9]{9}$/",$_POST['noCuenta'])) {
         header("location:../templates/error.html");
         exit();
@@ -156,7 +156,7 @@ if($_POST['noCuenta']) {
         $usuario = mysqli_real_escape_string($conexion, $_POST['noCuenta']);
     }
 }
-if($_POST['RFC']) {
+if($_POST['RFC'] != "") {
     if(! preg_match("/^[A-Z]{4}[0-9]{6}[0-9A-Z]{3}$/",$_POST['RFC'])) {
         header("location:../templates/error.html");
         exit();
@@ -165,7 +165,7 @@ if($_POST['RFC']) {
         $usuario = mysqli_real_escape_string($conexion, $_POST['RFC']);
     }
 }
-if($_POST['noTrabajador']) {
+if($_POST['noTrabajador'] != "") {
     if(! preg_match("/^\d{6}$/", $_POST['noTrabajador'])) {
         header("location:../templates/error.html");
         exit();
