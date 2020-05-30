@@ -34,9 +34,9 @@ MySQL  |        |         | Stop
  📖 Repo-ej-pag-cafeteria
 ```
 
-3. _En el repositorio, diríjase a [inicio](https://github.com/LuisAntMendoza/SixFood-El-Coyote-Hambriento) y busqué el recuadro de CLONE OR DOWLAND. Este se encuentra en la parte superior izquierda del cuadro "Proyecto Coyo Eats" y es de color verde.
+3. _En el repositorio, diríjase a [inicio](https://github.com/LuisAntMendoza/SixFood-El-Coyote-Hambriento) y busqué el recuadro de CLONE OR DOWLAND. Este se encuentra en la parte superior izquierda del cuadro "Proyecto Coyo Eats" y es de color verde._
 
-4. _Al presionarlo se desplegará una pequeña ventana donde debe elegir **Clone with HTTPS** y presionar el icono de portapapeles 📄.
+4. _Al presionarlo se desplegará una pequeña ventana donde debe elegir **Clone with HTTPS** y presionar el icono de portapapeles 📄._
 
 5. _Abra la terminal de su dispositivo para poder descargar los archivos. Windows + r (en Windows) y escriba 'cmd'. En caso de tener Mac, haga clic en el icono de Launchpad en el Dock, escribe Terminal en el campo de búsqueda y, a continuación, haga clic en Terminal; o nn el Finder , abre la carpeta /Aplicaciones/Utilidades y, a continuación, haga doble clic en Terminal._
 
