@@ -188,6 +188,10 @@ a {
     color: white;
 }
 
+.cuadro-red:hover {
+    transform: rotate(10deg);
+}
+
 .logo-red {
     width: 50px;
     height: 50px;
@@ -329,6 +333,23 @@ footer {
     background-image: url(img/FotosPrepa/3.jpg);
     background-size: cover;
     background-position: right;
+    animation-name: foto;
+    animation-duration: 6s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes foto {
+    0% {
+        background-position: top;
+    }
+
+    50% {
+        background-position: bottom;
+    }
+
+    100% {
+        background-position: top;
+    }
 }
 
 .botones-index {
@@ -514,6 +535,12 @@ footer {
     margin: 5px 10%;
     text-align: center;
     font-size: 10px;
+}
+
+.tabla-pedidos td:hover {
+    animation-name: fila-tabla-naranja;
+    animation-duration: 0.7s;
+    background-color: #C05C33;
 }
 
 .menu-pedidos {
@@ -717,6 +744,22 @@ footer {
     color: white;
 }
 
+.tabla-editar td:hover {
+    animation-name: fila-tabla-naranja;
+    animation-duration: 0.7s;
+    background-color: #C05C33;
+}
+
+@keyframes fila-tabla-naranja {
+    from {
+        background-color: #595959;
+    }
+
+    to {
+        background-color: #C05C33;
+    }
+}
+
 .tabla-editar th {
     background-color: #f29d29;
 }
@@ -725,6 +768,22 @@ footer {
     margin: 10px 10%;
     width: 80%;
     text-align: center;
+}
+
+.tabla-pedido td:hover {
+    animation-name: fila-tabla-azul;
+    animation-duration: 0.7s;
+    background-color: #6CA5B1;
+}
+
+@keyframes fila-tabla-azul {
+    from {
+        background-color: #595959;
+    }
+
+    to {
+        background-color: #6CA5B1;
+    }
 }
 
 .tabla-pedido td {
