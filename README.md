@@ -72,7 +72,7 @@ C:\Users\astri> cd/xampp/mysql/bin
 
 C:\Users\astri\xampp\mysql\bin>mysql -u root
 
-MariaDB [(none)]> CREATE DATABASE pruebaSixFood CHARACTER SET utf8 COLLATE utf8_general_ci;
+MariaDB [(none)]> CREATE DATABASE SixFood CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
 10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo_ DB_SixFood.sql _._
