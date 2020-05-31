@@ -29,21 +29,7 @@ if($resultado) {
 }
 
 
-//checa si el usuario ha sido castigado y guarda su contenido
-$consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-$consultar = mysqli_query($conexion, $consulta);
-$resultado = mysqli_fetch_array($consultar);
-if($resultado[8] != "") {
-    if($resultado[8] < date("d-m-Y_H:i:s")) {
-        $mensaje = '<h3 class="error">Usted ha sido castigado</h3>
-                    <p>No podrá realizar pedidos hasta '.$resultado[8].'</p>';
-        $mensaje2 = "";
-    }
-    else {
-        $consulta = 'UPDATE usuario SET castigo = NULL WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-        $consultar = mysqli_query($conexion, $consulta);
-    }
-}
+
 
 //checa si ya tienes un pedido o no y guarda su resoectivo contenido
 $consulta = 'SELECT * FROM venta NATURAL JOIN tiempoespera WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
@@ -70,6 +56,21 @@ else {
                         </a>
                     </div>
                 </div>';
+}
+//checa si el usuario ha sido castigado y guarda su contenido
+$consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+$consultar = mysqli_query($conexion, $consulta);
+$resultado = mysqli_fetch_array($consultar);
+if($resultado[8] != "") {
+    if($resultado[8] < date("d-m-Y_H:i:s")) {
+        $mensaje = '<h3 class="error">Usted ha sido castigado</h3>
+                    <p>No podrá realizar pedidos hasta '.$resultado[8].'</p>';
+        $mensaje2 = "";
+    }
+    else {
+        $consulta = 'UPDATE usuario SET castigo = NULL WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+        $consultar = mysqli_query($conexion, $consulta);
+    }
 }
 
 //estructura basica HTML
@@ -138,7 +139,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>

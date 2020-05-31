@@ -106,7 +106,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>
