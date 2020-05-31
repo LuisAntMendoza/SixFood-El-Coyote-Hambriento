@@ -7,11 +7,11 @@ _El proyecto consiste en crear una página web con maquetado en HTML, PHP y base
 
 *Antes de comenzar la instalación, por favor asegúrese de tener espacio disponible en su dispositivo, una buena conexión Wi-Fi para evitar problemas durante el proceso y que su navegador por defecto sea Google Chrome.*
 
-*Debe tener instalado Mamp si cuenta con un dispositio Mac para que pueda revisar y/o hacer cambios que ayudan a mejorar el proyecto. Si no cuenta con el programa, puede descargarlo en el siguiente enlace [Descargar Mamp](https://www.mamp.info/en/downloads/).*
+*Debe tener instalado Mamp si cuenta con un dispositivo Mac para que pueda revisar y/o hacer cambios que ayudan a mejorar el proyecto. Si no cuenta con el programa, puede descargarlo en el siguiente enlace [Descargar Mamp](https://www.mamp.info/en/downloads/).*
 
 *En caso de tener Windows, debe tener instalado Xampp para revisar y/o hacer cambios que ayudan a mejorar la base de datos y pueda abrir los archivos php en el navegador. Para descargarlo sólo siga el enlace [Descargar Xampp](https://www.apachefriends.org/es/index.html).*
 
-*También cerciórese de haber descargado GIT en su ordenador. Puede descargarlo gratuitamente en el siguiente enlace [Descargar Git](https://git-scm.com/downloads).*
+*También cerciórese de tener GIT en su ordenador. Puede descargarlo gratuitamente aquí [Descargar Git](https://git-scm.com/downloads).*
 
 *Por último, para evitar molestias en el funcionamiento y desarrollo del proyecto, sugerimos que su editor de texto sea Atom.*
 #### Por favor, siga cuidadosamente las siguientes instrucciones:
@@ -38,7 +38,7 @@ MySQL  |        |         | Stop
 
 4. _Al presionarlo se desplegará una pequeña ventana donde debe elegir **Clone with HTTPS** y presionar el icono de portapapeles 📄._
 
-5. _Abra la terminal de su dispositivo para poder descargar los archivos. Windows + r (en Windows) y escriba 'cmd'. En caso de tener Mac, haga clic en el icono de Launchpad en el Dock, escribe Terminal en el campo de búsqueda y, a continuación, haga clic en Terminal; o nn el Finder , abre la carpeta /Aplicaciones/Utilidades y, a continuación, haga doble clic en Terminal._
+5. _Abra la terminal de su dispositivo para poder descargar los archivos. Windows + r (en Windows) y escriba 'cmd'. En caso de tener Mac, haga clic en el icono de Launchpad en el Dock, escriba Terminal en el campo de búsqueda y, a continuación, haga clic en Terminal; o en el Finder , abra la carpeta /Aplicaciones/Utilidades y, a continuación, haga doble clic en Terminal._
 
 6. _Ingrese a la carpeta creada, usando cd, para poder clonar el repositorio._
 
@@ -51,7 +51,7 @@ C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento>
 
 ```
 
-7. _Una vez dentro de su carpeta, escriba **git clone** y pegué el enlace que copió previamnete usando ctrl + v._
+7. _Una vez dentro de su carpeta, escriba **git clone** y pegué el enlace que copió previamente usando ctrl + v._
 
 ```
 C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento>
@@ -63,7 +63,7 @@ C:\xampp\x\htdocs\SixFood-El-Coyote-Hambriento> git clone https://github.com/
 
 #### Importante
 
-9. _Vuelva a entrar en la terminal de su computadora, entré a la carpeta bin de xampp (o mamp) y haga una base de datos llamada **SixFood** con uft 8._
+9. _Vuelva a entrar en la terminal de su computadora, entre a la carpeta bin de xampp (o mamp) y haga una base de datos llamada **SixFood** con uft 8._
 
 ```
 C:\Users\astri>
@@ -79,7 +79,7 @@ MariaDB [(none)]> CREATE DATABASE SixFood CHARACTER SET utf8 COLLATE utf8_genera
 
 11. **Esta página fue diseñada para dispositivos Mac. Si usted tiene Windows, debe seguir las siguientes indicaciones para el correcto  funcionamiento de la página ya que aún estamos desarrollando la versión para Windows:**
       
-      - Después de descargar los archivos del repositorio, abra en Atom los siguientes archivos con terminación .php que se encuentran dentro de la carpeta Dynamics en los archivos clonados de este proyecto:
+      - Después de haber descargado el repositorio, abra en Atom los siguientes archivos con terminación .php que se encuentran dentro de la carpeta Dynamics en los archivos d de este proyecto:
         
         - Admin
         
@@ -104,15 +104,15 @@ MariaDB [(none)]> CREATE DATABASE SixFood CHARACTER SET utf8 COLLATE utf8_genera
       - Use "ctrl + f" en cada página y busqué 'root'. Deberá borrar el segundo de ellos (tercer elemento dentro del paréntesis) para borrar la contraseña de root y que esto no afecte el funcionamiento de su página.
 
 ## Funcionamiento de la página
-_El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su optimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
+_El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su óptimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
 
 _La página cuenta con distintas funciones, tales como inicio de sesiones, registro de productos, validación de usuarios, encargo de pedidos, etc., los cuales cuentan con un sistema de seguridad para la protección de nuestros usuarios, además de un diseño sencillo pero
-agradable  la vista._
+agradable la vista._
 
-_Indagando más en el funcionamiento del php podemos encontrar multiples aplicaciones relacionales entre módulos que nos permiten
-operaciones tales como, añadir un producto a la base de datos desde el php, denegar el acceso a ciertas acciones dentro de la interface según el rango de acceso del usuario (esto para evitar ataques o corrupciones tanto en el código como en el
+_Indagando más en el funcionamiento del php podemos encontrar múltiples aplicaciones relacionales entre módulos que nos permiten
+operaciones tales como: añadir un producto a la base de datos desde el php, denegar el acceso a ciertas acciones dentro de la interface según el rango de acceso del usuario (esto para evitar ataques o corrupciones tanto en el código como en el
 funcionamiento de la base de datos), asimilaciones de productos y usuarios según sus datos de registro, protección
-de contraseñas y datos sencibles mediante codificación y hasheo, además de otras funcionalidades que el mismo usuario podrá notar haciendo uso de esta página._
+de contraseñas y datos sensibles mediante codificación y hasheo, además de otras funciones que el mismo usuario podrá notar haciendo uso de esta página._
 
 #### Probar la cuenta del administrador y los permisos que tiene dentro de la página
 
