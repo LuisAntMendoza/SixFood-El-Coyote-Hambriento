@@ -25,6 +25,8 @@ echo '
     <title>SixFood</title>
     <link rel="stylesheet" href="../statics/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Syncopate&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../statics/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../statics/img/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
