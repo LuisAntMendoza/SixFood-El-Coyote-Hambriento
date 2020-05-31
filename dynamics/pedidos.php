@@ -20,8 +20,7 @@ $lugar = "";
 //consulta el lugar de entrega
 $consulta = 'SELECT lugar FROM venta NATURAL JOIN entrega WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
-$resultado = mysqli_fetch_array($consultar);
-if($resultado[0]) {
+if($resultado = mysqli_fetch_array($consultar)) {
     $lugar = $resultado[0];
     if($lugar == "") {
         $lugar = "Cafeteria";
