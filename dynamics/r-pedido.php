@@ -1,20 +1,24 @@
 <?php
+//inciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location: ../templates/error.html");
     exit();
 }
+//si no tiene sesion lo sacamos
 if($_SESSION['usuario'] == "") {
     header("location: login.php");
     exit();
 }
+//si ya tiene un pedido lo regresamos
 $consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
     header("location:pedidos.php");
     exit();
 }
+//si esta castgado lo regresamos
 $consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 $resultado = mysqli_fetch_array($consultar);
@@ -22,6 +26,8 @@ if($resultado[8] != "") {
     header("location:pedidos.php");
     exit();
 }
+
+//definmos constamtes para decifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");

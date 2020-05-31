@@ -1,4 +1,7 @@
 <?php
+/*
+IMPORTANTE: SOLO LOS VALORES DE PEDIDO ESTAN ESCAPADOS DEBIDO A QUE SERIA ILOGICO QUE UN ADMIN SE AUTOINYECTE SQL xD
+*/
 //iniciamos sesion y conectamos a SQL
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
@@ -154,8 +157,8 @@ elseif ($_POST['id-antojito'] != "") {
 //si recibe pedido
 elseif ($_POST['id-pedido'] != "") {
     //recibimos id y usuario
-    $id = mysqli_real_escape_string($_POST['id-pedido']);
-    $usuario = mysqli_real_escape_string($_POST['usuario-pedido']);
+    $id = mysqli_real_escape_string($conexion,$_POST['id-pedido']);
+    $usuario = mysqli_real_escape_string($conexion,$_POST['usuario-pedido']);
     $usuario2 = "";
     //obtenemos el usuario
     $consulta = 'SELECT * FROM usuario';
@@ -180,7 +183,7 @@ elseif ($_POST['id-pedido'] != "") {
         exit();
     }
     //guardamos los valores de comida, bebida y antojito y si no se reciben su guardan como nulos
-    $comida = mysqli_real_escape_string($_POST['comida-pedido']);
+    $comida = mysqli_real_escape_string($conexion,$_POST['comida-pedido']);
     if($comida == "") {
         $comida = "NULL";
     }
@@ -192,7 +195,7 @@ elseif ($_POST['id-pedido'] != "") {
             exit();
         }
     }
-    $bebida = mysqli_real_escape_string($_POST['bebida-pedido']);
+    $bebida = mysqli_real_escape_string($conexion,$_POST['bebida-pedido']);
     if($bebida == "") {
         $bebida = "NULL";
     }
@@ -204,7 +207,7 @@ elseif ($_POST['id-pedido'] != "") {
             exit();
         }
     }
-    $antojito = mysqli_real_escape_string($_POST['antojito-pedido']);
+    $antojito = mysqli_real_escape_string($conexion,$_POST['antojito-pedido']);
     if($antojito == "") {
         $antojito = "NULL";
     }
@@ -217,15 +220,15 @@ elseif ($_POST['id-pedido'] != "") {
         }
     }
     //guardamos las variables y si no se recibe algo se guarda como 0
-    $cantidadC = mysqli_real_escape_string($_POST['cantidadC-pedido']);
+    $cantidadC = mysqli_real_escape_string($conexion,$_POST['cantidadC-pedido']);
     if($cantidadC == "") {
         $cantidadC = 0;
     }
-    $cantidadB = mysqli_real_escape_string($_POST['cantidadB-pedido']);
+    $cantidadB = mysqli_real_escape_string($conexion,$_POST['cantidadB-pedido']);
     if($cantidadB == "") {
         $cantidadB = 0;
     }
-    $cantidadA = mysqli_real_escape_string($_POST['cantidadA-pedido']);
+    $cantidadA = mysqli_real_escape_string($conexion,$_POST['cantidadA-pedido']);
     if($cantidadA == "") {
         $cantidadA = 0;
     }
@@ -320,8 +323,8 @@ elseif ($_POST['id-pedido'] != "") {
         }
     }
     //guardamos lugar y espera
-    $lugar = mysqli_real_escape_string($_POST['lugar-pedido']);
-    $espera = mysqli_real_escape_string($_POST['espera-pedido']);
+    $lugar = mysqli_real_escape_string($conexion,$_POST['lugar-pedido']);
+    $espera = mysqli_real_escape_string($conexion,$_POST['espera-pedido']);
     //aumentamos el precio segun la espera
     if($espera == (11 || 14)) {
         $total = $total + 5;

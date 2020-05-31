@@ -1,4 +1,13 @@
 <?php
+//inicamos sesion y conexion
+session_start();
+$conexion = mysqli_connect("localhost", "root", "root", "SixFood");
+if(!$conexion) {
+    header("location:../templates/error.html");
+    exit();
+}
+
+//definimos constantes para la funcion decifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -97,13 +106,7 @@ echo '<!DOCTYPE html>
         <article>
             <div class="img-info"><img src="../statics/img/FotosPrepa/4.jpg" alt="Patio de Cuartos"></div>
 ';
-session_start();
-//establecemos conexion
-$conexion = mysqli_connect("localhost", "root", "root", "SixFood");
-if(!$conexion) {
-    header("location:../templates/error.html");
-    exit();
-}
+
 
 //si la sesion ya esta iniciada lo sacamos
 if($_SESSION['usuario'] != "") {
@@ -111,6 +114,7 @@ if($_SESSION['usuario'] != "") {
     exit();
 }
 
+//validamos variables
 if(!isset($_POST['tipo'])) {
     $_POST['tipo'] = "";
 }
@@ -141,6 +145,7 @@ elseif($_POST['tipo'] == "Trabajador") {
 }
 $usuario = "";
 
+//validamos la contraseña
 if($_POST['clave'] != "") {
     if(! preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!-+])([A-Za-z\d!-+]|[^ ]){10,20}$/", $_POST['clave'])) {
         header("location:../templates/error.html");
@@ -179,6 +184,7 @@ if($_POST['noTrabajador'] != "") {
         $usuario = mysqli_real_escape_string($conexion, $_POST['noTrabajador']);
     }
 }
+//algoritmo para verificar si el usuario y contraseña son los correctos
 if($usuario != "") {
     $consulta = 'SELECT * FROM usuario';
     $consultar = mysqli_query($conexion, $consulta);
@@ -204,7 +210,7 @@ if($usuario != "") {
     exit();
 }
 
-
+//formulario para los alumnos
 if($_SESSION['tipo'] == "Alumno") {
     echo
     '       <div class="tipo-login">
@@ -230,6 +236,7 @@ if($_SESSION['tipo'] == "Alumno") {
             </div>';
 
 }
+//formulario para los academicos
 elseif ($_SESSION['tipo'] == "Académico") {
 
     echo '  <div class="tipo-login">
@@ -254,6 +261,7 @@ elseif ($_SESSION['tipo'] == "Académico") {
                 </form>
             </div>';
 }
+//formualrio para los trabajadores
 elseif ($_SESSION['tipo'] == "Trabajador") {
     echo '  <div class="tipo-login">
                 <form action="login.php" method="post">
@@ -277,6 +285,7 @@ elseif ($_SESSION['tipo'] == "Trabajador") {
                 </form>
             </div>';
 }
+//muestra el menu de escoger una opcion
 else {
     echo '  <div class="login-alumno">
                 <h2>Favor de seleccionar una opción</h2>

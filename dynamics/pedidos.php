@@ -1,16 +1,20 @@
 <?php
+//iniciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+//si no esta logueado lo sacamos
 if($_SESSION['usuario'] == "") {
     header("location: login.php");
     exit();
 }
+//definimos zona horaria
 $zona = date_default_timezone_set('America/Mexico_City');
 
+//consulta el lugar de entrega
 $consulta = 'SELECT lugar FROM venta NATURAL JOIN entrega WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 $resultado = mysqli_fetch_array($consultar);
@@ -18,6 +22,24 @@ $lugar = $resultado[0];
 if($lugar == "") {
     $lugar = "Cafeteria";
 }
+
+//checa si el usuario ha sido castigado y guarda su contenido
+$consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+$consultar = mysqli_query($conexion, $consulta);
+$resultado = mysqli_fetch_array($consultar);
+if($resultado[8] != "") {
+    if($resultado[8] < date("d-m-Y_H:i:s")) {
+        $mensaje = '<h3 class="error">Usted ha sido castigado</h3>
+                    <p>No podrá realizar pedidos hasta '.$resultado[8].'</p>';
+        $mensaje2 = "";
+    }
+    else {
+        $consulta = 'UPDATE usuario SET castigo = NULL WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+        $consultar = mysqli_query($conexion, $consulta);
+    }
+}
+
+//checa si ya tienes un pedido o no y guarda su resoectivo contenido
 $consulta = 'SELECT * FROM venta NATURAL JOIN tiempoespera WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
@@ -43,21 +65,8 @@ else {
                     </div>
                 </div>';
 }
-$consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-$consultar = mysqli_query($conexion, $consulta);
-$resultado = mysqli_fetch_array($consultar);
-if($resultado[8] != "") {
-    if($resultado[8] < date("d-m-Y_H:i:s")) {
-        $mensaje = '<h3 class="error">Usted ha sido castigado</h3>
-                    <p>No podrá realizar pedidos hasta '.$resultado[8].'</p>';
-        $mensaje2 = "";
-    }
-    else {
-        $consulta = 'UPDATE usuario SET castigo = NULL WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-        $consultar = mysqli_query($conexion, $consulta);
-    }
-}
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -166,4 +175,6 @@ echo '
 </body>
 
 </html>';
+
+mysqli_close($conexion);
 ?>

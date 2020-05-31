@@ -1,8 +1,10 @@
 <?php
+//inciamos sesion
 session_start();
 if(!isset($_SESSION['usuario'])){
     $_SESSION['usuario'] = "";
 }
+//segun si hay o no sesion muestra la pestaña para cerrar sesion
 if($_SESSION['usuario'] != "") {
     $cS = '
     <li>
@@ -19,7 +21,7 @@ else {
     $cS = "";
 }
 
-
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">

@@ -1,10 +1,12 @@
 <?php
+//iniciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+//validamos variables
 if($_SESSION['usuario'] == "") {
     header("location:../templates/error.html");
     exit();
@@ -13,6 +15,7 @@ if(!isset($_POST["Tipo-edit"])) {
     $_POST['Tipo-edit'] = "";
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -98,11 +101,13 @@ echo '
         </aside>
         <article class="body-pedidos">
 ';
+//actualiza el lugar de entrega
 if($_POST['Tipo-edit'] == "Lugar") {
     $consulta = 'UPDATE venta SET id_lugar = '.$_POST['Lugar'].' WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
     $consultar = mysqli_query($conexion, $consulta);
     header("location:pedidos.php");
 }
+//formulario con los lugares y cierre de estructura HTML
 echo '
         <h3>Editar Lugar de Entrega</h3>
         <form action="cambiarentrega.php" method="POST">
@@ -126,7 +131,10 @@ echo '
             <a href="pedidos.php">
                 <div class="b-pedido">Volver</div>
             </a>
-        </div>';
+        </div>
+        </article>
+    </section>
+</html>';
 
-
+mysqli_close($conexion);
 ?>
