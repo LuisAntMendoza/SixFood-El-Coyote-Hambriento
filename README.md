@@ -5,7 +5,7 @@ _El proyecto consiste en crear una página web con maquetado en HTML, PHP y base
 ## Comenzando 🚀
 ### Pre-requisitos 📋
 
-*Antes de comenzar la instalación, por favor asegúrese de tener espacio disponible en su dispositivo y una buena conexión Wi-Fi para evitar problemas durante el proceso.*
+*Antes de comenzar la instalación, por favor asegúrese de tener espacio disponible en su dispositivo, una buena conexión Wi-Fi para evitar problemas durante el proceso y que su navegador por defecto sea Google Chrome.*
 
 *Debe tener instalado Mamp si cuenta con un dispositio Mac para que pueda revisar y/o hacer cambios que ayudan a mejorar el proyecto. Si no cuenta con el programa, puede descargarlo en el siguiente enlace [Descargar Mamp](https://www.mamp.info/en/downloads/).*
 
@@ -75,7 +75,7 @@ C:\Users\astri\xampp\mysql\bin>mysql -u root
 MariaDB [(none)]> CREATE DATABASE pruebaSixFood CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 
-10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo_ SixFood.sql _._
+10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo_ DB_SixFood.sql _._
 
 11. **Esta página fue diseñada para dispositivos Mac. Si usted tiene Windows, debe seguir las siguientes indicaciones para el correcto  funcionamiento de la página ya que aún estamos desarrollando la versión para Windows:**
       
@@ -99,11 +99,9 @@ MariaDB [(none)]> CREATE DATABASE pruebaSixFood CHARACTER SET utf8 COLLATE utf8_
         
         - Supervisor
         
-        - Contraseña de usuario
-        
         - cambiarentrega
       
-      - Use "ctrl + f" en cada página y busqué 'root'. Deberá borrar el primero de ellos (segundo elemento dentro del paréntesis) para borrar la contraseña de root y que esto no afecte el funcionamiento de su página.
+      - Use "ctrl + f" en cada página y busqué 'root'. Deberá borrar el segundo de ellos (tercer elemento dentro del paréntesis) para borrar la contraseña de root y que esto no afecte el funcionamiento de su página.
 
 ## Funcionamiento de la página
 _El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su optimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
