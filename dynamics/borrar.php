@@ -1,14 +1,18 @@
 <?php
+//inciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+//validamos variables
 if(!$_POST['Borrar']) {
     header("location:../templates/error.html");
     exit();
 }
+
+//borra los datos si recibe usuario
 if($_POST['Tipo-tabla'] == "Usuario") {
     $usuario = $_POST['Borrar'];
     $consulta = 'DELETE FROM usuario WHERE id_usuario = "'.$usuario.'"';
@@ -17,6 +21,7 @@ if($_POST['Tipo-tabla'] == "Usuario") {
     header("location:admin.php");
     exit();
 }
+//borra los datos si recibe bebida
 elseif ($_POST['Tipo-tabla'] == "Bebida") {
     $id = $_POST['Borrar'];
     $consulta = 'DELETE FROM bebida WHERE id_bebida = '.$id.'';
@@ -25,6 +30,7 @@ elseif ($_POST['Tipo-tabla'] == "Bebida") {
     header("location:admin.php");
     exit();
 }
+//borra los datos si recibe preparado
 elseif ($_POST['Tipo-tabla'] == "Preparado") {
     $id = $_POST['Borrar'];
     $consulta = 'DELETE FROM preparado WHERE id_comida = '.$id.'';
@@ -33,6 +39,7 @@ elseif ($_POST['Tipo-tabla'] == "Preparado") {
     header("location:admin.php");
     exit();
 }
+//borra los datos si recibe antojito
 elseif ($_POST['Tipo-tabla'] == "Antojito") {
     $id = $_POST['Borrar'];
     $consulta = 'DELETE FROM antojito WHERE id_antojito = '.$id.'';
@@ -41,6 +48,7 @@ elseif ($_POST['Tipo-tabla'] == "Antojito") {
     header("location:admin.php");
     exit();
 }
+//borra los datos si recibe pedido
 elseif ($_POST['Tipo-tabla'] == "Pedido") {
     $id = $_POST['Borrar'];
     $consulta = 'DELETE FROM venta WHERE id_venta = "'.$id.'"';
@@ -50,4 +58,5 @@ elseif ($_POST['Tipo-tabla'] == "Pedido") {
     exit();
 }
 
+mysqli_close($conexion);
 ?>

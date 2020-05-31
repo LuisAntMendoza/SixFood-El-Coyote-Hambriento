@@ -1,10 +1,16 @@
 <?php
+//inciamos sesion
 session_start();
+
+//conectamos al servidor
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
+//si no conecta marca error
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+
+//validacion de variables
 if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
     exit();
@@ -14,10 +20,12 @@ if($_SESSION['Poder'] != 1) {
     exit();
 }
 
+//definimos constantes para decifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
 
+//funcion para decifrar
 function Decifrar ($textoCifrado){
   $key = openssl_digest(PASSWORD, HASH);
   $iv_len = openssl_cipher_iv_length (METHOD);
@@ -36,6 +44,7 @@ function Decifrar ($textoCifrado){
   return $originalText;
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -136,6 +145,7 @@ echo '
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
+//Genera la tabla de los usuarios registrados
 $consulta = 'SELECT * FROM usuario';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
@@ -166,10 +176,6 @@ while($resultado = mysqli_fetch_array($consultar)) {
                     </tr>
                         ';
 }
-
-
-
-
 echo         '  </table>
             </div>
             <div class="opciones-tablas">
@@ -190,6 +196,8 @@ echo         '  </table>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
+
+//genera la tabla de las bebidas
 $consulta = 'SELECT * FROM bebida NATURAL JOIN porcionb ORDER BY id_bebida ASC';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
@@ -238,6 +246,7 @@ echo '
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
+//genera la tabla de los preparados
 $consulta = 'SELECT * FROM preparado ORDER BY id_comida ASC';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
@@ -285,6 +294,7 @@ echo '              </table>
                         <th>Editar</th>
                         <th>Borrar</th>
                     </tr>';
+//genera la tabla de los antojitos
 $consulta = 'SELECT * FROM antojito NATURAL JOIN presentacion ORDER BY id_antojito ASC';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
@@ -339,5 +349,7 @@ echo '          </table>
 </body>
 
 </html>';
+//cerramos sesion y reseteamos "error"
 $_SESSION['Error'] = "";
+mysqli_close($conexion);
 ?>

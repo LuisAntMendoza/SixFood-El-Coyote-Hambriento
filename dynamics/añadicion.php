@@ -1,4 +1,5 @@
 <?php
+//iniciamos sesion y conectamos a SQL
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
@@ -6,6 +7,7 @@ if(!$conexion) {
     exit();
 }
 
+//definimos constantes para la funcion cifrar y decifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -46,7 +48,8 @@ function Decifrar ($textoCifrado){
   );
   return $originalText;
 }
-//validacion
+
+//validacion de variables
 if(!isset($_POST['Usuario'])) {
     $_POST['Usuario'] = "";
 }
@@ -72,8 +75,9 @@ if(!isset($_POST['id-pedido'])) {
     $_POST['id-pedido'] = "";
 }
 
-
+//en caso de recibir usuario
 if($_POST['Usuario'] != "") {
+    //guarda los datos y cifra los datos sensibles
     $usuario = Cifrar($_POST['Usuario']);
     $nombre = Cifrar($_POST['Nombre']);
     $apPat = Cifrar($_POST['apPat']);
@@ -88,38 +92,50 @@ if($_POST['Usuario'] != "") {
     if($colegio == "") {
         $colegio = "NULL";
     }
+    //los ingresa en la tabla de usuario
     $consulta = 'INSERT INTO usuario VALUES ("'.$usuario.'","'.$nombre.'","'.$apPat.'","'.$apMat.'", '.$grupo.',"'.$colegio.'","'.$contraseña.'", '.$poder.', NULL)';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Usuario generado exitosamente</h5>";
+    //te regresa a admin.php
     header("location: admin.php");
     exit();
 }
+//en caso de recibir bebida
 elseif($_POST['id-bebida'] != "") {
+    //guardamos valores
     $id = $_POST['id-bebida'];
     $nombre = $_POST['nombre-bebida'];
     $tipo = $_POST['tipo-bebida'];
     $porcion = $_POST['porcion-bebida'];
     $precio = $_POST['precio-bebida'];
     $existencias = $_POST['existencias-bebida'];
+    //los ingresamos a la tabla de bebidas
     $consulta = 'INSERT INTO bebida VALUES ('.$id.', "'.$nombre.'", '.$tipo.', '.$porcion.', '.$precio.', '.$existencias.')';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Bebida generada exitosamente</h5>";
+    //redirigimos a admin
     header("location: admin.php");
     exit();
 }
+//si recibe preparado
 elseif ($_POST['id-preparado'] != "") {
+    //guardamos valores
     $id = $_POST['id-preparado'];
     $nombre = $_POST['nombre-preparado'];
     $cantidad = $_POST['cantidad-preparado'];
     $precio = $_POST['precio-preparado'];
     $existencias = $_POST['existencias-preparado'];
+    //los ingresamos a la tabla de preparados
     $consulta = 'INSERT INTO preparado VALUES ('.$id.', "'.$nombre.'", '.$cantidad.', '.$precio.', '.$existencias.')';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Preparado generado exitosamente</h5>";
+    //redirigimos a admin
     header("location: admin.php");
     exit();
 }
+//si recibe antojito
 elseif ($_POST['id-antojito'] != "") {
+    //guardamos valores
     $id = $_POST['id-antojito'];
     $nombre = $_POST['nombre-antojito'];
     $presentacion = $_POST['presentacion-antojito'];
@@ -127,16 +143,21 @@ elseif ($_POST['id-antojito'] != "") {
     $cantidad = $_POST['cantidad-antojito'];
     $precio = $_POST['precio-antojito'];
     $existencias = $_POST['existencias-antojito'];
+    //los ingresamos a la tabla de antojito
     $consulta = 'INSERT INTO antojito VALUES ('.$id.', "'.$nombre.'", '.$presentacion.', '.$porcion.', '.$cantidad.', '.$precio.','.$existencias.')';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Antojito generado exitosamente</h5>";
+    //redirigimos a admin
     header("location: admin.php");
     exit();
 }
+//si recibe pedido
 elseif ($_POST['id-pedido'] != "") {
-    $id = $_POST['id-pedido'];
-    $usuario = $_POST['usuario-pedido'];
+    //recibimos id y usuario
+    $id = mysqli_real_escape_string($_POST['id-pedido']);
+    $usuario = mysqli_real_escape_string($_POST['usuario-pedido']);
     $usuario2 = "";
+    //obtenemos el usuario
     $consulta = 'SELECT * FROM usuario';
     $consultar = mysqli_query($conexion, $consulta);
     while ($resultado = mysqli_fetch_array($consultar)) {
@@ -144,11 +165,13 @@ elseif ($_POST['id-pedido'] != "") {
             $usuario2 = $resultado[0];
         }
     }
+    //si ese usuario no esta registrado lo regresamos
     if($usuario2 == "") {
         $_SESSION['Error'] = '<h5 class="error">Usuario no encontrado</h5>';
         header("location:supervisor.php");
         exit();
     }
+    //checamos que no tenga pedidos previos, si no lo regresamos
     $consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$usuario2.'"';
     $consultar = mysqli_query($conexion, $consulta);
     if($resultado = mysqli_fetch_array($consultar)) {
@@ -156,7 +179,8 @@ elseif ($_POST['id-pedido'] != "") {
         header("location:index.php");
         exit();
     }
-    $comida = $_POST['comida-pedido'];
+    //guardamos los valores de comida, bebida y antojito y si no se reciben su guardan como nulos
+    $comida = mysqli_real_escape_string($_POST['comida-pedido']);
     if($comida == "") {
         $comida = "NULL";
     }
@@ -168,7 +192,7 @@ elseif ($_POST['id-pedido'] != "") {
             exit();
         }
     }
-    $bebida = $_POST['bebida-pedido'];
+    $bebida = mysqli_real_escape_string($_POST['bebida-pedido']);
     if($bebida == "") {
         $bebida = "NULL";
     }
@@ -180,7 +204,7 @@ elseif ($_POST['id-pedido'] != "") {
             exit();
         }
     }
-    $antojito = $_POST['antojito-pedido'];
+    $antojito = mysqli_real_escape_string($_POST['antojito-pedido']);
     if($antojito == "") {
         $antojito = "NULL";
     }
@@ -192,18 +216,33 @@ elseif ($_POST['id-pedido'] != "") {
             exit();
         }
     }
-    $cantidadC = $_POST['cantidadC-pedido'];
+    //guardamos las variables y si no se recibe algo se guarda como 0
+    $cantidadC = mysqli_real_escape_string($_POST['cantidadC-pedido']);
     if($cantidadC == "") {
         $cantidadC = 0;
     }
-    $cantidadB = $_POST['cantidadB-pedido'];
+    $cantidadB = mysqli_real_escape_string($_POST['cantidadB-pedido']);
     if($cantidadB == "") {
         $cantidadB = 0;
     }
-    $cantidadA = $_POST['cantidadA-pedido'];
+    $cantidadA = mysqli_real_escape_string($_POST['cantidadA-pedido']);
     if($cantidadA == "") {
         $cantidadA = 0;
     }
+    //validamos que no hayan puesto que quieren 0 de un producto
+    if($antojito != "NULL" && $cantidadA == 0) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    if($bebida != "NULL" && $cantidadB == 0) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    if($comida != "NULL" && $cantidadC == 0) {
+        header("location:../templates/error.html");
+        exit();
+    }
+    //checamos que alcancen los antojitos y actualizamos la cantidad
     $consulta = 'SELECT existencias FROM antojito WHERE id_antojito = '.$antojito.'';
     $consultar = mysqli_query($conexion, $consulta);
     $resultado = mysqli_fetch_array($consultar);
@@ -215,6 +254,7 @@ elseif ($_POST['id-pedido'] != "") {
     $cantAntojitos = $cantAntojitos - $cantidadA;
     $consulta = 'UPDATE antojito SET existencias = '.$cantAntojitos.' WHERE id_antojito = '.$antojito.'';
     $consultar = mysqli_query($conexion, $consulta);
+    //checamos que alcancen las bebidas y actualizamos la cantidad
     $consulta = 'SELECT existencias FROM bebida WHERE id_bebida = '.$bebida.'';
     $consultar = mysqli_query($conexion, $consulta);
     $resultado = mysqli_fetch_array($consultar);
@@ -226,6 +266,7 @@ elseif ($_POST['id-pedido'] != "") {
     $cantBebida = $cantBebida - $cantidadB;
     $consulta = 'UPDATE bebida SET existencias = '.$cantBebida.' WHERE id_bebida = '.$bebida.'';
     $consultar = mysqli_query($conexion, $consulta);
+    //checamos que alcancen los preparados y actualizamos la cantidad
     $consulta = 'SELECT existencias FROM preparado WHERE id_comida = '.$comida.'';
     $consultar = mysqli_query($conexion, $consulta);
     $resultado = mysqli_fetch_array($consultar);
@@ -237,6 +278,7 @@ elseif ($_POST['id-pedido'] != "") {
     $cantComida = $cantComida - $cantidadC;
     $consulta = 'UPDATE preparado SET existencias = '.$cantComida.' WHERE id_comida = '.$comida.'';
     $consultar = mysqli_query($conexion, $consulta);
+    //calculamos el total segun la cantidad de articulos
     if($comida != "") {
         $consulta = 'SELECT * FROM preparado WHERE id_comida = '.$comida.'';
         $consultar = mysqli_query($conexion, $consulta);
@@ -277,38 +319,32 @@ elseif ($_POST['id-pedido'] != "") {
             echo 'Total 3 = '.$total."<br>";
         }
     }
-    $lugar = $_POST['lugar-pedido'];
-    $espera = $_POST['espera-pedido'];
+    //guardamos lugar y espera
+    $lugar = mysqli_real_escape_string($_POST['lugar-pedido']);
+    $espera = mysqli_real_escape_string($_POST['espera-pedido']);
+    //aumentamos el precio segun la espera
     if($espera == (11 || 14)) {
         $total = $total + 5;
     }
     elseif ($espera == (12 || 15)) {
         $total = $total + 10;
     }
-    echo $id."<br>";
-    echo $usuario2."<br>";
-    echo $comida."<br>";
-    echo $bebida."<br>";
-    echo $antojito."<br>";
-    echo $cantidadC."<br>";
-    echo $cantidadB."<br>";
-    echo $cantidadA."<br>";
-    echo $total."<br>";
-    echo $lugar."<br>";
-    echo $espera."<br>";
+    //los guardamos en la tabla de venta
     $consulta = 'INSERT INTO venta VALUES ("'.$id.'", "'.$usuario2.'", '.$comida.', '.$bebida.', '.$antojito.', '.$cantidadC.','.$cantidadB.', '.$cantidadA.', '.$total.', '.$lugar.', '.$espera.')';
     $consultar = mysqli_query($conexion, $consulta);
 
     $_SESSION['Error'] = "<h5 class='error'>Pedido generado exitosamente</h5>";
+    //lo regresamos a la pagina inicial
     header("location: index.php");
     exit();
 }
+//si no recibe nada manda error
 else {
     header("location:../templates/error.html");
     exit();
 }
 
 
-
+//cerramos conexion
 mysqli_close($conexion);
 ?>
