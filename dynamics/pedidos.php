@@ -14,16 +14,20 @@ if($_SESSION['usuario'] == "") {
 //definimos zona horaria
 $zona = date_default_timezone_set('America/Mexico_City');
 
+//definimos variables
+$lugar;
+
 //consulta el lugar de entrega
 $consulta = 'SELECT lugar FROM venta NATURAL JOIN entrega WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 $resultado = mysqli_fetch_array($consultar);
 if($resultado) {
     $lugar = $resultado[0];
+    if($lugar == "") {
+        $lugar = "Cafeteria";
+    }
 }
-if($lugar == "") {
-    $lugar = "Cafeteria";
-}
+
 
 //checa si el usuario ha sido castigado y guarda su contenido
 $consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
