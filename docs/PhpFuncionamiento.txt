@@ -1,0 +1,12 @@
+El php de nuestro trabajo integra gran parte de los conocimientos adquiridos en los 3 modulos que conformarón la
+elaboración de este proyecto, contando de este modo con toda clase de elementos para su optimo funcionamiento, enfocado
+claro a la temática del proyecto consistente en el desarrollo de una págian funcional de utilidad en una Cafetería/Puesto
+de comida que se encuentra en este caso, en la prepa.
+La página cuenta con distintas funciones, tales como inicio de sesiones, registro de productos, validación de usuarios,
+etc; los cuales cuentan con un sistema de seguridad para la protección de nuestros usuarios, ademas de un diseño sencillo pero
+agradable  la vista.
+Indagando más en el funcionamiento del php podemos encontrar multiples aplicaciones relacionales entre modulos que nos permiten
+operaciones tales como, añadir un producto a la base de datos desde el php, denegacion de acceso a ciertas acciones dentro de
+la interface según el rango de acceso a la misma (esto para evitar ataques o corrupciones tanto en el codig como en el
+funcionamiento de las base de datos), asimilaciones de productos y usuarios segun sus datos de registro, proteccion
+de contraseñas y datos sencibles mediante codificación y hasheo, etc...
