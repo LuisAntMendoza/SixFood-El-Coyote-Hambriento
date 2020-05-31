@@ -6,56 +6,11 @@ if(!$conexion) {
     exit();
 }
 if($_SESSION['usuario'] == "") {
-    header("location: login.php");
+    header("location:../templates/error.html");
     exit();
 }
-$zona = date_default_timezone_set('America/Mexico_City');
-
-$consulta = 'SELECT lugar FROM venta NATURAL JOIN entrega WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-$consultar = mysqli_query($conexion, $consulta);
-$resultado = mysqli_fetch_array($consultar);
-$lugar = $resultado[0];
-if($lugar == "") {
-    $lugar = "Cafeteria";
-}
-$consulta = 'SELECT * FROM venta NATURAL JOIN tiempoespera WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-$consultar = mysqli_query($conexion, $consulta);
-if($resultado = mysqli_fetch_array($consultar)) {
-    $mensaje = '<h3>¡Ya has realizado un pedido!</h3>
-                <p>ID de su pedido: '.$resultado[1].'</p>
-                <p>Costo total de su pedido: $'.$resultado[9].'</p>
-                <p>Tiempo de espera: '.$resultado[13].' min</p>
-                <p>Lugar de entrega: '.$lugar.'</p>
-                <a href="cambiarentrega.php"><p>Haz clic aquí para cambiar tu lugar de entrega</p></a>
-                <p>Favor de completar un pedido antes de hacer otro</p>';
-    $mensaje2 = "";
-}
-else {
-    $mensaje = '<h3>¡Aún no has realizado un pedido!</h3>
-                <p>Haz clic en la opción de abajo para realizar un pedido.</p>';
-    $mensaje2 = '
-                <div class="img-pedido">
-                    <img src="../statics/img/FotosPrepa/2.jpg" alt="Patio de Cuartos">
-                    <div class="degradado">
-                        <a href="r-pedido.php">
-                            <span>Realiza tu pedido</span>
-                        </a>
-                    </div>
-                </div>';
-}
-$consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-$consultar = mysqli_query($conexion, $consulta);
-$resultado = mysqli_fetch_array($consultar);
-if($resultado[8] != "") {
-    if($resultado[8] < date("d-m-Y_H:i:s")) {
-        $mensaje = '<h3 class="error">Usted ha sido castigado</h3>
-                    <p>No podrá realizar pedidos hasta '.$resultado[8].'</p>';
-        $mensaje2 = "";
-    }
-    else {
-        $consulta = 'UPDATE usuario SET castigo = NULL WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
-        $consultar = mysqli_query($conexion, $consulta);
-    }
+if(!isset($_POST["Tipo-edit"])) {
+    $_POST['Tipo-edit'] = "";
 }
 
 echo '
@@ -82,7 +37,7 @@ echo '
                     <li>
                         <div class="cerrar-sesion" id="ultimo-nav">
                             <p>Bienvenid@</p>
-                            <p>'.$_SESSION['usuario'].'</p>
+                            <p>'.$_SESSION["usuario"].'</p>
                             <a href="cerrarsesion.php">
                                 <p id="b-cerrarsesion">Cerrar sesión</p>
                             </a>
@@ -142,28 +97,36 @@ echo '
             </a>
         </aside>
         <article class="body-pedidos">
-            <h3></h3>
-            <div class="menu-pedidos">
-                '.$mensaje.'
-                '.$mensaje2.'
-            </div>
-            <div class="botones-index">
-                <a href="index.php">
-                    <div class="b-pedido">Volver a la página principal</div>
-                </a>
-            </div>
-        </article>
-    </section>
-    <div class="espacio-final"></div>
-    <footer>
-        <div class="barra-final">Copyright (c) 2020 SixFood: El Coyote Hambriento. Todos los derechos reservados.</div>
-        <div class="logo-final">
-            <div class="fondo-logo-final"><img src="../statics/img/logo-malteada.png" alt="Logo SixFood"></div>
-            <div class="texto-final">SixFood</div>
-        </div>
-    </footer>
+';
+if($_POST['Tipo-edit'] == "Lugar") {
+    $consulta = 'UPDATE venta SET id_lugar = '.$_POST['Lugar'].' WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
+    $consultar = mysqli_query($conexion, $consulta);
+    header("location:pedidos.php");
+}
+echo '
+        <h3>Editar Lugar de Entrega</h3>
+        <form action="cambiarentrega.php" method="POST">
+            <p class="agregar">Lugar:
+                <select name="Lugar">
+                    <option value="1">Patio de cuartos</option>
+                    <option value="2">Canchas</option>
+                    <option value="3">Patio de quintos</option>
+                    <option value="4">Pulpo</option>
+                    <option value="5">Patio de sextos</option>
+                    <option value="6">Pimponeras</option>
+                    <option value="7">Área administrativa</option>
+                    <option value="8">Sala de maestros</option>
+                    <option value="NULL">Recoger en cafetería</option>
+                </select>
+            </p>
+            <input type="hidden" value="Lugar" name="Tipo-edit">
+            <input type="submit" value="Editar" class="agregar-usuario">
+        </form>
+        <div class="botones-index">
+            <a href="pedidos.php">
+                <div class="b-pedido">Volver</div>
+            </a>
+        </div>';
 
-</body>
 
-</html>';
 ?>
