@@ -27,7 +27,7 @@ if($resultado[8] != "") {
     exit();
 }
 
-//definmos constamtes para decifrar
+//definmos constantes para decifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -49,13 +49,15 @@ function Decifrar ($textoCifrado){
   );
   return $originalText;
 }
+//validamos
 if(!isset($_POST['id_recoPedido'])) {
     $_POST['id_recoPedido'] = "";
 }
-
+//definimos zona horaria
 $zona = date_default_timezone_set('America/Mexico_City');
 $fecha = date("d-m-Y_H:i:s");
 $form = "";
+//si es entrega, guarda este select para mostrarlo
 if($_POST['id_recoPedido'] != "") {
     $_SESSION['noPedido'] = $fecha;
     if($_POST['id_recoPedido'] == "Entregar") {
@@ -75,6 +77,7 @@ if($_POST['id_recoPedido'] != "") {
     }
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -166,6 +169,7 @@ echo '
                     <input type="submit" name="id_recoPedido" value="Recoger" class="pedido-entregar">
                     <input type="submit" name="id_recoPedido" value="Entregar" class="pedido-entregar">
                 </form>';
+//si es recoger muestra su formulario
 if($_POST['id_recoPedido'] == "Recoger") {
     echo '
             <h3>Añadir Pedido</h3>
@@ -256,6 +260,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>';
 }
+//si es entregar muestra su formulario
 if($_POST['id_recoPedido'] == "Entregar") {
     echo '
             <h3>Añadir Pedido</h3>
@@ -377,4 +382,6 @@ echo'
 </body>
 
 </html>';
+
+mysqli_close($conexion);
 ?>

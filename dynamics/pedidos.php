@@ -18,7 +18,9 @@ $zona = date_default_timezone_set('America/Mexico_City');
 $consulta = 'SELECT lugar FROM venta NATURAL JOIN entrega WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 $resultado = mysqli_fetch_array($consultar);
-$lugar = $resultado[0];
+if($resultado) {
+    $lugar = $resultado[0];
+}
 if($lugar == "") {
     $lugar = "Cafeteria";
 }
