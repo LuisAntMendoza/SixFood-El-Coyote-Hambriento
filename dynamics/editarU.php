@@ -254,7 +254,7 @@ elseif($_POST['Tipo-tabla'] == "Bebida") {
                 <input type="hidden" value="Bebida" name="Tipo-edit">
                 <input type="submit" value="Editar" class="agregar-usuario">
             </form>
-            <table border="1" class="tabla-editar">
+            <table class="tabla-editar">
                 <tr>
                     <th>Id</th>
                     <th>Tipo</th>
@@ -281,7 +281,7 @@ elseif($_POST['Tipo-tabla'] == "Bebida") {
                 </tr>
             </table>
             <br>
-            <table border="1" class="tabla-editar">
+            <table class="tabla-editar">
                 <tr>
                     <th>Id</th>
                     <th>Porción</th>

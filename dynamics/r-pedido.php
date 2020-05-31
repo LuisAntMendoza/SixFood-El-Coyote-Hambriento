@@ -193,7 +193,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM antojito';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -214,7 +214,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>
             <h3>Disponibilidad Bebidas</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM bebida';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -237,7 +237,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>
             <h3>Disponibilidad Preparado</h3>
-            <table border="1" class="tabla-pedido">
+            <table border="1" class="tabla-pedido t-reversa">
 ';
     $consulta = 'SELECT * FROM preparado';
     $consultar = mysqli_query($conexion, $consulta);
@@ -295,7 +295,7 @@ if($_POST['id_recoPedido'] == "Entregar") {
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM antojito';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -316,7 +316,7 @@ if($_POST['id_recoPedido'] == "Entregar") {
     }
     echo '  </table>
             <h3>Disponibilidad Bebidas</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM bebida';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -339,7 +339,7 @@ if($_POST['id_recoPedido'] == "Entregar") {
     }
     echo '  </table>
             <h3>Disponibilidad Preparado</h3>
-            <table border="1" class="tabla-pedido">
+            <table border="1" class="tabla-pedido t-reversa">
 ';
     $consulta = 'SELECT * FROM preparado';
     $consultar = mysqli_query($conexion, $consulta);

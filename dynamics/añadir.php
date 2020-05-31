@@ -286,7 +286,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
-            <table border="1" class="tabla-pedido">';
+            <table class="tabla-pedido">';
     $consulta = 'SELECT * FROM antojito';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -305,7 +305,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     }
     echo '  </table>
             <h3>Disponibilidad Bebidas</h3>
-            <table border="1" class="tabla-pedido">';
+            <table class="tabla-pedido">';
     $consulta = 'SELECT * FROM bebida';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -325,7 +325,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     }
     echo '  </table>
             <h3>Disponibilidad Preparado</h3>
-            <table border="1" class="tabla-pedido">
+            <table class="tabla-pedido">
 ';
     $consulta = 'SELECT * FROM preparado';
     $consultar = mysqli_query($conexion, $consulta);
@@ -345,7 +345,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     }
     echo '  </table>
             <h3>Tipos de entrega</h3>
-            <table border="1" class="tabla-pedido">
+            <table class="tabla-pedido">
 ';
     $consulta = 'SELECT * FROM tiempoespera NATURAL JOIN tipoentrega';
     $consultar = mysqli_query($conexion, $consulta);
