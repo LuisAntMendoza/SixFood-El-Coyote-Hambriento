@@ -125,6 +125,7 @@ de contraseñas y datos sensibles mediante codificación y hasheo, además de ot
 ## Construido con 🛠️
 
 * [Atom](https://atom.io/) - El editor de texto
+* [Mamp](https://www.mamp.info/en/downloads/) - Manejador de base de datos y despliegue de PHP
 * [Xampp](https://www.apachefriends.org/es/index.html) - Manejador de base de datos y despliegue de PHP
 
 ## Autores ✒️
