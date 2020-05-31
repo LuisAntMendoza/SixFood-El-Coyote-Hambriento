@@ -1,20 +1,24 @@
 <?php
+//inciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location: ../templates/error.html");
     exit();
 }
+//si no tiene sesion lo sacamos
 if($_SESSION['usuario'] == "") {
     header("location: login.php");
     exit();
 }
+//si ya tiene un pedido lo regresamos
 $consulta = 'SELECT * FROM venta WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
     header("location:pedidos.php");
     exit();
 }
+//si esta castgado lo regresamos
 $consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 $resultado = mysqli_fetch_array($consultar);
@@ -22,6 +26,8 @@ if($resultado[8] != "") {
     header("location:pedidos.php");
     exit();
 }
+
+//definmos constantes para decifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -43,13 +49,15 @@ function Decifrar ($textoCifrado){
   );
   return $originalText;
 }
+//validamos
 if(!isset($_POST['id_recoPedido'])) {
     $_POST['id_recoPedido'] = "";
 }
-
+//definimos zona horaria
 $zona = date_default_timezone_set('America/Mexico_City');
 $fecha = date("d-m-Y_H:i:s");
 $form = "";
+//si es entrega, guarda este select para mostrarlo
 if($_POST['id_recoPedido'] != "") {
     $_SESSION['noPedido'] = $fecha;
     if($_POST['id_recoPedido'] == "Entregar") {
@@ -69,6 +77,7 @@ if($_POST['id_recoPedido'] != "") {
     }
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -134,7 +143,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>
@@ -160,6 +169,7 @@ echo '
                     <input type="submit" name="id_recoPedido" value="Recoger" class="pedido-entregar">
                     <input type="submit" name="id_recoPedido" value="Entregar" class="pedido-entregar">
                 </form>';
+//si es recoger muestra su formulario
 if($_POST['id_recoPedido'] == "Recoger") {
     echo '
             <h3>Añadir Pedido</h3>
@@ -183,7 +193,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM antojito';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -204,7 +214,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>
             <h3>Disponibilidad Bebidas</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM bebida';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -227,7 +237,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>
             <h3>Disponibilidad Preparado</h3>
-            <table border="1" class="tabla-pedido">
+            <table border="1" class="tabla-pedido t-reversa">
 ';
     $consulta = 'SELECT * FROM preparado';
     $consultar = mysqli_query($conexion, $consulta);
@@ -250,6 +260,7 @@ if($_POST['id_recoPedido'] == "Recoger") {
     }
     echo '  </table>';
 }
+//si es entregar muestra su formulario
 if($_POST['id_recoPedido'] == "Entregar") {
     echo '
             <h3>Añadir Pedido</h3>
@@ -284,7 +295,7 @@ if($_POST['id_recoPedido'] == "Entregar") {
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM antojito';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -305,7 +316,7 @@ if($_POST['id_recoPedido'] == "Entregar") {
     }
     echo '  </table>
             <h3>Disponibilidad Bebidas</h3>
-            <table border="1" class="tabla-pedido">';
+            <table border="1" class="tabla-pedido t-reversa">';
     $consulta = 'SELECT * FROM bebida';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -328,7 +339,7 @@ if($_POST['id_recoPedido'] == "Entregar") {
     }
     echo '  </table>
             <h3>Disponibilidad Preparado</h3>
-            <table border="1" class="tabla-pedido">
+            <table border="1" class="tabla-pedido t-reversa">
 ';
     $consulta = 'SELECT * FROM preparado';
     $consultar = mysqli_query($conexion, $consulta);
@@ -371,4 +382,6 @@ echo'
 </body>
 
 </html>';
+
+mysqli_close($conexion);
 ?>

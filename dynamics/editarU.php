@@ -1,19 +1,22 @@
 <?php
+//inciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+//manda error si no viene de admin o supervisor
 if(!$_POST['Editar']) {
     header("location:../templates/error.html");
     exit();
 }
-
+//validamos variables
 if(!isset($_POST['Tipo-edit'])) {
     $_POST['Tipo-edit'] = "";
 }
 
+//define constantes para cifrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -37,6 +40,7 @@ function Cifrar($text){
   return $textoCifrado;
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -102,7 +106,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>
@@ -123,7 +127,7 @@ echo '
         <article class="body-pedidos">
 
 ';
-
+//segun el dato que recibe, decide si cifrar, hashear o dejarlo asi
 if($_POST['Tipo-edit'] == "Usuario") {
     if($_POST['Columna'] == "id_usuario") {
         $valor = Cifrar($_POST['Valor']);
@@ -149,12 +153,14 @@ if($_POST['Tipo-edit'] == "Usuario") {
     if($_POST['Columna'] == "id_tipousuario") {
         $valor = $_POST['Valor'];
     }
+    //actualizamos usuario
     $consulta = 'UPDATE usuario SET '.$_POST['Columna'].' = "'.$valor.'" WHERE id_usuario = "'.$_POST['Editar'].'"';
     $consultar = mysqli_query($conexion, $consulta);
     $_SESSION['Error'] = "<h5 class='error'>Usuario editado correctamente</h5>";
     header("location:admin.php");
     exit();
 }
+//actualizamos bebida
 elseif ($_POST['Tipo-edit'] == "Bebida") {
     $valor = $_POST['Valor'];
     $consulta = 'UPDATE bebida SET '.$_POST['Columna'].' = "'.$valor.'" WHERE id_bebida = '.$_POST['Editar'].'';
@@ -163,6 +169,7 @@ elseif ($_POST['Tipo-edit'] == "Bebida") {
     header("location:admin.php");
     exit();
 }
+//actualizamos preparado
 elseif ($_POST['Tipo-edit'] == "Preparado") {
     $valor = $_POST['Valor'];
     $consulta = 'UPDATE preparado SET '.$_POST['Columna'].' = "'.$valor.'" WHERE id_comida = '.$_POST['Editar'].'';
@@ -171,6 +178,7 @@ elseif ($_POST['Tipo-edit'] == "Preparado") {
     header("location:admin.php");
     exit();
 }
+//actualizamos antojito
 elseif ($_POST['Tipo-edit'] == "Antojito") {
     $valor = $_POST['Valor'];
     $consulta = 'UPDATE antojito SET '.$_POST['Columna'].' = "'.$valor.'" WHERE id_antojito = '.$_POST['Editar'].'';
@@ -179,6 +187,7 @@ elseif ($_POST['Tipo-edit'] == "Antojito") {
     header("location:admin.php");
     exit();
 }
+//actualizamos pedido
 elseif ($_POST['Tipo-edit'] == "Pedido") {
     if($_POST['Columna'] == "id_usuario") {
         $valor = Cifrar($_POST['Valor']);
@@ -195,7 +204,7 @@ elseif ($_POST['Tipo-edit'] == "Pedido") {
 
 
 
-
+//muestra el formulario de usuario
 if($_POST['Tipo-tabla'] == "Usuario") {
     echo '
             <h3>Editar usuario</h3>
@@ -225,6 +234,7 @@ if($_POST['Tipo-tabla'] == "Usuario") {
             </div>
     ';
 }
+//muestra el formulario de bebida
 elseif($_POST['Tipo-tabla'] == "Bebida") {
     echo '
             <h3>Editar Bebida</h3>
@@ -244,7 +254,7 @@ elseif($_POST['Tipo-tabla'] == "Bebida") {
                 <input type="hidden" value="Bebida" name="Tipo-edit">
                 <input type="submit" value="Editar" class="agregar-usuario">
             </form>
-            <table border="1" class="tabla-editar">
+            <table class="tabla-editar">
                 <tr>
                     <th>Id</th>
                     <th>Tipo</th>
@@ -271,7 +281,7 @@ elseif($_POST['Tipo-tabla'] == "Bebida") {
                 </tr>
             </table>
             <br>
-            <table border="1" class="tabla-editar">
+            <table class="tabla-editar">
                 <tr>
                     <th>Id</th>
                     <th>Porción</th>
@@ -296,6 +306,7 @@ elseif($_POST['Tipo-tabla'] == "Bebida") {
             </div>
     ';
 }
+//muestra el formulario de preparado
 elseif ($_POST['Tipo-tabla'] == "Preparado") {
     echo '
             <h3>Editar Preparado</h3>
@@ -321,6 +332,7 @@ elseif ($_POST['Tipo-tabla'] == "Preparado") {
             </div>
     ';
 }
+//muestra el formulario de antojito
 elseif ($_POST['Tipo-tabla'] == "Antojito") {
     echo '
             <h3>Editar Antojito</h3>
@@ -382,6 +394,7 @@ elseif ($_POST['Tipo-tabla'] == "Antojito") {
             </div>
     ';
 }
+//muestra el formulario de pedido
 elseif($_POST['Tipo-tabla'] == "Pedido") {
     echo '
             <h3>Editar Pedido</h3>
@@ -413,16 +426,7 @@ elseif($_POST['Tipo-tabla'] == "Pedido") {
             </div>
     ';
 }
-
-
-
-
-
-
-
-
-
-
+//cierre de estructura HTML
 echo '
 
         </article>
@@ -439,4 +443,5 @@ echo '
 </body>
 
 </html>';
+mysqli_close($conexion);
 ?>

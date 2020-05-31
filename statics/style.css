@@ -500,8 +500,13 @@ footer {
     height: auto;
 }
 
-.tabla-pedidos table, .tabla-pedidos tr, .tabla-pedidos th, .tabla-pedidos td {
-    border: 1px solid black;
+.tabla-pedidos th {
+    background-color: #f29d29;
+}
+
+.tabla-pedidos td {
+    background-color: #595959;
+    color: white;
 }
 
 .tabla-pedidos table {
@@ -707,10 +712,35 @@ footer {
     margin-bottom: 30px;
 }
 
+.tabla-editar td {
+    background-color: #595959;
+    color: white;
+}
+
+.tabla-editar th {
+    background-color: #f29d29;
+}
+
 .tabla-pedido {
     margin: 10px 10%;
     width: 80%;
     text-align: center;
+}
+
+.tabla-pedido td {
+    background-color: #595959;
+    color: white;
+    padding: 2px;
+}
+
+.tabla-pedido th {
+    background-color: #f29d29;
+    padding: 2px;
+}
+
+.t-reversa th {
+    background-color: #C05C33;
+    color: white;
 }
 
 #supervisor {

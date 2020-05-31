@@ -1,18 +1,24 @@
 <?php
+//inciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+
+//validamos variables
 if(!$_POST['Tipo-tabla']) {
     header("location:../templates/error.html");
     exit();
 }
+
+//obtenemos la fecha y hora de ingreso
 $zona = date_default_timezone_set('America/Mexico_City');
 $fecha = date("d-m-Y");
 $hora = date("H:i:s");
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -78,7 +84,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>
@@ -99,7 +105,7 @@ echo '
         <article class="body-pedidos">
 
 ';
-
+//si recibe usuario muestra su formulario
 if($_POST['Tipo-tabla'] == "Usuario") {
     echo '
             <h3>Añadir usuario</h3>
@@ -166,6 +172,7 @@ if($_POST['Tipo-tabla'] == "Usuario") {
             </div>
     ';
 }
+//si recibe bebida muestra su formulario
 if($_POST['Tipo-tabla'] == "Bebida") {
     echo '
             <h3>Añadir Bebida</h3>
@@ -199,6 +206,7 @@ if($_POST['Tipo-tabla'] == "Bebida") {
             </div>
     ';
 }
+//si recibe preparado muestra su formulario
 if($_POST['Tipo-tabla'] == "Preparado") {
     echo '
             <h3>Añadir Preparado</h3>
@@ -217,6 +225,7 @@ if($_POST['Tipo-tabla'] == "Preparado") {
             </div>
     ';
 }
+//si recibe antojito muestra su formulario
 if($_POST['Tipo-tabla'] == "Antojito") {
     echo '
             <h3>Añadir Antojito</h3>
@@ -247,6 +256,7 @@ if($_POST['Tipo-tabla'] == "Antojito") {
             </div>
     ';
 }
+//si recibe pedido muestra su formulario
 if($_POST['Tipo-tabla'] == "Pedido") {
     echo '
             <h3>Añadir Pedido</h3>
@@ -276,7 +286,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
                 <input type="submit" value="Añadir" class="agregar-usuario">
             </form>
             <h3>Disponibilidad Antojitos</h3>
-            <table border="1" class="tabla-pedido">';
+            <table class="tabla-pedido">';
     $consulta = 'SELECT * FROM antojito';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -295,7 +305,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     }
     echo '  </table>
             <h3>Disponibilidad Bebidas</h3>
-            <table border="1" class="tabla-pedido">';
+            <table class="tabla-pedido">';
     $consulta = 'SELECT * FROM bebida';
     $consultar = mysqli_query($conexion, $consulta);
     echo '      <tr>
@@ -315,7 +325,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     }
     echo '  </table>
             <h3>Disponibilidad Preparado</h3>
-            <table border="1" class="tabla-pedido">
+            <table class="tabla-pedido">
 ';
     $consulta = 'SELECT * FROM preparado';
     $consultar = mysqli_query($conexion, $consulta);
@@ -335,7 +345,7 @@ if($_POST['Tipo-tabla'] == "Pedido") {
     }
     echo '  </table>
             <h3>Tipos de entrega</h3>
-            <table border="1" class="tabla-pedido">
+            <table class="tabla-pedido">
 ';
     $consulta = 'SELECT * FROM tiempoespera NATURAL JOIN tipoentrega';
     $consultar = mysqli_query($conexion, $consulta);
@@ -383,4 +393,5 @@ echo '
 </body>
 
 </html>';
+mysqli_close($conexion);
 ?>

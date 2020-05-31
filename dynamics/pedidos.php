@@ -1,23 +1,36 @@
 <?php
+//iniciamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+//si no esta logueado lo sacamos
 if($_SESSION['usuario'] == "") {
     header("location: login.php");
     exit();
 }
+//definimos zona horaria
 $zona = date_default_timezone_set('America/Mexico_City');
 
+//definimos variables
+$lugar = "";
+
+//consulta el lugar de entrega
 $consulta = 'SELECT lugar FROM venta NATURAL JOIN entrega WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
-$resultado = mysqli_fetch_array($consultar);
-$lugar = $resultado[0];
-if($lugar == "") {
-    $lugar = "Cafeteria";
+if($resultado = mysqli_fetch_array($consultar)) {
+    $lugar = $resultado[0];
+    if($lugar == "") {
+        $lugar = "Cafeteria";
+    }
 }
+
+
+
+
+//checa si ya tienes un pedido o no y guarda su resoectivo contenido
 $consulta = 'SELECT * FROM venta NATURAL JOIN tiempoespera WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 if($resultado = mysqli_fetch_array($consultar)) {
@@ -43,6 +56,7 @@ else {
                     </div>
                 </div>';
 }
+//checa si el usuario ha sido castigado y guarda su contenido
 $consulta = 'SELECT * FROM usuario WHERE id_usuario = "'.$_SESSION['Usuario2'].'"';
 $consultar = mysqli_query($conexion, $consulta);
 $resultado = mysqli_fetch_array($consultar);
@@ -58,6 +72,7 @@ if($resultado[8] != "") {
     }
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -123,7 +138,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>
@@ -166,4 +181,6 @@ echo '
 </body>
 
 </html>';
+
+mysqli_close($conexion);
 ?>

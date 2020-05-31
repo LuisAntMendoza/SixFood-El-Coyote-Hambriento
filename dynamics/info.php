@@ -1,8 +1,10 @@
 <?php
+//inciamos sesion
 session_start();
 if(!isset($_SESSION['usuario'])){
     $_SESSION['usuario'] = "";
 }
+//segun si hay o no sesion muestra la pestaña para cerrar sesion
 if($_SESSION['usuario'] != "") {
     $cS = '
     <li>
@@ -19,7 +21,7 @@ else {
     $cS = "";
 }
 
-
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -78,7 +80,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>

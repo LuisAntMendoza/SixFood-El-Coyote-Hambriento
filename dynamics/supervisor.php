@@ -1,14 +1,17 @@
 <?php
+//inicamos sesion y conexion
 session_start();
 $conexion = mysqli_connect("localhost", "root", "root", "SixFood");
 if(!$conexion) {
     header("location:../templates/error.html");
     exit();
 }
+//si no tiene sesion lo sacamos
 if(! isset($_SESSION['usuario'])) {
     header("location: login.php");
     exit();
 }
+//si no tiene poder lo sacamos
 if($_SESSION['Poder'] == 3) {
     header("location:../templates/error.html");
     exit();
@@ -19,10 +22,12 @@ if($_SESSION['Poder'] == "") {
     exit();
 }
 
+//definmos zona horaria
 $zona = date_default_timezone_set('America/Mexico_City');
 $fecha = date("d-m-Y");
 $hora = date("H:i:s");
 
+//definimos constantes para decirfrar
 define("PASSWORD", "Shrek Amo Del Multiverso");
 define("HASH", "sha256");
 define("METHOD", "aes-128-cbc-hmac-sha1");
@@ -45,6 +50,7 @@ function Decifrar ($textoCifrado){
   return $originalText;
 }
 
+//estructura basica HTML
 echo '
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
@@ -110,7 +116,7 @@ echo '
                     <h3 class="h3-red">Instagram</h3>
                 </div>
             </a>
-            <a href="http://www.twitter.com" target="_blank">
+            <a href="https://twitter.com/CSixfood" target="_blank">
                 <div class="cuadro-red" id="twitter"><img src="../statics/img/logos-red/logo-twitter.png" alt="Logo Twitter" class="logo-red">
                     <h3 class="h3-red">Twitter</h3>
                 </div>
@@ -150,6 +156,7 @@ echo '
                         <th>Completar</th>
                         <th>Castigar</th>
                     </tr>';
+//generamos la tabla de los pedidos
 $consulta = 'SELECT * FROM venta';
 $consultar = mysqli_query($conexion, $consulta);
 while($resultado = mysqli_fetch_array($consultar)) {
@@ -244,4 +251,5 @@ echo '
 
 </html>';
 $_SESSION['Error'] = "";
+mysqli_close($conexion);
 ?>
