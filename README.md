@@ -77,6 +77,34 @@ MariaDB [(none)]> CREATE DATABASE pruebaSixFood CHARACTER SET utf8 COLLATE utf8_
 
 10. _Use la base de datos creada y usando el comando SOURCE descargue en ella el archivo_ SixFood.sql _._
 
+11. **Esta página fue diseñada para dispositivos Mac. Si usted tiene Windows, debe seguir las siguientes indicaciones para el correcto  funcionamiento de la página ya que aún estamos desarrollando la versión para Windows:**
+      
+      - Después de descargar los archivos del repositorio, abra en Atom los siguientes archivos con terminación .php que se encuentran dentro de la carpeta Dynamics en los archivos clonados de este proyecto:
+        
+        - Admin
+        
+        - Añadicion
+        
+        - Añadir
+        
+        - Borrar
+        
+        - Editar
+        
+        - Login
+        
+        - Registracion
+        
+        - Registro
+        
+        - Supervisor
+        
+        - Contraseña de usuario
+        
+        - cambiarentrega
+      
+      - Use "ctrl + f" en cada página y busqué 'root'. Deberá borrar el primero de ellos (segundo elemento dentro del paréntesis) para borrar la contraseña de root y que esto no afecte el funcionamiento de su página.
+
 ## Funcionamiento de la página
 _El php de nuestro trabajo integra gran parte de conocimientos en materia de seguridad web, bases de datos, php y html, contando de este modo con toda clase de elementos para su optimo funcionamiento. Está enfocado al desarrollo de una página funcional de utilidad en una Cafetería/Puesto de comida que se encuentra, en este caso, en la preparatoria 6 "Antonio Caso"._
 
@@ -88,6 +116,13 @@ operaciones tales como, añadir un producto a la base de datos desde el php, den
 funcionamiento de la base de datos), asimilaciones de productos y usuarios según sus datos de registro, protección
 de contraseñas y datos sencibles mediante codificación y hasheo, además de otras funcionalidades que el mismo usuario podrá notar haciendo uso de esta página._
 
+#### Probar la cuenta del administrador y los permisos que tiene dentro de la página
+
+1. _Debe entrar desde el log in de alumno con los siguientes datos:_
+    
+    - Usuario: 998877665
+    
+    - Contraseña: G0dAdm!n369
 
 ## Construido con 🛠️
 
